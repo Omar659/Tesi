@@ -1,39 +1,34 @@
-import qi
 import sys 
+sys.path.append('./api')
+sys.path.append('./utils')
+sys.path.append('./constants')
+from autentication_pepper import *
+from state_flow_functions import *
+import qi
 import motion
 import math
 import time
-# import almath
-
-class Authenticator:
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-
-    # This method is expected by libqi and must return a dictionary containing
-    # login information with the keys 'user' and 'token'.
-    def initialAuthData(self):
-        return {'user': self.username, 'token': self.password}
-
-
-class AuthenticatorFactory:
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-
-    # This method is expected by libqi and must return an object with at least
-    # the `initialAuthData` method.
-    def newAuthenticator(self):
-        return Authenticator(self.username, self.password)
-
-
-
-sys.path.append('./utils')
 from api_call import *
 import keyboard
 import time
+
+post_set_state(INITIAL_STATE)
+
+while True:
+    state = get_state()
+
+    # print(state)
+    # print
+
+    if state is not None and state.flag_pepper:
+        if state.state_name == STATE1:
+            handle_hello_state()
+            put_activate(HMD_FLAG)
+            put_deactivate(PEPPER_FLAG)
+            put_next_state(STATE2)
+        elif state.state_name == STATE6:
+            break
+        
 
 # api = API_call("http://192.168.210.120:8080", "flagPepperHMD/getFlag")
 # api = API_call("http://192.168.210.120:8080", "flagPepperHMD/switchFlag")
@@ -42,21 +37,21 @@ import time
 
 
 
-api = API_call("http://192.168.210.120:8080", "flagPepperHMD")
-doAction = True
+# api = API_call("http://192.168.210.120:8080", "flagPepperHMD")
+# doAction = True
 
-while True:
-    response = api.call('get', "getFlag", 25, ['flagName', "flag"])
+# while True:
+    # response = api.call('get', "getFlag", 25, ['flagName', "flag"])
 
-    if response["flagName"] == "flag" and response["value"] and doAction:
-        print("NELL'IF SE NON FACCIO AZIONE\t\t\tflagName: " + response["flagName"] + "; value: " + str(response["value"]) + "; doAction: " + str(doAction))
-        if keyboard.is_pressed('d'):
-            print("FACCIO AZIONE\t\t\tflagName: " + response["flagName"] + "; value: " + str(response["value"]) + "; doAction: " + str(doAction))
-            doAction = False
-            _ = api.call('put', "switchFlag", 25, ['flagName', "flag"])
+    # if response["flagName"] == "flag" and response["value"] and doAction:
+    #     print("NELL'IF SE NON FACCIO AZIONE\t\t\tflagName: " + response["flagName"] + "; value: " + str(response["value"]) + "; doAction: " + str(doAction))
+    #     if keyboard.is_pressed('d'):
+    #         print("FACCIO AZIONE\t\t\tflagName: " + response["flagName"] + "; value: " + str(response["value"]) + "; doAction: " + str(doAction))
+    #         doAction = False
+    #         _ = api.call('put', "switchFlag", 25, ['flagName', "flag"])
                     
-    if response["flagName"] == "flag" and response["value"]:
-        print("CHECK SULLA CHIAMATA API\t\t\tflagName: " + response["flagName"] + "; value: " + str(response["value"]) + "; doAction: " + str(doAction))
+    # if response["flagName"] == "flag" and response["value"]:
+    #     print("CHECK SULLA CHIAMATA API\t\t\tflagName: " + response["flagName"] + "; value: " + str(response["value"]) + "; doAction: " + str(doAction))
 
 
 

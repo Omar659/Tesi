@@ -9,7 +9,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.Objects;
-import static it.visionlab.sapienza.pepper.hmd.constants.StartVariables.stateId;
+
+import static it.visionlab.sapienza.pepper.hmd.constants.Constants.*;
 
 @Log
 @Repository
@@ -20,9 +21,15 @@ public class FlagPepperHMDRepository {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public void setState(Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace) {
-        State state = new State(stateId, flagPepper,flagHMD,stateName,chosenPlace);
-        mongoTemplate.save(state);
+    public State getState() {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        return mongoTemplate.findOne(query, State.class);
+    }
+
+    public void setState(State state) {
+        if (state != null){
+            mongoTemplate.save(state);
+        }
     }
 
     public void activate(String who) {
@@ -43,24 +50,20 @@ public class FlagPepperHMDRepository {
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null;
         Update update;
-        if (Objects.equals(who, "pepper")) {
+        if (Objects.equals(who, pepperFlagName)) {
             update = new Update().set("flagPepper", false);
-        } else {
+            mongoTemplate.updateFirst(query, update, State.class);
+        } else if (Objects.equals(who, hmdFlagName)) {
             update = new Update().set("flagHMD", false);
+            mongoTemplate.updateFirst(query, update, State.class);
         }
-        mongoTemplate.updateFirst(query, update, State.class);
-    }
-
-    public State getState() {
-        Query query = new Query(Criteria.where("flagName").is(stateId));
-        return mongoTemplate.findOne(query, State.class);
     }
 
     public void nextState(String stateName) {
         Query query = new Query(Criteria.where("stateId").is(stateId));
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null;
-        Update update = new Update().set("chosenPlace", stateName);
+        Update update = new Update().set("stateName", stateName);
         mongoTemplate.updateFirst(query, update, State.class);
     }
 }

@@ -23,11 +23,8 @@ public class FlagPepperHMDController {
     }
 
     @PostMapping("/setState")
-    public void setState(@RequestParam(required = true) Boolean flagPepper,
-                         @RequestParam(required = true) Boolean flagHMD,
-                         @RequestParam(required = true) String stateName,
-                         @RequestParam(required = true) String chosenPlace) {
-        flagPepperHMDService.setState(flagPepper, flagHMD, stateName, chosenPlace);
+    public void setState(@RequestBody State state) {
+        flagPepperHMDService.setState(state);
     }
 
     @PutMapping("/activate")

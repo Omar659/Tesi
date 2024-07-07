@@ -23,8 +23,8 @@ public class FlagPepperHMDService {
         return flagPepperHMDRepository.getState();
     }
 
-    public void setState(Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace) {
-        flagPepperHMDRepository.setState(flagPepper, flagHMD, stateName, chosenPlace);
+    public void setState(State state) {
+        flagPepperHMDRepository.setState(state);
     }
 
     public void activate(String who) {
