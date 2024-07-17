@@ -1,8 +1,0 @@
-BASE_URL = "http://localhost:8080"
-# BASE_URL = "http://192.168.210.120:8080"
-STATE_ENDPOINT = "flagPepperHMD"
-GET_STATE = "getState"
-PUT_DEACTIVATE = "deactivate"
-PUT_ACTIVATE = "activate"
-PUT_NEXT_STATE = "nextState"
-POST_SET_STATE = "setState"

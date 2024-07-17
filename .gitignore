@@ -1,2 +1,3 @@
 docker/database-data/
 *.pyc
+LLM/token.json

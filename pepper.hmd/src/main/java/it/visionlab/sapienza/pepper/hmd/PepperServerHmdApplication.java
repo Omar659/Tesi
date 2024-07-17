@@ -1,7 +1,7 @@
 package it.visionlab.sapienza.pepper.hmd;
 
 import it.visionlab.sapienza.pepper.hmd.model.State;
-import it.visionlab.sapienza.pepper.hmd.service.FlagPepperHMDService;
+import it.visionlab.sapienza.pepper.hmd.service.StateService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,17 +18,17 @@ public class PepperServerHmdApplication {
 }
 
 @Component
-class FlagInitializer implements CommandLineRunner {
+class StateInitializer implements CommandLineRunner {
 
-	private final FlagPepperHMDService flagPepperHMDService;
+	private final StateService stateService;
 
-	public FlagInitializer(FlagPepperHMDService flagPepperHMDService) {
-		this.flagPepperHMDService = flagPepperHMDService;
+	public StateInitializer(StateService stateService) {
+		this.stateService = stateService;
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		State initialState = new State(stateId, flagPepper,flagHMD,stateName,chosenPlace);
-		flagPepperHMDService.setState(initialState);
+		stateService.setState(initialState);
 	}
 }

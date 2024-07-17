@@ -6,7 +6,7 @@ class API_manager():
         self.headers = headers
 
     def call(self, type, request_name, timeout, body={}, params = []):
-        url = self.base_url + "/" + request_name + "?"
+        url = self.base_url + "/" + request_name + "?" if request_name != "" else self.base_url + "?"
         for param in params:
             url += param[0] + "=" + param[1] + "&"
         url = url[:-1]

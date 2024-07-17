@@ -14,10 +14,10 @@ import static it.visionlab.sapienza.pepper.hmd.constants.Constants.*;
 
 @Log
 @Repository
-public class FlagPepperHMDRepository {
+public class StateRepository {
     private final MongoTemplate mongoTemplate;
 
-    public FlagPepperHMDRepository(MongoTemplate mongoTemplate) {
+    public StateRepository(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
 
