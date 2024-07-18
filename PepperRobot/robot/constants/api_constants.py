@@ -5,6 +5,7 @@ BASE_URL_LLM = "http://localhost:8081"
 STATE_ENDPOINT = "state"
 USER_ENDPOINT = "user"
 LLM_ENDPOINT = "llm"
+STT_ENDPOINT = "stt"
 
 GET_STATE = "getState"
 PUT_DEACTIVATE = "deactivate"

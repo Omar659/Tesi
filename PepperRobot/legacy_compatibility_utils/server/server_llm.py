@@ -1,9 +1,8 @@
 # To import config
 from flask import request
 from flask_restful import Resource
-from llm_call import *
+from module_call.llm_call import *
 from constants import *
-import string
 
 class Server_LLM(Resource):
     def __init__(self):

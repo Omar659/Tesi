@@ -63,12 +63,8 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 import os
-import sys
-
-import sys
-sys.path.append('./server')
-
-from server import Server_LLM
+from server.server_llm import Server_LLM
+from server.server_stt import Server_STT
 from constants import *
 
 # Remove log print
@@ -83,6 +79,7 @@ CORS(app)
 # Different type of servers
 api = Api(app)
 api.add_resource(Server_LLM, "/" + LLM_ENDPOINT)
+api.add_resource(Server_STT, "/" + STT_ENDPOINT)
 
 if __name__ == '__main__':
     os.system('cls')
