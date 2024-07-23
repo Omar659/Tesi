@@ -10,6 +10,7 @@ class API_manager():
         for param in params:
             url += param[0] + "=" + param[1] + "&"
         url = url[:-1]
+        # print(url)
         # print("Request url: " + url)
         if type.upper() == "GET":
             response = requests.get(url, headers=self.headers, timeout=timeout)

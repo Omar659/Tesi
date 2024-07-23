@@ -1,5 +1,5 @@
-BASE_URL_HMD = "http://localhost:8080"
-BASE_URL_LLM = "http://localhost:8081"
+BASE_URL_HMD = "http://localhost:8081"
+BASE_URL_LCU = "http://localhost:8080"
 # BASE_URL = "http://192.168.210.120:8080"
 
 STATE_ENDPOINT = "state"

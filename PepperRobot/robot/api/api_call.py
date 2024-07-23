@@ -59,6 +59,6 @@ def post_create_user(user):
 #############################
 
 def get_answer_hello(pepper_question, human_answer):
-    API_manager_istance = API_manager(BASE_URL_LLM, LLM_ENDPOINT)
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
     response = API_manager_istance.call('get', "", 25, params=[["req", GET_HELLO_NAME], ["pepper_question", pepper_question], ["human_answer", human_answer]])
     return response

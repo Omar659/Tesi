@@ -6,12 +6,13 @@ sys.path.append('./constants')
 sys.path.append('./pepper')
 
 from state_flow_functions import *
+from constants import *
 
 
 # import qi
 # import motion
 # import math
-# import time
+import time
 from api_call import *
 # import keyboard
 
@@ -19,32 +20,36 @@ from api_call import *
 
 os.system('cls')
 
-# state = get_state()
-# if state is None or state.state_name != STATE1:
-#     post_set_state(INITIAL_STATE)
+state = get_state()
+if state is None or state.state_name != STATE1:
+    post_set_state(INITIAL_STATE)
+    
+while True:
+    time.sleep(0.1)
+    
+    
+    state = get_state()
 
-# while True:
-#     state = get_state()
+    # print(state)
+    # print
 
-#     # print(state)
-#     # print
+    if state is not None and state.flag_pepper:
+        if state.state_name == STATE1:
+            handle_hello_state()
+            put_activate(HMD_FLAG)
+            put_deactivate(PEPPER_FLAG)
+            put_next_state(STATE2)
+        elif state.state_name == STATE6:
+            break
 
-#     if state is not None and state.flag_pepper:
-#         if state.state_name == STATE1:
-#             handle_hello_state()
-#             put_activate(HMD_FLAG)
-#             put_deactivate(PEPPER_FLAG)
-#             put_next_state(STATE2)
-#         elif state.state_name == STATE6:
-#             break
+# from robot import Pepper
 
-from robot import Pepper
-
-robot = Pepper(ip="192.168.179.108", port=9503)
-robot.execute()
+# robot = Pepper(ip="192.168.179.108", port=9503)
+# robot.execute()
 # robot.speech_module.say("Positano e meglio delle Hawaii. FORZA NAPOLIIIIIIIIII!!!!")
-robot.stop()
-sys.exit(0)
+# robot.stop()
+# sys.exit(0)
+
 
 # try:
 #     while True:

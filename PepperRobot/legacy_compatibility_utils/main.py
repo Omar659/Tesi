@@ -85,4 +85,4 @@ if __name__ == '__main__':
     os.system('cls')
     # Database
     print("Starting api...")
-    app.run(host="0.0.0.0", port="8081")
+    app.run(host="0.0.0.0", port="8080")

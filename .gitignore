@@ -1,3 +1,3 @@
-docker/database-data/
 *.pyc
-LLM/token.json
+legacy_compatibility_utils/token.json
+Meta-Llama-3-8B/
