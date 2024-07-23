@@ -5,7 +5,7 @@ from constants import *
 
 class Server_STT(Resource):
     def __init__(self):
-        self.llm = STTRecognizer()
+        self.recognizer = STTRecognizer()
         self.req = request.args.get("req")
 
     def post(self):
@@ -14,6 +14,7 @@ class Server_STT(Resource):
     def get(self):  
         if self.req == GET_LISTEN:
             self.recognizer.listen()
+            return {"message": "GET request succed", "error": False}
         return {"message": "GET request failed", "error": True}
 
     def put(self):
