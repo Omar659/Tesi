@@ -20,36 +20,45 @@ from api_call import *
 
 os.system('cls')
 
-state = get_state()
-if state is None or state.state_name != STATE1:
-    post_set_state(INITIAL_STATE)
+# state = get_state()
+# if state is None or state.state_name != STATE1:
+#     post_set_state(INITIAL_STATE)
     
-while True:
-    time.sleep(0.1)
+# while True:
+#     time.sleep(0.1)
     
     
-    state = get_state()
+#     state = get_state()
 
-    # print(state)
-    # print
+#     # print(state)
+#     # print
 
-    if state is not None and state.flag_pepper:
-        if state.state_name == STATE1:
-            handle_hello_state()
-            put_activate(HMD_FLAG)
-            put_deactivate(PEPPER_FLAG)
-            put_next_state(STATE2)
-        elif state.state_name == STATE6:
-            break
+#     if state is not None and state.flag_pepper:
+#         if state.state_name == STATE1:
+#             handle_hello_state()
+#             put_activate(HMD_FLAG)
+#             put_deactivate(PEPPER_FLAG)
+#             put_next_state(STATE2)
+#         elif state.state_name == STATE6:
+#             break
 
-# from robot import Pepper
+from robot import Pepper
+import time
 
-# robot = Pepper(ip="192.168.179.108", port=9503)
-# robot.execute()
-# robot.speech_module.say("Positano e meglio delle Hawaii. FORZA NAPOLIIIIIIIIII!!!!")
-# robot.stop()
-# sys.exit(0)
+robot = Pepper(ip="192.168.73.108", port=9503)
+robot.execute()
+# robot.vision_module.save_image()
 
+    
+robot.stop()
+
+# try:
+#     text = recognizer.recognize_google(audio, language='en-EN')
+#     print("Hai detto: " + text)
+# except sr.UnknownValueError:
+#     print("Google Web Speech API non ha capito l'audio")
+# except sr.RequestError as e:
+#     print("Impossibile richiedere i risultati da Google Web Speech API; {0}".format(e))
 
 # try:
 #     while True:

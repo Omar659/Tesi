@@ -5,6 +5,10 @@ sys.path.append('./pepper')
 import qi
 from autentication_pepper import AuthenticatorFactory
 from speech import Speech
+from vision import Vision
+
+
+import numpy as np
 
 class Pepper:
     def __init__(self, ip, port=9503):
@@ -21,6 +25,7 @@ class Pepper:
     def start(self):
         self.app.start()
         self.speech_module = Speech(self.app)
+        self.vision_module = Vision(self.app)
         print("Pepper started!!")
         
     def stop(self):
