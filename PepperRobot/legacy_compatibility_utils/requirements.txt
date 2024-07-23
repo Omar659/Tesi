@@ -1,0 +1,7 @@
+torch
+torchvision
+transformers
+flash_attn
+timm
+einops
+accelerate

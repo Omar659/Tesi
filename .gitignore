@@ -1,7 +1,7 @@
 *.pyc
 legacy_compatibility_utils/token.json
-Meta-Llama-3-8B/
 __pycache__/
+.conda
 Florence-2-base/
 whisper-large-v3/
-.conda
+*.Identifier

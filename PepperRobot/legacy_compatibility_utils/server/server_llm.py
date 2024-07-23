@@ -19,8 +19,10 @@ class Server_LLM(Resource):
             user_prompt = self.human_answer
 
             system_prompt = f'''You are a humanoid robot who is greeting a human. This is the conversation history so far:
-            - Human: Hi!
             - You: {self.pepper_question}
+            
+            This is what you see:
+            
 
             Given the next input, given by the human, answer "Welcome, mr. <name>" or "Welcome, mrs. <name>" based on whether it's a male or a female, infer the gender from the name. If you can't tell which gender it is, answer with "Welcome, <name>"'''
             
