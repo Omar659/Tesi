@@ -4,8 +4,8 @@ from module_call.stt_recognition import STTRecognizer
 from constants import *
 
 class Server_STT(Resource):
-    def __init__(self):
-        self.recognizer = STTRecognizer()
+    def __init__(self, recognizer):
+        self.recognizer = recognizer
         self.req = request.args.get("req")
 
     def post(self):
@@ -14,7 +14,8 @@ class Server_STT(Resource):
     def get(self):  
         if self.req == GET_LISTEN:
             self.recognizer.listen()
-            return {"message": "GET request succed", "error": False}
+            listened_message = self.recognizer.stt()
+            return {"listened_message": listened_message, "error": False}
         return {"message": "GET request failed", "error": True}
 
     def put(self):

@@ -2,7 +2,7 @@ import openai
 from openai import OpenAI
 import json
 
-class llm_caller:
+class LlmCaller:
     def __init__(self):
         self.client = self.__get_client()
         
