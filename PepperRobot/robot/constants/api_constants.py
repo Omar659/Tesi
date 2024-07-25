@@ -18,3 +18,5 @@ GET_USER_EXIST = "getUserExist"
 POST_CREATE_USER = "postCreateUser"
 
 GET_HELLO_NAME = "get_hello_name"
+GET_CHAT_BOT_ANSWER = "get_chat_bot_answer"
+GET_LISTEN = "get_listen"

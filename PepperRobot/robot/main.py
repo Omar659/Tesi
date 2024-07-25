@@ -12,44 +12,42 @@ from constants import *
 # import qi
 # import motion
 # import math
+from robot import Pepper
 import time
 from api_call import *
-# import keyboard
 
 
 
 os.system('cls')
 
-# state = get_state()
-# if state is None or state.state_name != STATE1:
-#     post_set_state(INITIAL_STATE)
-    
-# while True:
-#     time.sleep(0.1)
-    
-    
-#     state = get_state()
-
-#     # print(state)
-#     # print
-
-#     if state is not None and state.flag_pepper:
-#         if state.state_name == STATE1:
-#             handle_hello_state()
-#             put_activate(HMD_FLAG)
-#             put_deactivate(PEPPER_FLAG)
-#             put_next_state(STATE2)
-#         elif state.state_name == STATE6:
-#             break
-
-from robot import Pepper
-import time
-
-robot = Pepper(ip="192.168.73.108", port=9503)
+robot = Pepper(ip="192.168.157.108", port=9503)
 robot.execute()
-# robot.vision_module.save_image()
 
-    
+state = get_state()
+if state is None or state.state_name != STATE1:
+    post_set_state(INITIAL_STATE)
+
+put_next_state(STATE1)
+put_activate(PEPPER_FLAG)
+put_deactivate(HMD_FLAG)
+
+while True:
+    time.sleep(0.1)    
+    state = get_state()
+
+    if state is not None and state.flag_pepper:
+        if state.state_name == STATE1:
+            handle_hello_state(robot)
+            put_activate(HMD_FLAG)
+            put_deactivate(PEPPER_FLAG)
+            put_next_state(STATE2)
+        elif state.state_name == STATE2:
+            break
+    else: 
+        break
+
+
+# robot.vision_module.save_image()
 robot.stop()
 
 # try:

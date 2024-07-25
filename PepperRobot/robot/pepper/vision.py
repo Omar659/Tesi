@@ -14,10 +14,12 @@ class Vision:
         fps = 10
         self.video_client = self.vision.subscribeCamera("vision", 0, resolution, color_space, fps)
         
-    def save_image(self, path="./../model_inputs/", save_name = "pepper_view.png"):
+    def save_image(self, path="\\\\wsl.localhost\Ubuntu\home\omir97\\repos\Tesi\PepperRobot\model_inputs\\", save_name = "pepper_view.png"):
         frame = None
         while frame is None:
             frame = self.vision.getImageRemote(self.video_client)
+            # if frame is None:
+            #     continue
             width = frame[0]
             height = frame[1]
             array = frame[6]

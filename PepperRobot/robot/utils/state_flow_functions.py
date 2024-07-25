@@ -6,16 +6,21 @@ from robot_constants import *
 from api_call import *
 import random
 from datetime import datetime
+import threading
+import time
+import html
 
 def handle_hello_state(robot=None):
+    # metti colore occhi mentre ascolta
     pepper_question = random.choice(HELLO)
-    print("Pepper:", pepper_question)
+    robot.vision_module.save_image()
+    robot.speech_module.say(pepper_question)
     while True:
-        human_answer = input("You: ")
-        response_hello = get_answer_hello(pepper_question, human_answer)
+        human_answer = robot.speech_module.listen()
+        response_hello = get_answer_hello(pepper_question, human_answer, with_image=True)
         if response_hello["understood"]:
             break
-        print("Pepper:", response_hello["answer"])
+        robot.speech_module.say(response_hello["answer"])
     
     name_db = response_hello["answer_hidden"].lower()
     if get_user_exist(name_db):
@@ -25,10 +30,27 @@ def handle_hello_state(robot=None):
         pepper_welcome_back_message = response_hello["answer"].replace("Welcome", "Welcome back")
         if days_passed > 1:
             pepper_welcome_back_message += ", " + random.choice(WELCOME_BACK)
-        print(pepper_welcome_back_message, days_passed)
+        robot.speech_module.say(pepper_welcome_back_message)
     else:
-        print("Pepper:", response_hello["answer"])
+        robot.speech_module.say(response_hello["answer"])
         user = User(name_db, datetime.now())
         post_create_user(user)
-        print(response_hello)
-    return
+    
+    # robot.set_eye_color(255, 0, 0)  # Set the eye color to red
+    # time.sleep(5)
+    # robot.reset_eye_color()
+    robot.speech_module.say(pepper_question)
+    while True:
+        set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
+        set_eye_color_thread.start()
+        # robot.set_eye_color(255, 0, 0, sleep_time=1)
+        human_answer = robot.speech_module.listen()
+        robot.reset_eye_color()
+        robot.vision_module.save_image()
+        response_hello = get_answer_chet_bot(pepper_question, human_answer, with_image=True)
+        
+        if response_hello["exit"]:
+            break
+        robot.speech_module.say(response_hello["answer"])
+    
+    robot.speech_module.say("CIAO")
