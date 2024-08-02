@@ -1,6 +1,7 @@
 import vision_definitions
 import numpy as np
 import cv2
+import os
 
 class Vision:
     def __init__(self, app):
@@ -28,6 +29,9 @@ class Vision:
             image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
             cv2.imwrite(path + save_name, image_rgb)
+            # history = [int(i.split(".")[0]) for i in os.listdir(path) if len(i) < 7]
+            # history.sort()
+            # cv2.imwrite(path + str(history[-1]+1) + ".png", image_rgb)
         print("Image saved in {}".format(path + save_name))
                 
     def stop(self):

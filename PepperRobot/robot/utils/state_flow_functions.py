@@ -16,7 +16,10 @@ def handle_hello_state(robot=None):
     robot.vision_module.save_image()
     robot.speech_module.say(pepper_question)
     while True:
+        set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
+        set_eye_color_thread.start()
         human_answer = robot.speech_module.listen()
+        robot.reset_eye_color()
         response_hello = get_answer_hello(pepper_question, human_answer, with_image=True)
         if response_hello["understood"]:
             break
@@ -39,7 +42,8 @@ def handle_hello_state(robot=None):
     # robot.set_eye_color(255, 0, 0)  # Set the eye color to red
     # time.sleep(5)
     # robot.reset_eye_color()
-    robot.speech_module.say(pepper_question)
+    robot.speech_module.say(random.choice(CHAT_STARTER))
+    summary = ""
     while True:
         set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
         set_eye_color_thread.start()
@@ -47,10 +51,12 @@ def handle_hello_state(robot=None):
         human_answer = robot.speech_module.listen()
         robot.reset_eye_color()
         robot.vision_module.save_image()
-        response_hello = get_answer_chet_bot(pepper_question, human_answer, with_image=True)
+        response_hello = get_answer_chat_bot(human_answer, summary, user.name, with_image=True)
         
         if response_hello["exit"]:
+            robot.speech_module.say(random.choice(FEATURES_DESCRIPTION))
             break
         robot.speech_module.say(response_hello["answer"])
+        summary = response_hello["answer_summarizer"]
     
     robot.speech_module.say("CIAO")

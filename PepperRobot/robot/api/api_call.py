@@ -60,17 +60,17 @@ def post_create_user(user):
 
 def get_answer_hello(pepper_question, human_answer, with_image=False):
     API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
-    response = API_manager_istance.call('get', "", 25, params=[["req", GET_HELLO_NAME], ["pepper_question", pepper_question], ["human_answer", human_answer], ["with_image", str(with_image)]])
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_HELLO_NAME], ["pepper_question", pepper_question], ["human_answer", human_answer], ["with_image", str(with_image)]])
     return response
 
-def get_answer_chet_bot(human_answer, with_image=False):
+def get_answer_chat_bot(human_answer, summarize="", user_name="", with_image=False):
     API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
-    response = API_manager_istance.call('get', "", 25, params=[["req", GET_CHAT_BOT_ANSWER], ["human_answer", human_answer], ["with_image", str(with_image)]])
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_CHAT_BOT_ANSWER], ["human_answer", human_answer], ["summarize", summarize], ["user_name", user_name], ["with_image", str(with_image)]])
     return response
 
 #############################
 
 def get_listen():
     API_manager_istance = API_manager(BASE_URL_LCU, STT_ENDPOINT)
-    response = API_manager_istance.call('get', "", 25, params=[["req", GET_LISTEN]])
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_LISTEN]])
     return response
