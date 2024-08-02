@@ -16,7 +16,7 @@ class LlmCaller:
         )
         return client
     
-    def get_answer(self, system_prompt, user_prompt, model="codellama/CodeLlama-34b-Instruct-hf", max_tokens=512):
+    def get_answer(self, system_prompt, user_prompt, model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", max_tokens=512):
         messages = [
             {
                 "role": "system",
