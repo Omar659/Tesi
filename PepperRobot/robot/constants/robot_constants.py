@@ -54,14 +54,19 @@ ONE_OF_MY_ABILITIES = [
     "Definitely! That's one of the functions I offer."
 ]
 
+# List of phrases to ask the user to put the visor and start the application.
+PUT_VISOR = [
+    "Begin by putting on your visor and starting the application.",
+    "First, start the application after putting on your visor.",
+    "Put on your visor first, then start the application.",
+    "Start the application once you have put on your visor.",
+    "First, put on your visor; then, start the application."
+]
 
-
-
-SEE_TUTORIAL = [
-    "Of course! this is one of my features.",
-    "Certainly! This is one of my capabilities.",
-    "Absolutely! That's one of my features.",
-    "Sure! This is one of the things I can do.",
-    "Of course! This is one of my abilities.",
-    "Definitely! That's one of the functions I offer."
+# List of phrases to ask the user if he/she want to rewatch tutorial.
+REWATCH_TUTORIAL = [
+    "You've used this feature before. Would you like to review the tutorial?",
+    "Since you're familiar with this feature, do you want to go over the tutorial again?",
+    "You've used this feature previously. Would you like to revisit the tutorial?",
+    "As you've used this feature, would you like a refresher on the tutorial?"
 ]

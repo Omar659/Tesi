@@ -18,6 +18,18 @@ import time
 from api_call import *
 
 
+def print_start(state_name):
+    s = "START " + state_name + " STATE"
+    len_s = len(s)
+    s = "#"*len_s + "\n" + s + "\n" + "#"*len_s + "\n"
+    print(s)
+    
+def print_end(state_name):
+    s = "nEND " + state_name + " STATE"
+    len_s = len(s)
+    s = "\n" + "#"*len_s + "\n" + s + "\n" + "#"*len_s + "\n"
+    print(s)
+
 
 os.system('cls')
 
@@ -29,29 +41,49 @@ if state is None or state.state_name != STATE_START:
     post_set_state(INITIAL_STATE)
 
 while True:
-    time.sleep(0.1)    
+    time.sleep(TIME_SLEEP_REQUEST)    
     state = get_state()
     
     if state is not None and state.flag_pepper:
         if state.state_name == STATE_START:
-            print("START START STATE\n")
+            print_start(STATE_START)
+            
             put_next_state(STATE_HELLO)
             put_activate(PEPPER_FLAG)
             put_deactivate(HMD_FLAG)
-            print("\nEND START STATE\n")
+            
+            print_end(STATE_START)
+        
         if state.state_name == STATE_HELLO:
-            print("START HELLO STATE\n")
+            print_start(STATE_HELLO)
+            
             current_user = handle_hello_state(robot)
             put_set_current_user(current_user)
-            # put_activate(HMD_FLAG)
             put_next_state(STATE_TUTORIAL0)
-            print("END HELLO STATE")
+            
+            print_end(STATE_HELLO)
+        
         if state.state_name == STATE_TUTORIAL0:
-            handle_ask_tutorial_state(robot, current_user)
+            print_start(STATE_TUTORIAL0)
+            
+            see_tutorial = handle_ask_tutorial_state(robot, current_user)
+            if see_tutorial:
+                put_next_state(STATE_TUTORIAL1)
+            else:
+                put_next_state(STATEX) # DA CAMBIARE
+            
+            print_end(STATE_TUTORIAL0)
+        
+        if state.state_name == STATE_TUTORIAL1:
+            print_start(STATE_TUTORIAL1)
+            
+            handle_click_tutorial_state(robot, current_user)
+            put_next_state(STATEX)
+            
+            print_end(STATE_TUTORIAL1)
+        
         elif state.state_name == STATEX:
             break
-    else: 
-        break
 
 
 # robot.vision_module.save_image()

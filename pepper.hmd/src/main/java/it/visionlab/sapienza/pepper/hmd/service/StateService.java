@@ -52,4 +52,9 @@ public class StateService {
     public void setCurrentUser(User user) {
         stateRepository.setCurrentUser(user);
     }
+
+    // Updates the HMD open status based on the provided User object.
+    public void hmdOpened() {
+        stateRepository.hmdOpened();
+    }
 }

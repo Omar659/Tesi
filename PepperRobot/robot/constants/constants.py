@@ -10,6 +10,7 @@ from state import *
 STATE_START = "start"
 STATE_HELLO = "hello"
 STATE_TUTORIAL0 = "ask_tutorial"
+STATE_TUTORIAL1 = "user_click_tutorial"
 STATE2 = "activation"
 STATE3 = "execution"
 STATE4 = "chose_location"
@@ -39,3 +40,6 @@ INITIAL_STATE = State(
     START_CURRENT_USER,          # Set the current user (None).
     START_HMD_OPEN               # Set the HMD open flag.
 )
+
+# Time to wait before loop request to the back-end
+TIME_SLEEP_REQUEST = 0.3

@@ -21,10 +21,10 @@ def get_state():
     response = API_manager_istance.call('get', GET_STATE, 25)
     return State(response["stateId"], response["flagPepper"], response["flagHMD"], response["stateName"], response["chosenPlace"], response["currentUser"], response["hmdOpen"])
 
-# Api to get the current state but returning the raw response instead of a State object.
-def get_state2():
+# Api to get if the HMD is open with a boolean flag.
+def get_hmd_open():
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
-    response = API_manager_istance.call('get', GET_STATE, 25)
+    response = API_manager_istance.call('get', GET_HMD_OPEN, 25)
     return response
 
 # Api to deactivate a pepper or HMD based on the "who" parameter.

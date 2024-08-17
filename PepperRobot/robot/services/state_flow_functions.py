@@ -87,12 +87,22 @@ def handle_hello_state(robot=None):
     return user
 
 def handle_ask_tutorial_state(robot, current_user):
-    print("START TUTORIAL STATE\n")
-    
+    if not get_hmd_open():
+        robot.speech_module.say(random.choice(PUT_VISOR))
+        while not get_hmd_open():
+            time.sleep(TIME_SLEEP_REQUEST)
+            
     if current_user.tutorial_seen:
-        robot.speech_module.say("Ok, " + current_user.name + ". " + random.choice(ONE_OF_MY_ABILITIES))
-    else:
-        robot.speech_module.say("NOk, " + current_user.name + ". " + random.choice(ONE_OF_MY_ABILITIES))
-    
-    print("END TUTORIAL STATE")
+        pepper_question = "Great, " + current_user.name.capitalize() + "! " + random.choice(REWATCH_TUTORIAL)
+        robot.speech_module.say(pepper_question)
+        # set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
+        # set_eye_color_thread.start()
+        human_answer = robot.speech_module.listen()
+        # robot.reset_eye_color()
+        response_yes_no = get_yes_no(human_answer, pepper_question)
+        if not response_yes_no["affermative"]:
+            return False
+    return True
+
+def handle_click_tutorial_state(robot, current_user):
     pass

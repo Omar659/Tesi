@@ -62,4 +62,10 @@ public class StateController {
         stateService.setCurrentUser(user);
     }
 
+    // Handles HTTP PUT requests to "/state/setHmdOpen". Updates the HMD open status based on the provided User object.
+    @PutMapping("/hmdOpened")
+    public void hmdOpened() {
+        stateService.hmdOpened();
+    }
+
 }

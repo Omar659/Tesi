@@ -92,4 +92,13 @@ public class StateRepository {
         Update update = new Update().set("currentUser", user);
         mongoTemplate.updateFirst(query, update, State.class);
     }
+
+    // Sets the 'hmdOpen' field of the state document to true.
+    public void hmdOpened() {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        State state = mongoTemplate.findOne(query, State.class);
+        assert state != null; // Ensures that the state object is not null.
+        Update update = new Update().set("hmdOpen", true);
+        mongoTemplate.updateFirst(query, update, State.class);
+    }
 }
