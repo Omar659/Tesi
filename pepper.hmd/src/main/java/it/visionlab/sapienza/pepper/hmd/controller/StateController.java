@@ -11,43 +11,52 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/state")
 public class StateController {
 
+    // The service class that this controller will use to perform operations related to state management.
     private final StateService stateService;
 
+    // Constructor-based dependency injection of the StateService. The 'stateService' is initialized here.
     @Autowired
     public StateController(StateService stateService) {
         this.stateService = stateService;
     }
 
+    // Handles HTTP GET requests to "/state/getState". Returns the current state from the database.
     @GetMapping("/getState")
     public State getState() {
         return stateService.getState();
     }
 
+    // Handles HTTP GET requests to "/state/getHmdOpen". Returns whether the HMD is currently open.
     @GetMapping("/getHmdOpen")
     public Boolean getHmdOpen() {
         return stateService.getHmdOpen();
     }
 
+    // Handles HTTP POST requests to "/state/setState". Accepts a State object in the request body and set the state.
     @PostMapping("/setState")
     public void setState(@RequestBody State state) {
         stateService.setState(state);
     }
 
+    // Handles HTTP PUT requests to "/state/activate". Activates a pepper or the HMD based on the 'who' parameter.
     @PutMapping("/activate")
     public void activate(@RequestParam(required = true) String who) {
         stateService.activate(who);
     }
 
+    // Handles HTTP PUT requests to "/state/deactivate". Deactivates a pepper or the HMD based on the 'who' parameter.
     @PutMapping("/deactivate")
     public void deactivate(@RequestParam(required = true) String who) {
         stateService.deactivate(who);
     }
 
+    // Handles HTTP PUT requests to "/state/nextState". Transitions to the next state specified by the 'stateName' parameter.
     @PutMapping("/nextState")
     public void nextState(@RequestParam(required = true) String stateName) {
         stateService.nextState(stateName);
     }
 
+    // Handles HTTP PUT requests to "/state/setCurrentUser". Accepts a User object in the request body and sets it as the current user.
     @PutMapping("/setCurrentUser")
     public void setCurrentUser(@RequestBody(required = true) User user) {
         stateService.setCurrentUser(user);

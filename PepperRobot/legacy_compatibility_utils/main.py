@@ -25,6 +25,5 @@ api.add_resource(Server_STT, "/" + STT_ENDPOINT, resource_class_args=(STTRecogni
 
 if __name__ == '__main__':
     os.system('cls')
-    # Database
     print("Starting api...")
     app.run(host="0.0.0.0", port="8080")

@@ -45,26 +45,26 @@ class LlmCaller:
         # Prepare the messages in the required format for the model.
         messages = [
             {
-                "role": "system",
-                "content": system_prompt
+                "role": "system",  # Role of the first message, indicating the system prompt.
+                "content": system_prompt  # Content of the system prompt.
             },
             {
-                "role": "user",
-                "content": user_prompt,
+                "role": "user",  # Role of the second message, indicating the user prompt.
+                "content": user_prompt,  # Content of the user prompt.
             }
         ]
         
+        # Request a completion from the OpenAI model using the provided prompts and settings.
         code_completion = self.client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=0.7,
-            max_tokens=max_tokens,
-            stop=[
-                "<step>"
-            ],
-            frequency_penalty=1,
-            presence_penalty=1,
-            top_p=0.7
+            model=model,            # Specify the model to use for generating responses.
+            messages=messages,      # Provide the formatted messages to the model.
+            temperature=0.7,        # Controls the randomness of the output; higher values result in more diverse outputs.
+            max_tokens=max_tokens,  # Limit the length of the generated response.
+            stop=["<step>"],        # Specify a stopping sequence to terminate the response generation.
+            frequency_penalty=1,    # Penalizes new tokens based on their frequency in the text; higher values discourage frequent tokens.
+            presence_penalty=1,     # Penalizes new tokens based on their presence in the text; higher values encourage new topics.
+            top_p=0.7               # Controls the diversity of the output by sampling from the top tokens with cumulative probability up to 0.7.
         )
         
+        # Return the content of the generated response from the model. 
         return code_completion.choices[0].message.content

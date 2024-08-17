@@ -12,15 +12,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 @Document(collection = "state")
 public class State {
+
+    // Unique identifier for the state document, annotated with @Id to indicate it is the primary key in MongoDB.
     @Id
     private String stateId;
+
+    // Flag indicating whether the Pepper device is active or not.
     private Boolean flagPepper;
+
+    // Flag indicating whether the HMD (Head-Mounted Display) is active or not.
     private Boolean flagHMD;
+
+    // Name of the current state, used for descriptive purposes.
     private String stateName;
+
+    // The name of the place currently chosen or relevant to the state. Can be null if no place is chosen.
     private String chosenPlace;
+
+    // The current user associated with the state, if any. This can be null if no user is set.
     private User currentUser;
+
+    // Flag indicating whether the HMD is currently open or closed.
     private Boolean hmdOpen;
 
+    // Constructor to initialize a State object with all fields.
     public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen) {
         this.stateId = stateId;
         this.flagPepper = flagPepper;
