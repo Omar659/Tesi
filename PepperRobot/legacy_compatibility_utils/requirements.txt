@@ -1,0 +1,13 @@
+torch
+torchvision
+transformers
+timm
+einops
+accelerate
+flask
+flask_restful
+flask_cors
+openai
+SpeechRecognition
+pyaudio
+flash_attn

@@ -1,0 +1,41 @@
+import sys
+
+# Add the './types' directory to the system path to allow importing the 'State' class.
+sys.path.append('./types')
+
+# Import the 'State' class from the 'state' module.
+from state import *
+
+# Define various state constants representing different states in the experience.
+STATE_START = "start"
+STATE_HELLO = "hello"
+STATE_TUTORIAL0 = "ask_tutorial"
+STATE2 = "activation"
+STATE3 = "execution"
+STATE4 = "chose_location"
+STATE5 = "show_path"
+STATEX = "x"  # This could represent exit state.
+
+# Define flags for different components of the system, such as HMD (Head-Mounted Display) and Pepper robot.
+HMD_FLAG = "HMD"
+PEPPER_FLAG = "pepper"
+
+# Define constants representing the initial start state configuration.
+START_STATE_ID = "104"           # Unique identifier for the start state.
+START_FLAG_PEPPER = True         # Boolean flag indicating whether Pepper is active in the start state.
+START_FLAG_HMD = False           # Boolean flag indicating whether HMD is active in the start state.
+START_STATE_NAME = STATE_START   # Name of the start state, using the 'STATE_START' constant.
+START_CHOSEN_PLACE = None        # No place is chosen in the start state.
+START_CURRENT_USER = None        # No current user is set in the start state.
+START_HMD_OPEN = False           # Boolean flag indicating whether the HMD is open in the start state.
+
+# Create an initial 'State' object representing the start state of the system.
+INITIAL_STATE = State(
+    START_STATE_ID,              # Set the state ID.
+    START_FLAG_PEPPER,           # Set the Pepper flag.
+    START_FLAG_HMD,              # Set the HMD flag.
+    START_STATE_NAME,            # Set the state name.
+    START_CHOSEN_PLACE,          # Set the chosen place (None).
+    START_CURRENT_USER,          # Set the current user (None).
+    START_HMD_OPEN               # Set the HMD open flag.
+)

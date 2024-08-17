@@ -1,0 +1,110 @@
+# To import config
+from flask import request
+from flask_restful import Resource
+from module_call.llm_call import *
+from constants import *
+import re
+import time
+
+class Server_LLM(Resource):
+    def __init__(self, llm, vision):
+        self.llm = llm
+        self.vision = vision
+        self.req = request.args.get("req")
+        self.pepper_question = request.args.get("pepper_question")
+        self.human_answer = request.args.get("human_answer")
+        self.robot_answer = request.args.get("robot_answer")
+        self.summary = request.args.get("summary")
+        self.user_name = request.args.get("user_name")
+        self.with_image = request.args.get("with_image")
+        self.affermative_negative_answer = request.args.get("affermative_negative_answer")
+
+    def post(self):
+        return {"message": "POST request failed", "error": True}
+
+    def get(self):
+        if self.req == GET_HELLO_NAME:
+            user_prompt = f"{self.human_answer}"
+            system_prompt = '''You are a very happy humanoid robot who is greeting a human. In your response you NEVER respond with "Nice to meet you".\n'''
+            system_prompt += '''Given the next input, given by the human, answer with a welcome message\n'''
+            system_prompt += "This is the conversation history so far:\n"
+            system_prompt += f"- You: {self.pepper_question}\n"
+            if self.with_image=="True":
+                system_prompt += f'''\nThis is what you see:\n\t{self.vision.run()}.\n'''
+                system_prompt += '''Based on what you see try to add a comment if is it coerent so that it is a concluding sentence that does not expect a question.\n'''
+            else:
+                system_prompt += '''Based on this informations answer with a concluding sentence that does not expect a question.\n'''
+            system_prompt += "You have to be very very concise (use a maximum of two sentences) or the human will get bored.\n"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())              
+            return {"answer": answer, "error": False}
+        
+        if self.req == GET_CHECK_NAME:
+            user_prompt = f"{self.human_answer}"
+            system_prompt = f'''You are a text processing engine whose only job is to find the name and the surname (if present) of the human in text.
+            Given the next input, answer with only the name and the surname (if present) of the human\n'''            
+            name = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            if len(name.split(" ")) > 3:
+                return {"name": "", "understood": False, "error": False}
+            return {"name": name, "understood": True, "error": False}
+        
+        elif self.req == GET_CHAT_BOT_ANSWER:
+            system_prompt = f"You are a very happy humanoid robot who is talking with a human.\n"
+            system_prompt += "Have a conversation with the human in a friendly manner knowing that his or her last response is the next input and answer in such a way that the human has to continue the conversation.\n"
+            system_prompt += "You have to be very very concise (use a maximum of two sentences) or the human will get bored.\n"
+            system_prompt += f"This is a summary of the conversation so far to give more context: {self.summary}.\n"
+            system_prompt += f"During the conversation you can address the human by their his/her name {self.user_name}.\n"
+            if self.with_image=="True":
+                system_prompt += f'''This is what you see:\n\t{self.vision.run()}.\n'''
+            system_prompt += '''Based on what you see try to add a comment if is it coerent so that it is a concluding sentence that does not expect a question.\n'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
+            return {"answer": answer, "error": False}
+        
+        elif self.req == GET_CHAT_BOT_SUMMARY:
+            system_prompt = "You are a summarizer. Given the next input summarize the content and answer with ONLY a detailed summary.\n"
+            user_prompt = f"{self.summary}.\n"
+            user_prompt += f"{self.human_answer}\n"
+            user_prompt += f"{self.robot_answer}."
+            summary = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())         
+            return {"summary": summary, "error": False}
+        
+        elif self.req == GET_CHAT_BOT_FUNCTIONALITY:            
+            system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the input text contains any kind of request about your functions and/or what you are able to do.
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested\n'''
+            user_prompt = f"{self.human_answer}"
+            asked = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
+            if asked.lower() == "yes":           
+                return {"asked": True, "error": False}
+            else:
+                return {"asked": False, "error": False}
+        
+        elif self.req == GET_CHAT_BOT_END:            
+            system_prompt = f'''You                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ne whose sole task is to determine whether the incoming text contains a request to display, navigate, or otherwise interact with a map-related feature of yours.
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested\n'''
+            user_prompt = f"{self.human_answer}"
+            exit_ = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
+            if exit_.lower() == "yes":           
+                return {"exit": True, "error": False}
+            else:
+                return {"exit": False, "error": False}
+        
+        elif self.req == GET_YES_NO:            
+            system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the input answer responds with interest mainly in the activity proposed in this question: "{self.pepper_question}".
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested\n'''
+            user_prompt = f"{self.affermative_negative_answer}"
+            affermative = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
+            if affermative.lower() == "yes":           
+                return {"affermative": True, "error": False}
+            else:
+                return {"affermative": False, "error": False}
+
+        return {"message": "GET request failed", "error": True}
+
+    def put(self):
+        return {"message": "PUT request failed", "error": True}
+
+    def delete(self):
+        return {"message": "DELETE request failed", "error": True}
+    
+def cleanup_string(s):
+    return re.sub(r'[^a-zA-Z0-9.,!?;:\'"()\-#@ \n\t]', '', s)

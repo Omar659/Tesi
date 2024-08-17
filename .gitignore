@@ -1,0 +1,7 @@
+*.pyc
+PepperRobot/legacy_compatibility_utils/token.json
+__pycache__/
+.conda
+Florence-2-base/
+whisper-large-v3/
+*.Identifier
