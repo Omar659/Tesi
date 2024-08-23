@@ -19,7 +19,16 @@ from api_constants import *
 def get_state():
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
     response = API_manager_istance.call('get', GET_STATE, 25)
-    return State(response["stateId"], response["flagPepper"], response["flagHMD"], response["stateName"], response["chosenPlace"], response["currentUser"], response["hmdOpen"])
+    return State(
+        response["stateId"], 
+        response["flagPepper"], 
+        response["flagHMD"], 
+        response["stateName"], 
+        response["chosenPlace"], 
+        response["currentUser"], 
+        response["hmdOpen"], 
+        response["pepperAction"]
+    )
 
 # Api to get if the HMD is open with a boolean flag.
 def get_hmd_open():
@@ -49,6 +58,12 @@ def put_next_state(state_name):
 def put_set_current_user(current_user):
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
     response = API_manager_istance.call('put', PUT_SET_CURRENT_USER, 25, body=current_user.to_dict())
+    return response
+
+# Api to update the last seen date for a user.
+def put_switch_pepper_action():
+    API_manager_istance = API_manager(BASE_URL_HMD, USER_ENDPOINT)
+    response = API_manager_istance.call('put', PUT_SWITCH_PEPPER_ACTION, 25)
     return response
 
 # Api to post the current state in the database using a State object.
@@ -131,12 +146,24 @@ def get_yes_no(affermative_negative_answer, pepper_question):
     response = API_manager_istance.call('get', "", 50, params=[["req", GET_YES_NO], ["affermative_negative_answer", affermative_negative_answer], ["pepper_question", pepper_question]])
     return response
 
+# Api to get a yes/no answer from the user's intention to go ahead in the tutorial.
+def get_go_ahead(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_GO_AHEAD], ["human_answer", human_answer]])
+    return response
+
+# Api to get the assistance with the clickable spheres tutorial.
+def get_answer_tutorial_click_assistant(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_TUTORIAL_CLICK_INFOBOT], ["human_answer", human_answer]])
+    return response
+
 ####################################
 #          Models STT Api          #
 ####################################
 
 # Api to trigger listening functionality for speech-to-text.
-def get_listen():
+def get_listen(timeout):
     API_manager_istance = API_manager(BASE_URL_LCU, STT_ENDPOINT)
-    response = API_manager_istance.call('get', "", 50, params=[["req", GET_LISTEN]])
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_LISTEN], ["timeout", timeout]])
     return response

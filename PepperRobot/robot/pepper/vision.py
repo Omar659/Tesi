@@ -4,8 +4,9 @@ import cv2
 import os
 
 class Vision:
-    def __init__(self, app):
+    def __init__(self, app, robot):
         self.app = app
+        self.robot = robot
         # self.vision = self.app.session.service("ALVideoDevice")
         self.start()
         

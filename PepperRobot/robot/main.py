@@ -25,7 +25,7 @@ def print_start(state_name):
     print(s)
     
 def print_end(state_name):
-    s = "nEND " + state_name + " STATE"
+    s = "END " + state_name + " STATE"
     len_s = len(s)
     s = "\n" + "#"*len_s + "\n" + s + "\n" + "#"*len_s + "\n"
     print(s)

@@ -15,6 +15,7 @@ class Server_STT(Resource):
         
         # Retrieve the 'req' parameter from the request URL.
         self.req = request.args.get("req")
+        self.timeout = request.args.get("timeout", default=None)
 
     def post(self):
         """
@@ -27,10 +28,28 @@ class Server_STT(Resource):
         Handles GET requests by processing different types of requests based on the 'req' parameter.
         """
         if self.req == GET_LISTEN:
-            # Calls listen to record audio, then stt to convert it to text, and returns the result.
-            self.recognizer.listen()
-            listened_message = self.recognizer.stt()
-            return {"listened_message": listened_message, "error": False}
+            # Calls the 'listen' method of the recognizer to record audio.
+            listen_status = self.recognizer.listen(device_index=1) # device_index: 1 pc lab; 2 my pc
+            
+            # Check the status returned by the 'listen' method to determine the next step.
+            if listen_status == OK:
+                # If listening is successful (status is OK), convert the recorded audio to text.
+                listened_message = self.recognizer.stt(self.timeout)
+                # Return the transcribed text along with an error OK.
+                return {"listened_message": listened_message, "error": OK}
+            elif listen_status == WAIT_TIMEOUT_ERROR:
+                # If a timeout error occurred during listening, return an empty message and the corresponding error code.
+                return {"listened_message": "", "error": WAIT_TIMEOUT_ERROR}
+            elif listen_status == UNKNOWN_VALUE_ERROR:
+                # If the system couldn't understand the audio, return an empty message and the corresponding error code.
+                return {"listened_message": "", "error": UNKNOWN_VALUE_ERROR}
+            elif listen_status == REQUEST_ERROR:
+                # If there was an issue with the request to the speech recognition service, return an empty message and the corresponding error code.
+                return {"listened_message": "", "error": REQUEST_ERROR}
+            elif listen_status == GENERIC_ERROR:
+                # If a generic error occurred, return an empty message and the corresponding error code.
+                return {"listened_message": "", "error": GENERIC_ERROR}
+            
         return {"message": "GET request failed", "error": True}
 
     def put(self):

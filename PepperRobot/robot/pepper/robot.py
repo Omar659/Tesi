@@ -29,8 +29,8 @@ class Pepper:
         
     def start(self):
         # self.app.start()
-        self.speech_module = Speech(self.app)
-        self.vision_module = Vision(self.app)
+        self.speech_module = Speech(self.app, self)
+        self.vision_module = Vision(self.app, self)
         # self.leds = self.app.session.service("ALLeds")        
         print("Pepper started!!")
         

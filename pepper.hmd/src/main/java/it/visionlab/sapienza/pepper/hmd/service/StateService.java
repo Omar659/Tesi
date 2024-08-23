@@ -28,6 +28,11 @@ public class StateService {
         return stateRepository.getHmdOpen();
     }
 
+    // Retrieves the 'pepperAction' flag value from the repository.
+    public Boolean getPepperAction() {
+        return stateRepository.getPepperAction();
+    }
+
     // Saves or updates the provided State object in the repository.
     public void setState(State state) {
         stateRepository.setState(state);
@@ -56,5 +61,10 @@ public class StateService {
     // Updates the HMD open status based on the provided User object.
     public void hmdOpened() {
         stateRepository.hmdOpened();
+    }
+
+    // Switch the value of the 'pepperAction' flag.
+    public void switchFlagPepperAction() {
+        stateRepository.switchFlagPepperAction();
     }
 }

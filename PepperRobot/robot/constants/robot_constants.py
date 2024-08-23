@@ -7,8 +7,23 @@ HELLO = [
     "Hello, I'm Pepper. Who are you? Speak when my eyes are green so I can hear you."
 ]
 
-# Response when Pepper doesn't understand what the user said.
-NOT_UNDERSTOOD = "I didn't understand! Can you repeat please?"
+# List of phrases when Pepper doesn't understand what the user said.
+NOT_UNDERSTOOD = [
+    "I didn't understand! Can you repeat that, please?",
+    "Sorry, I didn't catch that. Could you say it again?",
+    "I didn't get that. Can you please repeat what you said?",
+    "I'm not sure what you said. Could you please say it again?",
+    "Could you repeat that? I didn't quite understand."
+]
+
+# List of phrases when Pepper doesn't understand what the user's name is.
+NOT_UNDERSTOOD_NAME = [
+    "I didn't catch your name. Could you please say it again?",
+    "Sorry, I didn't understand your name. Could you repeat it for me?",
+    "I didn't quite get your name. Can you tell me again?",
+    "I'm having trouble hearing your name. Could you please repeat it?",
+    "Could you repeat your name? I didn't get it the first time."
+]
 
 # List of phrases for welcoming back a returning user.
 WELCOME_BACK = [
@@ -69,4 +84,38 @@ REWATCH_TUTORIAL = [
     "Since you're familiar with this feature, do you want to go over the tutorial again?",
     "You've used this feature previously. Would you like to revisit the tutorial?",
     "As you've used this feature, would you like a refresher on the tutorial?"
+]
+
+# List of phrases to say the user to watch tutorial toghether.
+WATCH_TUTORIAL = [
+    "Let's start the tutorial now.",
+    "Let's begin the tutorial now.",
+    "Let's go ahead with the tutorial now.",
+    "Let's proceed with the tutorial now.",
+    "Let's dive into the tutorial now.",
+    "Let's kick off the tutorial now.",
+    "Let's jump into the tutorial now."
+]
+
+# List of phrases designed to guide a user through the process of interacting with virtual spheres in a tutorial environment.
+TUTORIAL_CLICK_EXPLAINATION = [
+    "Observe the spheres in front of you, and by tapping them with your index finger, you can interact with them! Let me demonstrate...",
+    "Take a look at the spheres before you, and by pressing them with your index finger, you can engage with them! I'll show you how...",
+    "Notice the spheres ahead, and by touching them with your index finger, you can interact with them! Watch as I show you...",
+    "Focus on the spheres in front of you, and by clicking them with your index finger, you can interact with them! I'll demonstrate...",
+    "Look at the spheres ahead, and by selecting them with your index finger, you can interact with them! Let me show you..."
+]
+
+# List of phrases encouraging the user to interact with virtual spheres during a tutorial, 
+# while asking them to indicate when they are ready to proceed.
+TUTORIAL_CLICK_YOUR_TURN = [
+    "Now it's your turn, give it a try and tell me when you're ready to continue with the tutorial. I'm here if you need help.",
+    "Now you go ahead, try it out and let me know when you're ready to proceed with the tutorial. Feel free to ask if you need assistance.",
+    "It's your turn now, try it and inform me when you're ready to move on with the tutorial. Let me know if you need any help.",
+    "Now it's up to you, try it and tell me when to continue with the tutorial. I'm available if you have questions.",
+    "Your turn now, give it a shot and let me know when you're ready to move forward with the tutorial. Ask if you need any help.",
+    "Now you try it, and let me know when you're ready to move on with the tutorial. I'm here if you need guidance.",
+    "It's your turn to try, and when you're ready, let me know so we can proceed with the tutorial. Contact me if you need help.",
+    "Go ahead and try it now, then let me know when you're ready to continue with the tutorial. Let me know if you have questions.",
+    "Now it's your time, try it and inform me when to advance with the tutorial. I'm available for any assistance you might need."
 ]

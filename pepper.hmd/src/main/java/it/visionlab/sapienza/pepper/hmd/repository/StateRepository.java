@@ -39,6 +39,14 @@ public class StateRepository {
         return state.getHmdOpen();
     }
 
+    // Retrieves the 'pepperAction' flag value from the current state.
+    public Boolean getPepperAction() {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        State state = mongoTemplate.findOne(query, State.class);
+        assert state != null; // Ensures that the state object is not null.
+        return state.getPepperAction();
+    }
+
     // Updates the state document in MongoDB with the provided State object.
     public void setState(State state) {
         if (state != null) {
@@ -99,6 +107,15 @@ public class StateRepository {
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null; // Ensures that the state object is not null.
         Update update = new Update().set("hmdOpen", true);
+        mongoTemplate.updateFirst(query, update, State.class);
+    }
+
+    // Switch the value of the 'pepperAction' flag of the state document.
+    public void switchFlagPepperAction() {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        State state = mongoTemplate.findOne(query, State.class);
+        assert state != null; // Ensures that the state object is not null.
+        Update update = new Update().set("pepperAction", !state.getPepperAction());
         mongoTemplate.updateFirst(query, update, State.class);
     }
 }

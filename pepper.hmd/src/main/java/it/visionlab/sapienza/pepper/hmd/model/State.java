@@ -35,8 +35,11 @@ public class State {
     // Flag indicating whether the HMD is currently open or closed.
     private Boolean hmdOpen;
 
+    // Flag indicating whether pepper is able to do an action (used for coordinate pepper and hmd).
+    private Boolean pepperAction;
+
     // Constructor to initialize a State object with all fields.
-    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen) {
+    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction) {
         this.stateId = stateId;
         this.flagPepper = flagPepper;
         this.flagHMD = flagHMD;
@@ -44,5 +47,6 @@ public class State {
         this.chosenPlace = chosenPlace;
         this.currentUser = currentUser;
         this.hmdOpen = hmdOpen;
+        this.pepperAction = pepperAction;
     }
 }

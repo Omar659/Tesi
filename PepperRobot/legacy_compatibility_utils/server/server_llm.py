@@ -55,7 +55,7 @@ class Server_LLM(Resource):
             # Handles request type for extracting a name from the human's answer.
             user_prompt = f"{self.human_answer}"
             system_prompt = f'''You are a text processing engine whose only job is to find the name and the surname (if present) of the human in text.
-            Given the next input, answer with only the name and the surname (if present) of the human\n'''            
+            Given the next input, answer with only the name and the surname (if present) of the human.\n'''            
             name = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
             if len(name.split(" ")) > 3:
                 return {"name": "", "understood": False, "error": False}
@@ -84,10 +84,10 @@ class Server_LLM(Resource):
             summary = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())         
             return {"summary": summary, "error": False}
         
-        elif self.req == GET_CHAT_BOT_FUNCTIONALITY:            
+        elif self.req == GET_CHAT_BOT_FUNCTIONALITY:
             # Handles request type for determining if a request is related to the robot's functionality.
             system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the input text contains any kind of request about your functions and/or what you are able to do.
-            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested\n'''
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
             user_prompt = f"{self.human_answer}"
             asked = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
             if asked.lower() == "yes":           
@@ -95,10 +95,10 @@ class Server_LLM(Resource):
             else:
                 return {"asked": False, "error": False}
         
-        elif self.req == GET_CHAT_BOT_END:            
+        elif self.req == GET_CHAT_BOT_END:
             # Handles request type for determining if the input text indicates a request to end the chat asking about the map functions.
             system_prompt = f'''You are a text-processing engine whose sole task is to determine whether the incoming text contains a request to display, navigate, or otherwise interact with a map-related feature of yours.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ne whose sole task is to determine whether the incoming text contains a request to display, navigate, or otherwise interact with a map-related feature of yours.
-            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested\n'''
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
             user_prompt = f"{self.human_answer}"
             exit_ = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
             if exit_.lower() == "yes":           
@@ -106,16 +106,42 @@ class Server_LLM(Resource):
             else:
                 return {"exit": False, "error": False}
         
-        elif self.req == GET_YES_NO:            
+        elif self.req == GET_YES_NO:
             # Handles request type for determining if the input answer expresses interest in a proposed activity.
             system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the input answer responds with interest mainly in the activity proposed in this question: "{self.pepper_question}".
-            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested\n'''
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
             user_prompt = f"{self.affermative_negative_answer}"
             affermative = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
             if affermative.lower() == "yes":           
                 return {"affermative": True, "error": False}
             else:
                 return {"affermative": False, "error": False}
+        
+        elif self.req == GET_GO_AHEAD:
+            # Handles request type for determining if the input answer expresses interest in proceeding with the tutorial.
+            system_prompt = f'''You are a text processing engine whose only task is to determine whether the incoming text contains a continuation request that is either direct or indirect (e.g., through completed execution exclamations).
+            Right now a tutorial is running and so the user may say different things but your only purpose is to detect this request.
+            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
+            user_prompt = f"{self.human_answer}"
+            ahead = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
+            if ahead.lower() == "yes":           
+                return {"ahead": True, "error": False}
+            else:
+                return {"ahead": False, "error": False}
+        
+        elif self.req == GET_TUTORIAL_CLICK_INFOBOT:
+            # Handles request type for assisting the user with the click-sphere tutorial.
+            system_prompt = '''You are a virtual assistant guiding a user through a mixed reality tutorial.
+            You must be very concise (use a maximum of two sentences) or the human will get bored. You must respond only with the action the user needs to take to get his request without ever going around it, very very concise.
+            The user sees spheres in the viewer, which they must click on using their index finger.
+            When clicked correctly, the spheres will either light up or turn off.
+            Your task is to assist the user with any questions or requests regarding this tutorial.
+            The only way the user can proceed in the exercise is to say explicitly or implicitly.
+            they are ready to continue. If you detect such an indication, acknowledge it and prepare to move forward.'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            return {"answer": answer, "error": False}
+
 
         return {"message": "GET request failed", "error": True}
 

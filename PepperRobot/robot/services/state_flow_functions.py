@@ -16,16 +16,13 @@ def handle_hello_state(robot=None):
     # robot.vision_module.save_image()
     robot.speech_module.say(pepper_question)
     while True:
-        # set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
-        # set_eye_color_thread.start()
         human_answer = robot.speech_module.listen()
-        # robot.reset_eye_color()
         
         response_name = get_answer_name(human_answer)
         
         if response_name["understood"]:
             break
-        robot.speech_module.say(NOT_UNDERSTOOD)
+        robot.speech_module.say(random.choice(NOT_UNDERSTOOD_NAME))
         
     name_db = response_name["name"].lower()
     response_hello = get_answer_hello(pepper_question, human_answer, with_image=False) # with_image da mettere a True
@@ -49,17 +46,14 @@ def handle_hello_state(robot=None):
     robot.speech_module.say(random.choice(CHAT_STARTER))
     summary = ""
     while True:
-        # set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
-        # set_eye_color_thread.start()
         # robot.vision_module.save_image()
-        human_answer = robot.speech_module.listen()
-        # robot.reset_eye_color()
+        human_answer = robot.speech_module.listen(user.name)
         
         response_check = get_check_functionallity_chat_bot(human_answer)        
         if response_check["asked"]:
             pepper_question = random.choice(FEATURES_DESCRIPTION)
             robot.speech_module.say(pepper_question)
-            affermative_negative_answer = robot.speech_module.listen()
+            affermative_negative_answer = robot.speech_module.listen(user.name)
             response_yes_no = get_yes_no(affermative_negative_answer, pepper_question)
             if response_yes_no["affermative"]:
                 break
@@ -91,18 +85,35 @@ def handle_ask_tutorial_state(robot, current_user):
         robot.speech_module.say(random.choice(PUT_VISOR))
         while not get_hmd_open():
             time.sleep(TIME_SLEEP_REQUEST)
-            
+    
     if current_user.tutorial_seen:
         pepper_question = "Great, " + current_user.name.capitalize() + "! " + random.choice(REWATCH_TUTORIAL)
         robot.speech_module.say(pepper_question)
-        # set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.3, 4))
-        # set_eye_color_thread.start()
-        human_answer = robot.speech_module.listen()
-        # robot.reset_eye_color()
+        human_answer = robot.speech_module.listen(current_user.name)
         response_yes_no = get_yes_no(human_answer, pepper_question)
         if not response_yes_no["affermative"]:
             return False
+    else:
+        pepper_question = "Great, " + current_user.name.capitalize() + "! " + random.choice(WATCH_TUTORIAL)
+        robot.speech_module.say(pepper_question)
     return True
 
 def handle_click_tutorial_state(robot, current_user):
-    pass
+    robot.speech_module.say(current_user.name.capitalize() + ", " + random.choice(TUTORIAL_CLICK_EXPLAINATION))
+    put_switch_pepper_action()
+    
+    print("Pepper: I'm performing the gesture...")
+    time.sleep(7) # Da cambiare con il tempo di esecuzione della gesture di click del robot
+    
+    put_activate(HMD_FLAG)
+    put_switch_pepper_action()
+    robot.speech_module.say(random.choice(TUTORIAL_CLICK_YOUR_TURN))
+    while True:
+        human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=1)
+        haead_response = get_go_ahead(human_answer)
+        if haead_response["ahead"]:
+            break
+        else:
+            response = get_answer_tutorial_click_assistant(human_answer)
+            robot.speech_module.say(response["answer"])
+    put_deactivate(HMD_FLAG)

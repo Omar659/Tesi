@@ -29,6 +29,7 @@ START_STATE_NAME = STATE_START   # Name of the start state, using the 'STATE_STA
 START_CHOSEN_PLACE = None        # No place is chosen in the start state.
 START_CURRENT_USER = None        # No current user is set in the start state.
 START_HMD_OPEN = False           # Boolean flag indicating whether the HMD is open in the start state.
+START_PEPPER_ACTION = False      # Boolean flag indicating whether Pepper is able to do an action (used to cooperate with HMD).
 
 # Create an initial 'State' object representing the start state of the system.
 INITIAL_STATE = State(
@@ -36,9 +37,10 @@ INITIAL_STATE = State(
     START_FLAG_PEPPER,           # Set the Pepper flag.
     START_FLAG_HMD,              # Set the HMD flag.
     START_STATE_NAME,            # Set the state name.
-    START_CHOSEN_PLACE,          # Set the chosen place (None).
-    START_CURRENT_USER,          # Set the current user (None).
-    START_HMD_OPEN               # Set the HMD open flag.
+    START_CHOSEN_PLACE,          # Set the chosen place.
+    START_CURRENT_USER,          # Set the current user.
+    START_HMD_OPEN,               # Set the HMD open flag.
+    START_PEPPER_ACTION          # Set the pepper action flag.
 )
 
 # Time to wait before loop request to the back-end

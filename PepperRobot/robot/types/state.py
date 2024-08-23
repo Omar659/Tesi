@@ -1,5 +1,5 @@
 class State():
-    def __init__(self, state_id, flag_pepper, flag_HMD, state_name, chosen_place, currentUser, hmdOpen):        
+    def __init__(self, state_id, flag_pepper, flag_HMD, state_name, chosen_place, currentUser, hmdOpen, pepperAction):        
         """
         Initializes a new State instance.
 
@@ -11,6 +11,7 @@ class State():
         - chosen_place (str): The place chosen or associated with this state.
         - currentUser (User): The current user associated with the state.
         - hmdOpen (bool): A flag indicating whether the HMD is open or not.
+        - pepperAction (bool): A flag indicating whether Pepper is able to do an action (used to cooperate with HMD).
         """
         self.state_id = state_id
         self.flag_pepper = flag_pepper
@@ -19,6 +20,7 @@ class State():
         self.chosen_place = chosen_place
         self.currentUser = currentUser
         self.hmdOpen = hmdOpen
+        self.pepperAction = pepperAction
         
     def to_dict(self):
         """
@@ -34,7 +36,8 @@ class State():
             "stateName": self.state_name,
             "chosenPlace": self.chosen_place,
             "currentUser": self.currentUser,
-            "hmdOpen": self.hmdOpen
+            "hmdOpen": self.hmdOpen,
+            "pepperAction": self.pepperAction
         }
 
     def __str__(self):
@@ -51,14 +54,16 @@ class State():
                 State Name: {}
                 Chosen Place: {}
                 Current User: {}
-                HMD Open: {}'''.format(
+                HMD Open: {}
+                Pepper Action: {}'''.format(
                     str(self.state_id), 
                     str(self.flag_pepper), 
                     str(self.flag_HMD), 
                     str(self.state_name), 
                     str(self.chosen_place),
                     str(self.currentUser),
-                    str(self.hmdOpen)
+                    str(self.hmdOpen),
+                    str(self.pepperAction)
                     )
 
     def __repr__(self):
@@ -75,12 +80,14 @@ class State():
                 State Name: {}
                 Chosen Place: {}
                 Current User: {}
-                HMD open: {}'''.format(
+                HMD open: {}
+                Pepper Action: {}'''.format(
                     repr(self.state_id), 
                     repr(self.flag_pepper), 
                     repr(self.flag_HMD), 
                     repr(self.state_name), 
                     repr(self.chosen_place),
                     repr(self.currentUser),
-                    repr(self.hmdOpen)
+                    repr(self.hmdOpen),
+                    repr(self.pepperAction)
                     )

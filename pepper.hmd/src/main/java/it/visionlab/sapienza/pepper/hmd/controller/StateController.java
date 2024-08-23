@@ -32,6 +32,12 @@ public class StateController {
         return stateService.getHmdOpen();
     }
 
+    // Handles HTTP GET requests to "/state/getPepperAction". Returns whether the pepper is doing an action.
+    @GetMapping("/getPepperAction")
+    public Boolean getPepperAction() {
+        return stateService.getPepperAction();
+    }
+
     // Handles HTTP POST requests to "/state/setState". Accepts a State object in the request body and set the state.
     @PostMapping("/setState")
     public void setState(@RequestBody State state) {
@@ -66,6 +72,12 @@ public class StateController {
     @PutMapping("/hmdOpened")
     public void hmdOpened() {
         stateService.hmdOpened();
+    }
+
+    // Handles HTTP PUT requests to "/state/switchFlagPepperAction". Switch the value of the 'pepperAction' flag.
+    @PutMapping("/switchFlagPepperAction")
+    public void switchFlagPepperAction() {
+        stateService.switchFlagPepperAction();
     }
 
 }
