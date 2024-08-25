@@ -58,13 +58,13 @@ public class StateService {
         stateRepository.setCurrentUser(user);
     }
 
-    // Updates the HMD open status based on the provided User object.
-    public void hmdOpened() {
-        stateRepository.hmdOpened();
+    // Updates the HMD open status based on the 'opened' value.
+    public void hmdOpened(boolean opened) {
+        stateRepository.hmdOpened(opened);
     }
 
     // Switch the value of the 'pepperAction' flag.
-    public void switchFlagPepperAction() {
-        stateRepository.switchFlagPepperAction();
+    public void switchFlagPepperAction(boolean pepperAction) {
+        stateRepository.switchFlagPepperAction(pepperAction);
     }
 }

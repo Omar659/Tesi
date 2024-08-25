@@ -71,11 +71,11 @@ ONE_OF_MY_ABILITIES = [
 
 # List of phrases to ask the user to put the visor and start the application.
 PUT_VISOR = [
-    "Begin by putting on your visor and starting the application.",
-    "First, start the application after putting on your visor.",
-    "Put on your visor first, then start the application.",
-    "Start the application once you have put on your visor.",
-    "First, put on your visor; then, start the application."
+    "Begin by putting on your visor and starting the application named TODO.",
+    "First, start the application named TODO after putting on your visor.",
+    "Put on your visor first, then start the application named TODO.",
+    "Start the application named TODO once you have put on your visor.",
+    "First, put on your visor; then, start the application named TODO."
 ]
 
 # List of phrases to ask the user if he/she want to rewatch tutorial.
@@ -97,7 +97,7 @@ WATCH_TUTORIAL = [
     "Let's jump into the tutorial now."
 ]
 
-# List of phrases designed to guide a user through the process of interacting with virtual spheres in a tutorial environment.
+# List of phrases designed to guide a user through the process of interacting with virtual spheres in a tutorial click environment.
 TUTORIAL_CLICK_EXPLAINATION = [
     "Observe the spheres in front of you, and by tapping them with your index finger, you can interact with them! Let me demonstrate...",
     "Take a look at the spheres before you, and by pressing them with your index finger, you can engage with them! I'll show you how...",
@@ -118,4 +118,11 @@ TUTORIAL_CLICK_YOUR_TURN = [
     "It's your turn to try, and when you're ready, let me know so we can proceed with the tutorial. Contact me if you need help.",
     "Go ahead and try it now, then let me know when you're ready to continue with the tutorial. Let me know if you have questions.",
     "Now it's your time, try it and inform me when to advance with the tutorial. I'm available for any assistance you might need."
+]
+
+# List of phrases designed to guide a user through the process of interacting with virtual cube in a tutorial zoom environment.
+TUTORIAL_ZOOM_EXPLAINATION = [
+    "let's see the next part",
+    "Let's proceed to the following part.",
+    "Let's continue with the next step."
 ]

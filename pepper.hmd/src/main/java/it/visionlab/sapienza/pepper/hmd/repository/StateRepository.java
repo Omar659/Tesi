@@ -101,21 +101,21 @@ public class StateRepository {
         mongoTemplate.updateFirst(query, update, State.class);
     }
 
-    // Sets the 'hmdOpen' field of the state document to true.
-    public void hmdOpened() {
+    // Sets the 'hmdOpen' field of the state document to 'opened'.
+    public void hmdOpened(boolean opened) {
         Query query = new Query(Criteria.where("stateId").is(stateId));
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null; // Ensures that the state object is not null.
-        Update update = new Update().set("hmdOpen", true);
+        Update update = new Update().set("hmdOpen", opened);
         mongoTemplate.updateFirst(query, update, State.class);
     }
 
     // Switch the value of the 'pepperAction' flag of the state document.
-    public void switchFlagPepperAction() {
+    public void switchFlagPepperAction(boolean pepperAction) {
         Query query = new Query(Criteria.where("stateId").is(stateId));
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null; // Ensures that the state object is not null.
-        Update update = new Update().set("pepperAction", !state.getPepperAction());
+        Update update = new Update().set("pepperAction", pepperAction);
         mongoTemplate.updateFirst(query, update, State.class);
     }
 }

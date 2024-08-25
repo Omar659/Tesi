@@ -78,9 +78,17 @@ while True:
             print_start(STATE_TUTORIAL1)
             
             handle_click_tutorial_state(robot, current_user)
-            put_next_state(STATEX)
+            put_next_state(STATE_TUTORIAL2)
             
             print_end(STATE_TUTORIAL1)
+        
+        if state.state_name == STATE_TUTORIAL2:
+            print_start(STATE_TUTORIAL2)
+            
+            handle_zoom_tutorial_state(robot, current_user)
+            put_next_state(STATEX)
+            
+            print_end(STATE_TUTORIAL2)
         
         elif state.state_name == STATEX:
             break

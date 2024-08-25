@@ -119,7 +119,8 @@ class Server_LLM(Resource):
         
         elif self.req == GET_GO_AHEAD:
             # Handles request type for determining if the input answer expresses interest in proceeding with the tutorial.
-            system_prompt = f'''You are a text processing engine whose only task is to determine whether the incoming text contains a continuation request that is either direct or indirect (e.g., through completed execution exclamations).
+            system_prompt = f'''You are a text processing engine whose only task is to determine whether the incoming text contains a continuation request \
+            that is either direct or indirect, e.g., through completed execution exclamations or a sentence that makes it clear that the topic (of the tutorial) has been understood.
             Right now a tutorial is running and so the user may say different things but your only purpose is to detect this request.
             Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
             user_prompt = f"{self.human_answer}"

@@ -68,16 +68,17 @@ public class StateController {
         stateService.setCurrentUser(user);
     }
 
-    // Handles HTTP PUT requests to "/state/setHmdOpen". Updates the HMD open status based on the provided User object.
+    // Handles HTTP PUT requests to "/state/setHmdOpen". Updates the HMD open status based on 'opened' value.
     @PutMapping("/hmdOpened")
-    public void hmdOpened() {
-        stateService.hmdOpened();
+    public void hmdOpened(@RequestParam(required = true) boolean opened) {
+        stateService.hmdOpened(opened);
     }
 
     // Handles HTTP PUT requests to "/state/switchFlagPepperAction". Switch the value of the 'pepperAction' flag.
     @PutMapping("/switchFlagPepperAction")
-    public void switchFlagPepperAction() {
-        stateService.switchFlagPepperAction();
+    public void switchFlagPepperAction(@RequestParam(required = true) boolean pepperAction) {
+        System.out.println(pepperAction);
+        stateService.switchFlagPepperAction(pepperAction);
     }
 
 }
