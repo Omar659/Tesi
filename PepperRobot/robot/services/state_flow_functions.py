@@ -106,7 +106,8 @@ def handle_click_tutorial_state(robot, current_user):
     put_switch_pepper_action(True)
     
     print("Pepper: I'm performing the gesture...")
-    time.sleep(7) # Da cambiare con il tempo di esecuzione della gesture di click del robot
+    robot.motion_module.click_tutorial()
+    # time.sleep(7) # Da cambiare con il tempo di esecuzione della gesture di click del robot
     
     put_activate(HMD_FLAG)
     put_switch_pepper_action(False)

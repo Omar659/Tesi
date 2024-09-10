@@ -11,8 +11,9 @@ from constants import *
 
 
 # import qi
-# import motion
-# import math
+import math
+import motion
+
 from robot import Pepper
 import time
 from api_call import *
@@ -33,12 +34,18 @@ def print_end(state_name):
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.157.108", port=9503)
+robot = Pepper(ip="192.168.129.108", port=9503)
 robot.execute()
 
 state = get_state()
 if state is None or state.state_name != STATE_START:
     post_set_state(INITIAL_STATE)
+
+# joint_name = "RShoulderPitch"
+# joint_angle = robot.motion_module.motion.getAngles(joint_name, False)
+# print(joint_angle)
+# joint_angle = robot.motion_module.motion.getAngles(joint_name, True)
+# print(joint_angle)
 
 while True:
     time.sleep(TIME_SLEEP_REQUEST)    

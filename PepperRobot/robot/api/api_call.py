@@ -63,7 +63,6 @@ def put_set_current_user(current_user):
 # Api to update the last seen date for a user.
 def put_switch_pepper_action(pepper_action):
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
-    print(pepper_action)
     response = API_manager_istance.call('put', PUT_SWITCH_PEPPER_ACTION, 25, params=[['pepperAction', str(pepper_action).lower()]])
     return response
 

@@ -2,10 +2,11 @@ import sys
 sys.path.append('./utils')
 sys.path.append('./pepper')
 
-# import qi
+import qi
 from autentication_pepper import AuthenticatorFactory
 from speech import Speech
 from vision import Vision
+from gesture import Gesture
 import time
 import threading
 import random
@@ -17,27 +18,27 @@ class Pepper:
     def __init__(self, ip, port=9503):
         self.ip = ip
         self.port = port
-        self.app = "DUMMY"
-        # self.app = qi.Application(sys.argv, url="tcps://" + ip + ":" + str(port))
+        self.app = qi.Application(sys.argv, url="tcps://" + ip + ":" + str(port))
         self.monitoring = False
         
     def login(self, user_name = "nao", password = "vision@2024"):
-        # logins = (user_name, password)
-        # factory = AuthenticatorFactory(*logins)
-        # self.app.session.setClientAuthenticatorFactory(factory)
+        logins = (user_name, password)
+        factory = AuthenticatorFactory(*logins)
+        self.app.session.setClientAuthenticatorFactory(factory)
         print("Logged in")
         
     def start(self):
-        # self.app.start()
+        self.app.start()
         self.speech_module = Speech(self.app, self)
-        self.vision_module = Vision(self.app, self)
-        # self.leds = self.app.session.service("ALLeds")        
+        self.vision_module = Vision(self.app)
+        # self.leds = self.app.session.service("ALLeds")
+        self.motion_module = Gesture(self.app)
         print("Pepper started!!")
         
     def stop(self):
         self.reset_eye_color()
         # self.vision_module.stop()
-        # self.app.stop()
+        self.app.stop()
         print("Pepper stopped")
         exit(0)
         
