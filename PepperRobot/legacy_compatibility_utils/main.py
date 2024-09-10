@@ -24,6 +24,7 @@ api.add_resource(Server_LLM, "/" + LLM_ENDPOINT, resource_class_args=(LlmCaller(
 api.add_resource(Server_STT, "/" + STT_ENDPOINT, resource_class_args=(STTRecognizer(), ))
 
 if __name__ == '__main__':
-    os.system('cls')
+    # os.system('cls')
+    os.system('clear')
     print("Starting api...")
     app.run(host="0.0.0.0", port="8080")
