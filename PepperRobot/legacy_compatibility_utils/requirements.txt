@@ -11,3 +11,4 @@ openai
 SpeechRecognition
 pyaudio
 flash_attn
+pydub

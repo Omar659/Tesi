@@ -1,6 +1,5 @@
 from flask import request
 from flask_restful import Resource
-from module_call.stt_recognition import STTRecognizer
 from constants import *
 
 class Server_STT(Resource):
@@ -29,12 +28,15 @@ class Server_STT(Resource):
         """
         if self.req == GET_LISTEN:
             # Calls the 'listen' method of the recognizer to record audio.
-            listen_status = self.recognizer.listen(device_index=1) # device_index: 1 pc lab; 2 my pc
+            timeout = self.timeout
+            if self.timeout is not None:
+                timeout = int(self.timeout)
+            listen_status = self.recognizer.listen(device_index=1, timeout=timeout) # device_index: 1 pc lab; 2 my pc
             
             # Check the status returned by the 'listen' method to determine the next step.
             if listen_status == OK:
                 # If listening is successful (status is OK), convert the recorded audio to text.
-                listened_message = self.recognizer.stt(self.timeout)
+                listened_message = self.recognizer.stt()
                 # Return the transcribed text along with an error OK.
                 return {"listened_message": listened_message, "error": OK}
             elif listen_status == WAIT_TIMEOUT_ERROR:

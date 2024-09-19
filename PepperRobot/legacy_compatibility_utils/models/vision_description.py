@@ -15,20 +15,20 @@ class Florence2Call:
         self.torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
         
         # DECOMMENTARE QUI
-        # # Load the pre-trained model for causal language modeling.
-        # # The model and processor are loaded from the specified path and moved to the appropriate device.
-        # self.model = AutoModelForCausalLM.from_pretrained(
-        #     "./../Florence-2-base",  # Path to the pre-trained model directory.
-        #     torch_dtype=self.torch_dtype,  # Set tensor data type to float16 or float32.
-        #     trust_remote_code=True  # Trust code from the remote repository.
-        # ).to(self.device)  # Move the model to the specified device (GPU or CPU).
+        # Load the pre-trained model for causal language modeling.
+        # The model and processor are loaded from the specified path and moved to the appropriate device.
+        self.model = AutoModelForCausalLM.from_pretrained(
+            "./../Florence-2-base",  # Path to the pre-trained model directory.
+            torch_dtype=self.torch_dtype,  # Set tensor data type to float16 or float32.
+            trust_remote_code=True  # Trust code from the remote repository.
+        ).to(self.device)  # Move the model to the specified device (GPU or CPU).
         
 
-        # # Load the processor associated with the pre-trained model.
-        # self.processor = AutoProcessor.from_pretrained(
-        #     "./../Florence-2-base",  # Path to the pre-trained processor directory.
-        #     trust_remote_code=True  # Trust code from the remote repository.
-        # )
+        # Load the processor associated with the pre-trained model.
+        self.processor = AutoProcessor.from_pretrained(
+            "./../Florence-2-base",  # Path to the pre-trained processor directory.
+            trust_remote_code=True  # Trust code from the remote repository.
+        )
         
     def run(self, task_prompt="<MORE_DETAILED_CAPTION>", image_path="./../model_inputs/pepper_view.png", text_input=None):
         """

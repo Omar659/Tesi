@@ -12,8 +12,8 @@ class STTRecognizer:
         # Initialize the speech recognizer for capturing and processing audio.
         self.recognizer = sr.Recognizer()
         # DECOMMENTARE QUI
-        # # Initialize the WhisperLarge3Call model for converting speech to text.
-        # self.model = WhisperLarge3Call()
+        # Initialize the WhisperLarge3Call model for converting speech to text.
+        self.model = WhisperLarge3Call()
         
     def list_mic():
         """
