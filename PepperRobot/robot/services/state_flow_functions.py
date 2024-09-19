@@ -13,7 +13,8 @@ import html
 def handle_hello_state(robot=None):
     # metti colore occhi mentre ascolta
     pepper_question = random.choice(HELLO)
-    # robot.vision_module.save_image()
+    robot.vision_module.save_image()
+    print("aagsdgsdgsa")
     robot.speech_module.say(pepper_question)
     while True:
         human_answer = robot.speech_module.listen()
@@ -46,7 +47,7 @@ def handle_hello_state(robot=None):
     robot.speech_module.say(random.choice(CHAT_STARTER))
     summary = ""
     while True:
-        # robot.vision_module.save_image()
+        robot.vision_module.save_image()
         human_answer = robot.speech_module.listen(user.name)
         
         response_check = get_check_functionallity_chat_bot(human_answer)        
@@ -76,7 +77,7 @@ def handle_hello_state(robot=None):
         
         if say_thread.is_alive():
             print("The thread is still running, wait for its conclusion...")
-            thread.join()
+            say_thread.join()
     
     return user
 
@@ -113,7 +114,7 @@ def handle_click_tutorial_state(robot, current_user):
     put_switch_pepper_action(False)
     robot.speech_module.say(random.choice(TUTORIAL_CLICK_YOUR_TURN))
     while True:
-        human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=1)
+        human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=3)
         haead_response = get_go_ahead(human_answer)
         if haead_response["ahead"]:
             break

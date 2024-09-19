@@ -17,7 +17,8 @@ class API_manager():
             
             # Append each parameter to the URL in the format: param_name=param_value&.
             for param in params:
-                url += param[0] + "=" + param[1] + "&"
+                # print(param)
+                url += param[0] + "=" + str(param[1]) + "&"
             # Remove the trailing "&" or "?" at the end of the URL.
             url = url[:-1]
             
@@ -38,6 +39,8 @@ class API_manager():
             # Initialize the default response as "Success".
             json_response = "Success"
             
+            # print(url)
+            # print(str(response))
             # Check if the response status code is 200 (OK).
             if response.status_code == 200:
                 if response is not None:

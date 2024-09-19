@@ -165,5 +165,8 @@ def get_answer_tutorial_click_assistant(human_answer):
 # Api to trigger listening functionality for speech-to-text.
 def get_listen(timeout):
     API_manager_istance = API_manager(BASE_URL_LCU, STT_ENDPOINT)
-    response = API_manager_istance.call('get', "", 50, params=[["req", GET_LISTEN], ["timeout", timeout]])
+    if timeout is None:
+        response = API_manager_istance.call('get', "", 50, params=[["req", GET_LISTEN]])
+    else:
+        response = API_manager_istance.call('get', "", 50, params=[["req", GET_LISTEN], ["timeout", timeout]])
     return response

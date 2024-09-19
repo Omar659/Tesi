@@ -34,20 +34,63 @@ def print_end(state_name):
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.129.108", port=9503)
+robot = Pepper(ip="192.168.1.3", port=9503)
 robot.execute()
 
 state = get_state()
 if state is None or state.state_name != STATE_START:
     post_set_state(INITIAL_STATE)
 
-# joint_name = "RShoulderPitch"
-# joint_angle = robot.motion_module.motion.getAngles(joint_name, False)
-# print(joint_angle)
-# joint_angle = robot.motion_module.motion.getAngles(joint_name, True)
-# print(joint_angle)
+# import threading
+# threading.Thread(target=robot.motion_module.click_tutorial).start()
 
-while True:
+# transform = robot.motion_module.get_robot_position_orientation()
+# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
+
+# robot.motion_module.rotate(0)
+
+# transform = robot.motion_module.get_robot_position_orientation()
+# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
+
+# robot.motion_module.rotate(90)
+
+# transform = robot.motion_module.get_robot_position_orientation()
+# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
+
+# robot.motion_module.rotate(-90)
+
+# transform = robot.motion_module.get_robot_position_orientation()
+# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
+
+
+# def move1():
+#     joint_values = [-50]
+#     joint_names = ["RShoulderPitch"]
+#     times = [3]
+#     robot.motion_module.move_joints(joint_names, joint_values, times)
+    
+# def move2():
+#     joint_values = [-70]
+#     joint_names = ["RWristYaw"]
+#     times = [3]
+#     robot.motion_module.move_joints(joint_names, joint_values, times)
+    
+# def move3():
+#     joint_values = [200]
+#     joint_names = ["RHand"]
+#     times = [3]
+#     robot.motion_module.move_joints(joint_names, joint_values, times)
+
+import threading
+robot.motion_module.move_to_zero()
+threading.Thread(target=robot.motion_module.show_map).start()
+time.sleep(20)
+# robot.motion_module.click_tutorial()
+robot.motion_module.show_map_end()
+
+
+
+while False:
     time.sleep(TIME_SLEEP_REQUEST)    
     state = get_state()
     

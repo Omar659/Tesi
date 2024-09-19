@@ -31,13 +31,13 @@ class Pepper:
         self.app.start()
         self.speech_module = Speech(self.app, self)
         self.vision_module = Vision(self.app)
-        # self.leds = self.app.session.service("ALLeds")
-        self.motion_module = Gesture(self.app)
+        self.leds = self.app.session.service("ALLeds")
+        self.motion_module = Gesture(self.app, self)
         print("Pepper started!!")
         
     def stop(self):
         self.reset_eye_color()
-        # self.vision_module.stop()
+        self.vision_module.stop()
         self.app.stop()
         print("Pepper stopped")
         exit(0)
