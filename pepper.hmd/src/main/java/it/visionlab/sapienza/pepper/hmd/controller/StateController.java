@@ -77,7 +77,6 @@ public class StateController {
     // Handles HTTP PUT requests to "/state/switchFlagPepperAction". Switch the value of the 'pepperAction' flag.
     @PutMapping("/switchFlagPepperAction")
     public void switchFlagPepperAction(@RequestParam(required = true) boolean pepperAction) {
-        System.out.println(pepperAction);
         stateService.switchFlagPepperAction(pepperAction);
     }
 

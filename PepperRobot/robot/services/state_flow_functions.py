@@ -103,16 +103,15 @@ def handle_ask_tutorial_state(robot, current_user):
     return True
 
 def handle_click_tutorial_state(robot, current_user):
-    robot.speech_module.say(current_user.name.capitalize() + ", " + random.choice(TUTORIAL_CLICK_EXPLAINATION))
+    robot.speech_module.say(current_user.name.capitalize() + ", " + random.choice(TUTORIAL_CLICK_EXPLAINATION), animated=False)
     put_switch_pepper_action(True)
     
     print("Pepper: I'm performing the gesture...")
     robot.motion_module.click_tutorial()
-    # time.sleep(7) # Da cambiare con il tempo di esecuzione della gesture di click del robot
     
     put_activate(HMD_FLAG)
     put_switch_pepper_action(False)
-    robot.speech_module.say(random.choice(TUTORIAL_CLICK_YOUR_TURN))
+    robot.speech_module.say(random.choice(TUTORIAL_YOUR_TURN))
     while True:
         human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=3)
         haead_response = get_go_ahead(human_answer)
@@ -122,23 +121,45 @@ def handle_click_tutorial_state(robot, current_user):
             response = get_answer_tutorial_click_assistant(human_answer)
             robot.speech_module.say(response["answer"])
     put_deactivate(HMD_FLAG)
-    
+    robot.speech_module.say(random.choice(TUTORIAL_NEXT_PART))
+
 def handle_zoom_tutorial_state(robot, current_user):
-    robot.speech_module.say("Okay " + current_user.name.capitalize() + ", " + random.choice(TUTORIAL_ZOOM_EXPLAINATION))
+    robot.speech_module.say("Okay " + current_user.name.capitalize() + ", " + random.choice(TUTORIAL_ZOOM_EXPLAINATION), animated=False)
     put_switch_pepper_action(True)
     
     print("Pepper: I'm performing the gesture...")
-    time.sleep(7) # Da cambiare con il tempo di esecuzione della gesture di click del robot
+    robot.motion_module.zoom_tutorial()
     
     put_activate(HMD_FLAG)
     put_switch_pepper_action(False)
-    # robot.speech_module.say(random.choice(TUTORIAL_CLICK_YOUR_TURN))
-    # while True:
-    #     human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=1)
-    #     haead_response = get_go_ahead(human_answer)
-    #     if haead_response["ahead"]:
-    #         break
-    #     else:
-    #         response = get_answer_tutorial_click_assistant(human_answer)
-    #         robot.speech_module.say(response["answer"])
-    # put_deactivate(HMD_FLAG)
+    robot.speech_module.say(random.choice(TUTORIAL_YOUR_TURN))
+    while True:
+        human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=3)
+        haead_response = get_go_ahead(human_answer)
+        if haead_response["ahead"]:
+            break
+        else:
+            response = get_answer_tutorial_click_assistant(human_answer)
+            robot.speech_module.say(response["answer"])
+    put_deactivate(HMD_FLAG)
+    robot.speech_module.say(random.choice(TUTORIAL_NEXT_PART))
+
+def handle_show_map_state(robot, current_user):
+    if not get_hmd_open():
+        robot.speech_module.say(random.choice(PUT_VISOR))
+        while True:
+            check = get_hmd_open()
+            if check:
+                break
+            time.sleep(TIME_SLEEP_REQUEST)
+            
+    # robot.speech_module.say(random.choice(SHOW_MAP))
+    put_switch_pepper_action(True)
+    threading.Thread(target=robot.motion_module.show_map).start()
+    time.sleep(4)
+    put_activate(HMD_FLAG)
+    put_switch_pepper_action(False)
+
+    #TODO
+
+    put_deactivate(HMD_FLAG)

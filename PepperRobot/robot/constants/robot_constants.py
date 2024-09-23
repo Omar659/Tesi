@@ -97,6 +97,19 @@
 #     "Let's jump into the tutorial now."
 # ]
 
+# # List of phrases designed to guide a user through the next part of the tutorial.
+# TUTORIAL_NEXT_PART = [
+#     "let's see the next part",
+#     "Let's proceed to the following part.",
+#     "Let's continue with the next step."
+# ]
+
+# # List of phrases designed to guide a user through the process of interacting with virtual cube in a tutorial zoom environment.
+# TUTORIAL_ZOOM_EXPLAINATION = [
+#     "If you pinch with your thumb and index finger on both hands, you'll zoom in! Watch, I'll demonstrate on the cube.",
+#     "To zoom in on the cube, just pinch with your thumb and index fingers from both hands. Let me demonstrate it."    
+# ]
+
 # # List of phrases designed to guide a user through the process of interacting with virtual spheres in a tutorial click environment.
 # TUTORIAL_CLICK_EXPLAINATION = [
 #     "Observe the spheres in front of you, and by tapping them with your index finger, you can interact with them! Let me demonstrate...",
@@ -108,7 +121,7 @@
 
 # # List of phrases encouraging the user to interact with virtual spheres during a tutorial, 
 # # while asking them to indicate when they are ready to proceed.
-# TUTORIAL_CLICK_YOUR_TURN = [
+# TUTORIAL_YOUR_TURN = [
 #     "Now it's your turn, give it a try and tell me when you're ready to continue with the tutorial. I'm here if you need help.",
 #     "Now you go ahead, try it out and let me know when you're ready to proceed with the tutorial. Feel free to ask if you need assistance.",
 #     "It's your turn now, try it and inform me when you're ready to move on with the tutorial. Let me know if you need any help.",
@@ -120,12 +133,24 @@
 #     "Now it's your time, try it and inform me when to advance with the tutorial. I'm available for any assistance you might need."
 # ]
 
-# # List of phrases designed to guide a user through the process of interacting with virtual cube in a tutorial zoom environment.
-# TUTORIAL_ZOOM_EXPLAINATION = [
-#     "let's see the next part",
-#     "Let's proceed to the following part.",
-#     "Let's continue with the next step."
+# # List of phrases for showing the map.
+# SHOW_MAP = [
+#     "Great! Now I will show you the map.",
+#     "Excellent! Now, let's take a look at the map.",
+#     "Fantastic! I'll show you the map now.",
+#     "Perfect! I'm going to show you the map."
 # ]
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Lista di saluti quando Ciro si presenta e chiede il nome dell'utente.
@@ -227,6 +252,18 @@ WATCH_TUTORIAL = [
     "Iniziamo ora con il tutorial."
 ]
 
+# List of phrases designed to guide a user through the next part of the tutorial.
+TUTORIAL_NEXT_PART = [
+    "Vediamo la parte successiva.",
+    "Procediamo con la parte successiva.",
+    "Continuiamo con la fase successiva."
+]
+
+TUTORIAL_ZOOM_EXPLAINATION = [
+    "Se pinzi con il pollice e l'indice di entrambe le mani, farete uno zoom! Guarda, te lo dimostrero sul cubo.",
+    "Per zoomare sul cubo, basta pinzare con il pollice e l'indice di entrambe le mani. Lascia che te lo dimostri."
+]
+
 # Lista di frasi progettate per guidare l'utente nel processo di interazione con le sfere virtuali in un ambiente di tutorial cliccabile.
 TUTORIAL_CLICK_EXPLAINATION = [
     "Osserva le sfere davanti a te e toccandole con il dito indice, puoi interagire con esse! Lascia che ti mostri...",
@@ -237,7 +274,7 @@ TUTORIAL_CLICK_EXPLAINATION = [
 ]
 
 # Lista di frasi che incoraggiano l'utente a interagire con le sfere virtuali durante un tutorial, chiedendo loro di indicare quando sono pronti a continuare.
-TUTORIAL_CLICK_YOUR_TURN = [
+TUTORIAL_YOUR_TURN = [
     "Ora tocca a te, provaci e dimmi quando sei pronto a continuare con il tutorial. Sono qui se hai bisogno di aiuto.",
     "Ora tocca a te, provaci e fammi sapere quando sei pronto a procedere con il tutorial. Chiedimi pure se hai bisogno di assistenza.",
     "Adesso e il tuo turno, prova e dimmi quando sei pronto per proseguire con il tutorial. Fammi sapere se hai bisogno di aiuto.",
@@ -249,9 +286,10 @@ TUTORIAL_CLICK_YOUR_TURN = [
     "Ora tocca a te, provaci e informami quando procedere con il tutorial. Sono disponibile per qualsiasi aiuto ti serva."
 ]
 
-# Lista di frasi progettate per guidare l'utente nel processo di interazione con un cubo virtuale in un ambiente di tutorial zoom.
-TUTORIAL_ZOOM_EXPLAINATION = [
-    "vediamo la parte successiva",
-    "Procediamo con la parte successiva.",
-    "Continuiamo con il prossimo passo."
+# Elenco di frasi per mostrare la mappa.
+SHOW_MAP = [
+    "Fantastico! Ora ti mostrero la mappa",
+    "Eccellente! Ora diamo un'occhiata alla mappa",
+    "Fantastico! Ora ti mostro la mappa",
+    "Perfetto! Ti mostrero la mappa",
 ]

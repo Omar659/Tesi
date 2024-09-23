@@ -39,7 +39,8 @@ robot.execute()
 
 state = get_state()
 if state is None or state.state_name != STATE_START:
-    post_set_state(INITIAL_STATE)
+    # post_set_state(INITIAL_STATE)
+    a = 0
 
 # import threading
 # threading.Thread(target=robot.motion_module.click_tutorial).start()
@@ -81,16 +82,11 @@ if state is None or state.state_name != STATE_START:
 #     times = [3]
 #     robot.motion_module.move_joints(joint_names, joint_values, times)
 
-import threading
+
 robot.motion_module.move_to_zero()
-threading.Thread(target=robot.motion_module.show_map).start()
-time.sleep(20)
-# robot.motion_module.click_tutorial()
-robot.motion_module.show_map_end()
 
 
-
-while False:
+while True:
     time.sleep(TIME_SLEEP_REQUEST)    
     state = get_state()
     
@@ -135,12 +131,23 @@ while False:
         if state.state_name == STATE_TUTORIAL2:
             print_start(STATE_TUTORIAL2)
             
-            handle_zoom_tutorial_state(robot, current_user)
+            handle_zoom_tutorial_state(robot, get_user("omar"))
             put_next_state(STATEX)
             
             print_end(STATE_TUTORIAL2)
         
+        if state.state_name == STATE_SHOW_MAP:
+            print_start(STATE_SHOW_MAP)
+            
+            time.sleep(5)
+            handle_show_map_state(robot, state.currentUser)
+            time.sleep(10)
+            put_next_state(STATEX)
+            
+            print_end(STATE_SHOW_MAP)
+        
         elif state.state_name == STATEX:
+            robot.motion_module.show_map_end()
             break
 
 
