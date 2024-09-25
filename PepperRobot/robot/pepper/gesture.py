@@ -75,7 +75,18 @@ class Gesture:
         self.move_joints(joint_names, joint_values, times)
 
     def move_tutorial(self):
-        pass
+        joint_values = [-10,  30,  50, 0]
+        joint_names = ["RShoulderPitch", "RElbowYaw", "RElbowRoll", "RHand"]
+        times = [2, 2, 2, 2]
+        self.move_joints(joint_names, joint_values, times)
+        joint_values = [-45, -10,  30,  50, 0]
+        joint_names = ["RShoulderRoll", "RShoulderPitch", "RElbowYaw", "RElbowRoll", "RHand"]
+        times = [3, 3, 3, 3, 3]
+        self.move_joints(joint_names, joint_values, times)
+        joint_values = [-45, -10,  30,  50, 45]
+        joint_names = ["RShoulderRoll", "RShoulderPitch", "RElbowYaw", "RElbowRoll", "RHand"]
+        times = [1, 1, 1, 1, 1]
+        self.move_joints(joint_names, joint_values, times)
 
     def rotate_tutorial(self):
         pass
@@ -112,7 +123,6 @@ class Gesture:
         joint_names = ["RHand"]
         time = 0.15
         times = [time]
-        print(int((total_time/time)*2))
         for _ in range(int((total_time/time)/2)):
             joint_values = [90]
             self.move_joints(joint_names, joint_values, times)

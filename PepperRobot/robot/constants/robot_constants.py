@@ -110,6 +110,15 @@
 #     "To zoom in on the cube, just pinch with your thumb and index fingers from both hands. Let me demonstrate it."    
 # ]
 
+# # List of phrases designed to guide a user through the process of interacting with virtual cube in a tutorial move environment.
+# TUTORIAL_MOVE_EXPLAINATION = [
+#     "If you take the cube between the thumb and forefinger of one hand, you'll be able to move it! I'll show you right now.",
+#     "Pinch the cube between your thumb and forefinger with one hand, and you will be able to move it! I'll show you now."
+#     "Use thumb and forefinger of one hand to grasp the cube, so you will be able to move it! I'll show you now."
+#     "By pinching the cube with thumb and forefinger of one hand, you will be able to move it! Look, I'll show you right now."
+#     "If you grasp the cube with the thumb and forefinger of one hand, you will be able to move it! I'll show you immediately."
+# ]
+
 # # List of phrases designed to guide a user through the process of interacting with virtual spheres in a tutorial click environment.
 # TUTORIAL_CLICK_EXPLAINATION = [
 #     "Observe the spheres in front of you, and by tapping them with your index finger, you can interact with them! Let me demonstrate...",
@@ -118,6 +127,17 @@
 #     "Focus on the spheres in front of you, and by clicking them with your index finger, you can interact with them! I'll demonstrate...",
 #     "Look at the spheres ahead, and by selecting them with your index finger, you can interact with them! Let me show you..."
 # ]
+
+# # List of sentences explain the usefulness of this gesture to the user.
+# USING_OF_CLICK = [
+#     "Great! This will come in handy later when choosing elements in the map.",
+#     "Great! This will come in handy later for you to select items on the map."
+#     "Well done! This will come in handy later for you to pick out items on the map."
+#     "Excellent! This will come in handy later for you to select items on the map."
+#     "Very good! This will come in handy later for you to select items on the map."
+# ]
+
+# Translated with DeepL.com (free version)
 
 # # List of phrases encouraging the user to interact with virtual spheres during a tutorial, 
 # # while asking them to indicate when they are ready to proceed.
@@ -259,9 +279,19 @@ TUTORIAL_NEXT_PART = [
     "Continuiamo con la fase successiva."
 ]
 
+# List of phrases designed to guide a user through the process of interacting with virtual cube in a tutorial zoom environment.
 TUTORIAL_ZOOM_EXPLAINATION = [
     "Se pinzi con il pollice e l'indice di entrambe le mani, farete uno zoom! Guarda, te lo dimostrero sul cubo.",
     "Per zoomare sul cubo, basta pinzare con il pollice e l'indice di entrambe le mani. Lascia che te lo dimostri."
+]
+
+# List of phrases designed to guide a user through the process of interacting with virtual cube in a tutorial move environment.
+TUTORIAL_MOVE_EXPLAINATION = [
+    "Se prendi il cubo tra il pollice e l'indice di una mano, lo potrai spostare! Te lo mostro subito.",
+    "Pinza il cubo tra pollice e indice con una mano sola, e riuscirai a muoverlo! Ora ti faccio vedere.",
+    "Usa pollice e indice di una mano per afferrare il cubo, cosi potrai spostarlo! Te lo dimostro adesso.",
+    "Pizzicando il cubo con pollice e indice di una sola mano, potrai spostarlo! Guarda, te lo faccio vedere subito.",
+    "Se afferri il cubo con il pollice e l'indice di una mano, potrai muoverlo! Te lo faccio vedere immediatamente."
 ]
 
 # Lista di frasi progettate per guidare l'utente nel processo di interazione con le sfere virtuali in un ambiente di tutorial cliccabile.
@@ -271,6 +301,15 @@ TUTORIAL_CLICK_EXPLAINATION = [
     "Nota le sfere davanti a te, e toccandole con il dito indice puoi interagire con esse! Guarda mentre ti mostro...",
     "Concentrati sulle sfere davanti a te, e cliccandole con il dito indice puoi interagire con esse! Te lo mostro...",
     "Guarda le sfere davanti a te, e selezionandole con il dito indice puoi interagire con esse! Lascia che ti mostri..."
+]
+
+# Lista di frasi spiegare l'utilita di questo gesto all'utente.
+USING_OF_CLICK = [
+    "Ottimo! Questo ti tornera utile piu avanti per scegliere gli elementi nella mappa.",
+    "Perfetto! Questa cosa ti sara utile in seguito per selezionare gli elementi sulla mappa.",
+    "Ben fatto! Questo ti sara utile piu tardi per individuare gli elementi nella mappa.",
+    "Eccellente! Questa cosa ti tornera comoda poi per scegliere gli elementi sulla mappa.",
+    "Molto bene! Questo ti servira in futuro per selezionare gli elementi nella mappa."
 ]
 
 # Lista di frasi che incoraggiano l'utente a interagire con le sfere virtuali durante un tutorial, chiedendo loro di indicare quando sono pronti a continuare.

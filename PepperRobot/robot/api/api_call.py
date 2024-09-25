@@ -158,6 +158,24 @@ def get_answer_tutorial_click_assistant(human_answer):
     response = API_manager_istance.call('get', "", 50, params=[["req", GET_TUTORIAL_CLICK_INFOBOT], ["human_answer", human_answer]])
     return response
 
+# Api to get the assistance with the zoomable cube tutorial.
+def get_answer_tutorial_zoom_assistant(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_TUTORIAL_ZOOM_INFOBOT], ["human_answer", human_answer]])
+    return response
+
+# Api to get the assistance with the movable cube tutorial.
+def get_answer_tutorial_move_assistant(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_TUTORIAL_MOVE_INFOBOT], ["human_answer", human_answer]])
+    return response
+
+# Api to get the assistance with the rotable cube tutorial.
+def get_answer_tutorial_rotation_assistant(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_TUTORIAL_ROTATION_INFOBOT], ["human_answer", human_answer]])
+    return response
+
 ####################################
 #          Models STT Api          #
 ####################################

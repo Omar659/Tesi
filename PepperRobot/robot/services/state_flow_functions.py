@@ -26,7 +26,7 @@ def handle_hello_state(robot=None):
         robot.speech_module.say(random.choice(NOT_UNDERSTOOD_NAME))
         
     name_db = response_name["name"].lower()
-    response_hello = get_answer_hello(pepper_question, human_answer, with_image=False) # with_image da mettere a True
+    response_hello = get_answer_hello(pepper_question, human_answer, with_image=True) # with_image da mettere a True
     if get_user_exist(name_db):
         user = get_user(name_db)
         days_passed = (datetime.now() - user.last_seen).days
@@ -67,7 +67,7 @@ def handle_hello_state(robot=None):
                 robot.speech_module.say(random.choice(ONE_OF_MY_ABILITIES))                
                 break
         
-        response_answer = get_answer_chat_bot(human_answer, summary, user.name, with_image=False) # with_image da mettere a True
+        response_answer = get_answer_chat_bot(human_answer, summary, user.name, with_image=True) # with_image da mettere a True
         say_thread = threading.Thread(target=robot.speech_module.say, args=(response_answer["answer"], ))
         say_thread.start()
         
@@ -121,6 +121,7 @@ def handle_click_tutorial_state(robot, current_user):
             response = get_answer_tutorial_click_assistant(human_answer)
             robot.speech_module.say(response["answer"])
     put_deactivate(HMD_FLAG)
+    robot.speech_module.say(random.choice(USING_OF_CLICK))
     robot.speech_module.say(random.choice(TUTORIAL_NEXT_PART))
 
 def handle_zoom_tutorial_state(robot, current_user):
@@ -139,10 +140,31 @@ def handle_zoom_tutorial_state(robot, current_user):
         if haead_response["ahead"]:
             break
         else:
-            response = get_answer_tutorial_click_assistant(human_answer)
+            response = get_answer_tutorial_zoom_assistant(human_answer)
             robot.speech_module.say(response["answer"])
     put_deactivate(HMD_FLAG)
     robot.speech_module.say(random.choice(TUTORIAL_NEXT_PART))
+
+def handle_move_tutorial_state(robot, current_user):
+    robot.speech_module.say("Okay " + current_user.name.capitalize() + ", " + random.choice(TUTORIAL_MOVE_EXPLAINATION), animated=False)
+    put_switch_pepper_action(True)
+    
+    print("Pepper: I'm performing the gesture...")
+    robot.motion_module.move_tutorial()
+    
+    put_activate(HMD_FLAG)
+    put_switch_pepper_action(False)
+    robot.speech_module.say(random.choice(TUTORIAL_YOUR_TURN))
+    while True:
+        human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=3)
+        haead_response = get_go_ahead(human_answer)
+        if haead_response["ahead"]:
+            break
+        else:
+            response = get_answer_tutorial_move_assistant(human_answer)
+            robot.speech_module.say(response["answer"])
+    put_deactivate(HMD_FLAG)
+    # robot.speech_module.say(random.choice(TUTORIAL_NEXT_PART))
 
 def handle_show_map_state(robot, current_user):
     if not get_hmd_open():
@@ -153,7 +175,7 @@ def handle_show_map_state(robot, current_user):
                 break
             time.sleep(TIME_SLEEP_REQUEST)
             
-    # robot.speech_module.say(random.choice(SHOW_MAP))
+    robot.speech_module.say(random.choice(SHOW_MAP), animated=False)
     put_switch_pepper_action(True)
     threading.Thread(target=robot.motion_module.show_map).start()
     time.sleep(4)
