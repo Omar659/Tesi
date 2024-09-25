@@ -26,7 +26,7 @@ class WhisperLarge3Call:
         # Move the model to the designated device (GPU or CPU).
         self.model.to(self.device)
         # Configure the model's generation settings for transcription.
-        self.model.generation_config.language = "<|it|>" # Language setting for transcription (empty for auto-detection).
+        self.model.generation_config.language = "<|en|>" # Language setting for transcription (empty for auto-detection).
         self.model.generation_config.task = "transcribe" # Set the task to transcription.
 
         # Load the processor, which includes tokenizers and feature extractors.
