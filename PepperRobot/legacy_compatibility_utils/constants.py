@@ -3,15 +3,18 @@ LLM_ENDPOINT = "llm"       # Large Language Model operations
 STT_ENDPOINT = "stt"       # Speech-to-Text operations
 
 # LLM operations
-GET_HELLO_NAME = "get_hello_name"                           # Get greeting with user's name
-GET_CHECK_NAME = "get_check_name"                           # Verify user name
-GET_CHAT_BOT_ANSWER = "get_chat_bot_answer"                 # Get chatbot response
-GET_CHAT_BOT_SUMMARY = "get_chat_bot_summary"               # Get chatbot summary
-GET_CHAT_BOT_FUNCTIONALITY = "get_chat_bot_functionality"   # Get chatbot control in case of functionality request
-GET_CHAT_BOT_END = "get_chat_bot_end"                       # Get chatbot conclusion
-GET_YES_NO = "get_yes_no"                                   # Get yes or no given a sentence
-GET_GO_AHEAD = "get_go_ahead"                               # Verify if going ahead
-GET_TUTORIAL_CLICK_INFOBOT = "get_tutorial_click_infobot"   # Get chatbot response about the click tutorial
+GET_HELLO_NAME = "get_hello_name"                                   # Get greeting with user's name
+GET_CHECK_NAME = "get_check_name"                                   # Verify user name
+GET_CHAT_BOT_ANSWER = "get_chat_bot_answer"                         # Get chatbot response
+GET_CHAT_BOT_SUMMARY = "get_chat_bot_summary"                       # Get chatbot summary
+GET_CHAT_BOT_FUNCTIONALITY = "get_chat_bot_functionality"           # Get chatbot control in case of functionality request
+GET_CHAT_BOT_END = "get_chat_bot_end"                               # Get chatbot conclusion
+GET_YES_NO = "get_yes_no"                                           # Get yes or no given a sentence
+GET_GO_AHEAD = "get_go_ahead"                                       # Verify if going ahead
+GET_TUTORIAL_CLICK_INFOBOT = "get_tutorial_click_infobot"           # Get chatbot response about the click tutorial
+GET_TUTORIAL_ZOOM_INFOBOT = "get_tutorial_zoom_infobot"             # Get chatbot response about the zoom tutorial
+GET_TUTORIAL_MOVE_INFOBOT = "get_tutorial_move_infobot"             # Get chatbot response about the move tutorial
+GET_TUTORIAL_ROTATION_INFOBOT = "get_tutorial_rotation_infobot"     # Get chatbot response about the rotation tutorial
 
 # STT operation
 GET_LISTEN = "get_listen"  # Start speech-to-text listening

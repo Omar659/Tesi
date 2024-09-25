@@ -142,7 +142,45 @@ class Server_LLM(Resource):
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
             return {"answer": answer, "error": False}
-
+        
+        elif self.req == GET_TUTORIAL_ZOOM_INFOBOT:
+            # Handles request type for assisting the user with the click-sphere tutorial.
+            system_prompt = '''You are a virtual assistant guiding a user through a mixed reality tutorial.
+            You must be very concise (use a maximum of two sentences) or the human will get bored. You must respond only with the action the user needs to take to get his request without ever going around it, very very concise.
+            The user sees a cube in the viewer that he or she can zoom in or out by pinching with the index finger and thumb of both hands on the cube and then moving the hands while maintaining the pinching.
+            When you do the pinching correctly, the cube will enlarge or shrink depending on whether you respectively move your hands away or closer while maintaining the pinching.
+            Your task is to assist the user with any questions or requests regarding this tutorial.
+            The only way the user can proceed in the exercise is to say explicitly or implicitly.
+            they are ready to continue. If you detect such an indication, acknowledge it and prepare to move forward.'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            return {"answer": answer, "error": False}
+        
+        elif self.req == GET_TUTORIAL_MOVE_INFOBOT:
+            # Handles request type for assisting the user with the click-sphere tutorial.
+            system_prompt = '''You are a virtual assistant guiding a user through a mixed reality tutorial.
+            You must be very concise (use a maximum of two sentences) or the human will get bored. You must respond only with the action the user needs to take to get his request without ever going around it, very very concise.
+            The user sees a cube in the viewer that he or she can move to where he or she wants by pinching with the index finger and thumb of one and only one hand on the cube and then moving the hand while maintaining the pinch.
+            When pinching is done correctly, the cube will move along with the hand holding the pinch
+            Your task is to assist the user with any questions or requests regarding this tutorial.
+            The only way the user can proceed in the exercise is to say explicitly or implicitly.
+            they are ready to continue. If you detect such an indication, acknowledge it and prepare to move forward.'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            return {"answer": answer, "error": False}
+        
+        elif self.req == GET_TUTORIAL_ROTATION_INFOBOT:
+            # Handles request type for assisting the user with the click-sphere tutorial.
+            system_prompt = '''You are a virtual assistant guiding a user through a mixed reality tutorial.
+            You must be very concise (use a maximum of two sentences) or the human will get bored. You must respond only with the action the user needs to take to get his request without ever going around it, very very concise.
+            The user sees a cube in the viewer that he or she can move to where he or she wants by pinching with the index finger and thumb of one and only one hand on the cube and then moving the hand while maintaining the pinch.
+            When pinching is done correctly, the cube will move along with the hand holding the pinch
+            Your task is to assist the user with any questions or requests regarding this tutorial.
+            The only way the user can proceed in the exercise is to say explicitly or implicitly.
+            they are ready to continue. If you detect such an indication, acknowledge it and prepare to move forward.'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            return {"answer": answer, "error": False}
 
         return {"message": "GET request failed", "error": True}
 
