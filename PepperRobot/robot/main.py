@@ -40,7 +40,6 @@ robot.execute()
 state = get_state()
 if state is None or state.state_name != STATE_START:
     post_set_state(INITIAL_STATE)
-    # a = 0
 
 # import threading
 # threading.Thread(target=robot.motion_module.click_tutorial).start()
