@@ -113,9 +113,9 @@ class Gesture:
     def _spown_map(self):
         joint_values = [-10, 89.5, 30, 60]
         joint_names = ["RShoulderPitch", "RShoulderRoll", "RElbowYaw", "RElbowRoll"]
-        times = [2, 2, 2, 2]#, 2, 2, 2]
+        times = [2, 2, 2, 2]
         self.move_joints(joint_names, joint_values, times)
-        threading.Thread(target=self._spown_map_hand, args=(2,)).start()
+        threading.Thread(target=self._spown_map_hand, args=(4,)).start()
         self.move_joints(joint_names, joint_values, times)
         
     def _spown_map_hand(self, total_time):

@@ -15,7 +15,7 @@ class Speech:
         self.animated_tts = self.app.session.service("ALAnimatedSpeech")
         self.configuration = {"bodyLanguageMode": "random"}
         
-    def say(self, text, thread=False, sleep=0, language="English", animated=True):
+    def say(self, text, thread=False, sleep=0, language="Italian", animated=True):
         self.tts.setLanguage(language)
         print("Pepper: " + text)
         if thread:

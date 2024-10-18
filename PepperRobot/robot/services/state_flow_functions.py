@@ -14,7 +14,7 @@ def handle_hello_state(robot=None):
     # metti colore occhi mentre ascolta
     pepper_question = random.choice(HELLO)
     robot.vision_module.save_image()
-    print("aagsdgsdgsa")
+    # print("aagsdgsdgsa")
     robot.speech_module.say(pepper_question)
     while True:
         human_answer = robot.speech_module.listen()
@@ -45,6 +45,8 @@ def handle_hello_state(robot=None):
     # time.sleep(5)
     # robot.reset_eye_color()
     robot.speech_module.say(random.choice(CHAT_STARTER))
+    
+    user = get_user("omar")
     summary = ""
     while True:
         robot.vision_module.save_image()

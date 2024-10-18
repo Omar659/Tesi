@@ -34,7 +34,7 @@ def print_end(state_name):
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.1.2", port=9503)
+robot = Pepper(ip="192.168.137.5", port=9503)
 robot.execute()
 
 state = get_state()
@@ -82,10 +82,11 @@ if state is None or state.state_name != STATE_START:
 #     robot.motion_module.move_joints(joint_names, joint_values, times)
 
 
-robot.motion_module.move_to_zero()
-# put_next_state(STATE_TUTORIAL3)
+# robot.motion_module.move_to_zero()
+# put_next_state(STATE_SHOW_MAP)
 # current_user = get_user("omar")
 # put_next_state(STATE_SHOW_MAP)
+# while True:
 
 
 while True:
