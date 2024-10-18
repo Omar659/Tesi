@@ -63,14 +63,15 @@ class Server_LLM(Resource):
         
         elif self.req == GET_CHAT_BOT_ANSWER:
             # Handles request type for generating a chatbot's response in a friendly manner.
-            system_prompt = f"You are a very happy humanoid robot who is talking with a human.\n"
+            system_prompt = f"You are a very happy humanoid robot named Ciro who is talking with a human.\n"
             system_prompt += "Have a conversation with the human in a friendly manner knowing that his or her last response is the next input and answer in such a way that the human has to continue the conversation.\n"
             system_prompt += "You have to be very very concise (use a maximum of two sentences) or the human will get bored.\n"
-            system_prompt += f"This is a summary of the conversation so far to give more context: {self.summary}.\n"
-            system_prompt += f"During the conversation you can address the human by their his/her name {self.user_name}.\n"
+            system_prompt += f"This is a summary of the conversation so far, to give more context, but absolutely DON'T give much weight to it unless really necessary: \"{self.summary}\".\n"
+            system_prompt += f"During the conversation you can address the human by their his/her name {self.user_name} if it is necessary.\n"
             if self.with_image=="True":
-                system_prompt += f'''This is what you see:\n\t{self.vision.run()}.\n'''
-            system_prompt += '''Based on what you see try to add a comment if is it coerent so that it is a concluding sentence that does not expect a question.\n'''
+                system_prompt += f'''For context, this is a description of what you see. It may be or may not be of use for you:\n\t"{self.vision.run()}.".\n'''
+            system_prompt += '''Based on what you see and hear, try to add a comment if is it coherent so that it is a concluding sentence that does not expect a question.\n'''
+            system_prompt += '''Remember to be VERY concise. The user will get bored fast, so be very concise.\n'''
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())            
             return {"answer": answer, "error": False}
