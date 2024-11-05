@@ -89,7 +89,25 @@ class Gesture:
         self.move_joints(joint_names, joint_values, times)
 
     def rotate_tutorial(self):
-        pass
+        joint_values = [-10,  0,  30, 90]
+        joint_names = ["RShoulderPitch", "RElbowYaw", "RElbowRoll", "RWristYaw"]
+        times = [2, 2, 2, 2]
+        self.move_joints(joint_names, joint_values, times)
+        
+        joint_values = [-10,  0,  30, 90, 0]
+        joint_names = ["RShoulderPitch", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand"]
+        times = [0.7, 0.7, 0.7, 0.7, 0.7]
+        self.move_joints(joint_names, joint_values, times)
+        
+        joint_values = [-10,  0,  0, 0, 0, -30]
+        joint_names = ["RShoulderPitch", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand", "RShoulderRoll"]
+        times = [2, 2, 2, 2, 2, 2]
+        self.move_joints(joint_names, joint_values, times)
+        
+        joint_values = [-10,  0,  0, 0, 45, -30]
+        joint_names = ["RShoulderPitch", "RElbowYaw", "RElbowRoll", "RWristYaw", "RHand", "RShoulderRoll"]
+        times = [0.7, 0.7, 0.7, 0.7, 0.7, 0.7]
+        self.move_joints(joint_names, joint_values, times)
 
     def show_map(self):
         self.show_map_start()

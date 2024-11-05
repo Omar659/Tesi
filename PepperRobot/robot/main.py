@@ -34,12 +34,12 @@ def print_end(state_name):
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.137.5", port=9503)
+robot = Pepper(ip="192.168.1.4", port=9503)
 robot.execute()
 
 state = get_state()
-if state is None or state.state_name != STATE_START:
-    post_set_state(INITIAL_STATE)
+# if state is None or state.state_name != STATE_START:
+    # post_set_state(INITIAL_STATE)
 
 # import threading
 # threading.Thread(target=robot.motion_module.click_tutorial).start()
@@ -81,13 +81,14 @@ if state is None or state.state_name != STATE_START:
 #     times = [3]
 #     robot.motion_module.move_joints(joint_names, joint_values, times)
 
-
-# robot.motion_module.move_to_zero()
+# robot.motion_module.rotate_tutorial()
+robot.motion_module.move_to_zero()
+put_next_state(STATE_SHOW_MAP)
+current_user = get_user("omar")
 # put_next_state(STATE_SHOW_MAP)
-# current_user = get_user("omar")
-# put_next_state(STATE_SHOW_MAP)
-# while True:
 
+time.sleep(2)
+s = 10
 
 while True:
     time.sleep(TIME_SLEEP_REQUEST)    
@@ -119,7 +120,7 @@ while True:
             if see_tutorial:
                 put_next_state(STATE_TUTORIAL1)
             else:
-                put_next_state(STATEX) # DA CAMBIARE
+                put_next_state(STATE_SHOW_MAP)
             
             print_end(STATE_TUTORIAL0)
         
@@ -127,8 +128,7 @@ while True:
             print_start(STATE_TUTORIAL1)
             
             handle_click_tutorial_state(robot, current_user)
-            # handle_click_tutorial_state(robot, get_user("omar"))
-            # time.sleep(10)
+            time.sleep(s)
             put_next_state(STATE_TUTORIAL2)
             
             print_end(STATE_TUTORIAL1)
@@ -137,8 +137,7 @@ while True:
             print_start(STATE_TUTORIAL2)
             
             handle_zoom_tutorial_state(robot, current_user)
-            # handle_zoom_tutorial_state(robot, get_user("omar"))
-            # time.sleep(10)
+            time.sleep(s)
             put_next_state(STATE_TUTORIAL3)
             
             print_end(STATE_TUTORIAL2)
@@ -147,8 +146,7 @@ while True:
             print_start(STATE_TUTORIAL3)
             
             handle_move_tutorial_state(robot, current_user)
-            # handle_move_tutorial_state(robot, get_user("omar"))
-            # time.sleep(10)
+            time.sleep(s)
             put_next_state(STATE_TUTORIAL4)
             
             print_end(STATE_TUTORIAL3)
@@ -156,9 +154,8 @@ while True:
         if state.state_name == STATE_TUTORIAL4:
             print_start(STATE_TUTORIAL4)
             
-            # handle_move_tutorial_state(robot, current_user)
-            # handle_move_tutorial_state(robot, get_user("omar"))
-            # time.sleep(10)
+            handle_rotate_tutorial_state(robot, current_user)
+            time.sleep(s)
             put_next_state(STATE_SHOW_MAP)
             
             print_end(STATE_TUTORIAL4)
@@ -167,9 +164,7 @@ while True:
             print_start(STATE_SHOW_MAP)
             
             handle_show_map_state(robot, current_user)
-            # handle_show_map_state(robot, state.currentUser)
-            # time.sleep(3)
-            time.sleep(20)
+            time.sleep(s*3)
             put_next_state(STATEX)
             
             print_end(STATE_SHOW_MAP)

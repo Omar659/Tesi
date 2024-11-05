@@ -119,6 +119,14 @@
 #     "If you grasp the cube with the thumb and forefinger of one hand, you will be able to move it! I'll show you immediately."
 # ]
 
+# # List of phrases designed to guide the user through the process of interacting with the virtual cube in a fist-turning tutorial environment
+# TUTORIAL_ROTATION_EXPLAINATION = [
+#     "If you close your fist on the cube you can rotate it and move it, now I'll show you.",
+#     "If you grab the cube with your fist closed, you can rotate and move it. I'll show you now.",
+#     "Close your hand on the cube so you can turn and move it; now I'll show you how.",
+#     "Grab the cube with your closed fist so you can turn it and move it; watch how to do it."
+# ]
+
 # # List of phrases designed to guide a user through the process of interacting with virtual spheres in a tutorial click environment.
 # TUTORIAL_CLICK_EXPLAINATION = [
 #     "Observe the spheres in front of you, and by tapping them with your index finger, you can interact with them! Let me demonstrate...",
@@ -135,6 +143,32 @@
 #     "Well done! This will come in handy later for you to pick out items on the map.",
 #     "Excellent! This will come in handy later for you to select items on the map.",
 #     "Very good! This will come in handy later for you to select items on the map."
+# ]
+
+# # List of sentences explain the usefulness of this gesture to the user.
+# USING_OF_ZOOM = [
+#     "Perfect! This will be useful later for you to zoom in on the map.",
+#     "Great! You will need this later to enlarge the map.",
+#     "Excellent! This will help you later on to enlarge the map."
+#     "Excellent! This will be useful later to expand the map."
+#     "Great! This will come in handy later to change the size of the map."
+# ]
+
+# # List of phrases explain the usefulness of this gesture to the user.
+# USING_OF_MOVE = [
+#     "Perfect! This will come in handy later to move the map."
+#     "Excellent! This will be useful later to move the map.",
+#     "Great! You will need this later to move the map."
+#     "Good job! You will need this later to maneuver the map."
+#     "Great! This will be valuable to you later to move the map."
+# ]
+
+# # List of sentences explain the usefulness of this gesture to the user.
+# USING_OF_ROTATE = [
+#     "Great! This will be valuable to you later for rotating and moving the map as you like."
+#     "Great! This will help you later to rotate and move the map as you like.",
+#     "Excellent! This will help you later on to move and rotate the map as you like."
+#     "Great! This will help you later on to rotate and position the map as you like."
 # ]
 
 # # List of phrases encouraging the user to interact with virtual spheres during a tutorial, 
@@ -173,12 +207,12 @@
 
 # Lista di saluti quando Ciro si presenta e chiede il nome dell'utente.
 HELLO = [
-    "Ciao, sono Ciro. Parla quando i miei occhi sono verdi cosi posso sentirti",
-    # "Ciao, sono Ciro. Parla quando i miei occhi sono verdi cosi posso sentirti. Come ti chiami?",
-    # "Salve, sono Ciro. Parla quando i miei occhi sono verdi cosi posso sentirti. Come ti chiami?",
-    # "Ciao, il mio nome e Ciro. E il tuo? Parla quando i miei occhi sono verdi cosi posso sentirti.",
-    # "Ciao, sono Ciro. Posso sapere il tuo nome? Parla quando i miei occhi sono verdi cosi posso sentirti.",
-    # "Salve, sono Ciro. Chi sei tu? Parla quando i miei occhi sono verdi cosi posso sentirti."
+    # "Ciao, sono Ciro. Parla quando i miei occhi sono verdi cosi posso sentirti",
+    "Ciao, sono Ciro. Parla quando i miei occhi sono verdi cosi posso sentirti. Come ti chiami?",
+    "Salve, sono Ciro. Parla quando i miei occhi sono verdi cosi posso sentirti. Come ti chiami?",
+    "Ciao, il mio nome e Ciro. E il tuo? Parla quando i miei occhi sono verdi cosi posso sentirti.",
+    "Ciao, sono Ciro. Posso sapere il tuo nome? Parla quando i miei occhi sono verdi cosi posso sentirti.",
+    "Salve, sono Ciro. Chi sei tu? Parla quando i miei occhi sono verdi cosi posso sentirti."
 ]
 
 # Lista di frasi quando Ciro non capisce cosa ha detto l'utente.
@@ -293,6 +327,14 @@ TUTORIAL_MOVE_EXPLAINATION = [
     "Se afferri il cubo con il pollice e l'indice di una mano, potrai muoverlo! Te lo faccio vedere immediatamente."
 ]
 
+# Lista di frasi progettate per guidare l'utente nel processo di interazione con il cubo virtuale in un ambiene di tutorial di rotazione col pugno
+TUTORIAL_ROTATION_EXPLAINATION = [
+    "Se chiudi il pugno sul cubo puoi ruotarlo e spostarlo, ora ti mostro.",
+    "Se afferri il cubo con il pugno chiuso, puoi ruotarlo e spostarlo. Adesso te lo mostro.",
+    "Chiudi la mano sul cubo per poterlo girare e muovere; ora ti faccio vedere come fare.",
+    "Afferra il cubo con il pugno chiuso, cosi puoi girarlo e muoverlo; guarda come si fa."
+]
+
 # Lista di frasi progettate per guidare l'utente nel processo di interazione con le sfere virtuali in un ambiente di tutorial cliccabile.
 TUTORIAL_CLICK_EXPLAINATION = [
     "Osserva le sfere davanti a te e toccandole con il dito indice, puoi interagire con esse! Lascia che ti mostri...",
@@ -309,6 +351,32 @@ USING_OF_CLICK = [
     "Ben fatto! Questo ti sara utile piu tardi per individuare gli elementi nella mappa.",
     "Eccellente! Questa cosa ti tornera comoda poi per scegliere gli elementi sulla mappa.",
     "Molto bene! Questo ti servira in futuro per selezionare gli elementi nella mappa."
+]
+
+# Lista di frasi spiegare l'utilita di questo gesto all'utente.
+USING_OF_ZOOM = [
+    "Perfetto! Questo ti sara utile in seguito per ingrandire la mappa.",
+    "Benissimo! Questo ti servira piu avanti per ampliare la mappa.",
+    "Eccellente! Questo ti aiutera in futuro a ingrandire la mappa.",
+    "Ottimo! Questo sara utile piu tardi per espandere la mappa.",
+    "Fantastico! Questo ti tornera utile in seguito per modificare le dimensioni della mappa."
+]
+
+# Lista di frasi spiegare l'utilita di questo gesto all'utente.
+USING_OF_MOVE = [
+    "Perfetto! Questo sara utile in seguito per muovere la mappa.",
+    "Eccellente! Questo ti sara utile piu tardi per spostare la mappa.",
+    "Benissimo! Ti servira piu avanti per spostare la mappa.",
+    "Ottimo lavoro! Questo ti sara utile in futuro per manovrare la mappa.",
+    "Ottimo! Questo ti sara prezioso piu tardi per muovere la mappa."
+]
+
+# Lista di frasi spiegare l'utilita di questo gesto all'utente.
+USING_OF_ROTATE = [
+    "Perfetto! Questo ti sara utile in seguito per ruotare e spostare la mappa come preferisci.",
+    "Benissimo! Questo ti aiutera piu avanti a ruotare e spostare la mappa a tuo piacimento.",
+    "Eccellente! Ti sara utile piu tardi per muovere e ruotare la mappa secondo le tue esigenze.",
+    "Fantastico! Questo ti verra in aiuto piu avanti per ruotare e posizionare la mappa come vuoi."
 ]
 
 # Lista di frasi che incoraggiano l'utente a interagire con le sfere virtuali durante un tutorial, chiedendo loro di indicare quando sono pronti a continuare.
