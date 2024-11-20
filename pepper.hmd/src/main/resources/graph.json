@@ -1,0 +1,1145 @@
+{
+  "NODES": [
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r301",
+      "north_node": "",
+      "east_node": "c14",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r302",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c14",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r309",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c1",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r310",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c3",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r311",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c4",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r312",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c5",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r313",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c6",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r314A",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c7",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r314B",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "",
+      "west_node": "c7"
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r314C",
+      "north_node": "c7",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r316",
+      "north_node": "c8",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r317",
+      "north_node": "c9",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r318",
+      "north_node": "c12",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r319",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "",
+      "west_node": "c16"
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r322",
+      "north_node": "c20",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r329",
+      "north_node": "c19",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r333",
+      "north_node": "c24",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r334",
+      "north_node": "c25",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r335",
+      "north_node": "c27",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r336",
+      "north_node": "c29",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r337",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c30",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r338",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c28",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r339",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c26",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r340",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c23",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "r341",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c22",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ROOM"
+      ],
+      "node_name": "rConf",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c20",
+      "west_node": "c17"
+    },
+    {
+      "tags": [
+        "ELEVATOR"
+      ],
+      "node_name": "e1",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c11",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ELEVATOR"
+      ],
+      "node_name": "e2",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c13",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ELEVATOR"
+      ],
+      "node_name": "e3",
+      "north_node": "c21",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "ELEVATOR"
+      ],
+      "node_name": "e4",
+      "north_node": "c31",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "STAIRS"
+      ],
+      "node_name": "sA",
+      "north_node": "c2",
+      "east_node": "",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "STAIRS"
+      ],
+      "node_name": "sE",
+      "north_node": "",
+      "east_node": "c32",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "STAIRS"
+      ],
+      "node_name": "sE1",
+      "north_node": "",
+      "east_node": "c15",
+      "south_node": "",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "BATHROOM"
+      ],
+      "node_name": "b1",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c10",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "BATHROOM"
+      ],
+      "node_name": "b2",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "",
+      "west_node": "c20"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c1",
+      "north_node": "r309",
+      "east_node": "c2",
+      "south_node": "",
+      "west_node": "c8"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c2",
+      "north_node": "",
+      "east_node": "c3",
+      "south_node": "sA",
+      "west_node": "c1"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c3",
+      "north_node": "r310",
+      "east_node": "c4",
+      "south_node": "",
+      "west_node": "c2"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c4",
+      "north_node": "r311",
+      "east_node": "c5",
+      "south_node": "",
+      "west_node": "c3"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c5",
+      "north_node": "r312",
+      "east_node": "c6",
+      "south_node": "",
+      "west_node": "c4"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c6",
+      "north_node": "r313",
+      "east_node": "c7",
+      "south_node": "",
+      "west_node": "c5"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c7",
+      "north_node": "r314A",
+      "east_node": "r314B",
+      "south_node": "r314C",
+      "west_node": "c6"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c8",
+      "north_node": "",
+      "east_node": "c1",
+      "south_node": "r316",
+      "west_node": "c9"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c9",
+      "north_node": "c10",
+      "east_node": "c8",
+      "south_node": "r317",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c10",
+      "north_node": "b1",
+      "east_node": "",
+      "south_node": "c9",
+      "west_node": "c11"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c11",
+      "north_node": "e1",
+      "east_node": "c10",
+      "south_node": "",
+      "west_node": "c12"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c12",
+      "north_node": "",
+      "east_node": "c11",
+      "south_node": "r318",
+      "west_node": "c13"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c13",
+      "north_node": "e2",
+      "east_node": "c12",
+      "south_node": "",
+      "west_node": "c14"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c14",
+      "north_node": "r302",
+      "east_node": "c13",
+      "south_node": "c15",
+      "west_node": "r301"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c15",
+      "north_node": "c14",
+      "east_node": "",
+      "south_node": "c16",
+      "west_node": "sE1"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c16",
+      "north_node": "c15",
+      "east_node": "r319",
+      "south_node": "c17",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c17",
+      "north_node": "c16",
+      "east_node": "rConf",
+      "south_node": "c18",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c18",
+      "north_node": "c17",
+      "east_node": "",
+      "south_node": "c19",
+      "west_node": "c21"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c19",
+      "north_node": "c18",
+      "east_node": "c20",
+      "south_node": "r329",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c20",
+      "north_node": "rConf",
+      "east_node": "b2",
+      "south_node": "r322",
+      "west_node": "c19"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c21",
+      "north_node": "",
+      "east_node": "c18",
+      "south_node": "e3",
+      "west_node": "c22"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c22",
+      "north_node": "r341",
+      "east_node": "c21",
+      "south_node": "",
+      "west_node": "c23"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c23",
+      "north_node": "r340",
+      "east_node": "c22",
+      "south_node": "",
+      "west_node": "c24"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c24",
+      "north_node": "",
+      "east_node": "c23",
+      "south_node": "r333",
+      "west_node": "c25"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c25",
+      "north_node": "",
+      "east_node": "c24",
+      "south_node": "r334",
+      "west_node": "c26"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c26",
+      "north_node": "r339",
+      "east_node": "c25",
+      "south_node": "",
+      "west_node": "c27"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c27",
+      "north_node": "",
+      "east_node": "c26",
+      "south_node": "r335",
+      "west_node": "c28"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c28",
+      "north_node": "r338",
+      "east_node": "c27",
+      "south_node": "",
+      "west_node": "c29"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c29",
+      "north_node": "",
+      "east_node": "c28",
+      "south_node": "r336",
+      "west_node": "c30"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c30",
+      "north_node": "r337",
+      "east_node": "c29",
+      "south_node": "",
+      "west_node": "c31"
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c31",
+      "north_node": "c32",
+      "east_node": "c30",
+      "south_node": "e4",
+      "west_node": ""
+    },
+    {
+      "tags": [
+        "CORRIDOR"
+      ],
+      "node_name": "c32",
+      "north_node": "",
+      "east_node": "",
+      "south_node": "c31",
+      "west_node": "sE"
+    }
+  ],
+  "EDGES": [
+    {
+      "edge": [
+        "r301",
+        "c14"
+      ],
+      "weight": 8.515614
+    },
+    {
+      "edge": [
+        "r302",
+        "c14"
+      ],
+      "weight": 6.16202
+    },
+    {
+      "edge": [
+        "r309",
+        "c1"
+      ],
+      "weight": 5.428739
+    },
+    {
+      "edge": [
+        "r310",
+        "c3"
+      ],
+      "weight": 5.831703
+    },
+    {
+      "edge": [
+        "r311",
+        "c4"
+      ],
+      "weight": 5.874211
+    },
+    {
+      "edge": [
+        "r312",
+        "c5"
+      ],
+      "weight": 5.655291
+    },
+    {
+      "edge": [
+        "r313",
+        "c6"
+      ],
+      "weight": 6.087945
+    },
+    {
+      "edge": [
+        "r314A",
+        "c7"
+      ],
+      "weight": 2.429353
+    },
+    {
+      "edge": [
+        "r314B",
+        "c7"
+      ],
+      "weight": 2.429353
+    },
+    {
+      "edge": [
+        "r314C",
+        "c7"
+      ],
+      "weight": 2.429353
+    },
+    {
+      "edge": [
+        "r316",
+        "c8"
+      ],
+      "weight": 5.084329
+    },
+    {
+      "edge": [
+        "r317",
+        "c9"
+      ],
+      "weight": 5.084329
+    },
+    {
+      "edge": [
+        "r318",
+        "c12"
+      ],
+      "weight": 3.584328
+    },
+    {
+      "edge": [
+        "r319",
+        "c16"
+      ],
+      "weight": 4.063565
+    },
+    {
+      "edge": [
+        "r322",
+        "c20"
+      ],
+      "weight": 5.163
+    },
+    {
+      "edge": [
+        "r329",
+        "c19"
+      ],
+      "weight": 5.269
+    },
+    {
+      "edge": [
+        "r333",
+        "c24"
+      ],
+      "weight": 9.966001
+    },
+    {
+      "edge": [
+        "r334",
+        "c25"
+      ],
+      "weight": 6.236
+    },
+    {
+      "edge": [
+        "r335",
+        "c27"
+      ],
+      "weight": 6.236
+    },
+    {
+      "edge": [
+        "r336",
+        "c29"
+      ],
+      "weight": 6.236
+    },
+    {
+      "edge": [
+        "r337",
+        "c30"
+      ],
+      "weight": 4.822
+    },
+    {
+      "edge": [
+        "r338",
+        "c28"
+      ],
+      "weight": 4.822
+    },
+    {
+      "edge": [
+        "r339",
+        "c26"
+      ],
+      "weight": 4.822
+    },
+    {
+      "edge": [
+        "r340",
+        "c23"
+      ],
+      "weight": 4.722
+    },
+    {
+      "edge": [
+        "r341",
+        "c22"
+      ],
+      "weight": 4.822
+    },
+    {
+      "edge": [
+        "rConf",
+        "c17"
+      ],
+      "weight": 9.611597
+    },
+    {
+      "edge": [
+        "rConf",
+        "c20"
+      ],
+      "weight": 8.653
+    },
+    {
+      "edge": [
+        "b1",
+        "c10"
+      ],
+      "weight": 4.911463
+    },
+    {
+      "edge": [
+        "b2",
+        "c20"
+      ],
+      "weight": 4.0188
+    },
+    {
+      "edge": [
+        "e1",
+        "c11"
+      ],
+      "weight": 2.283246
+    },
+    {
+      "edge": [
+        "e2",
+        "c11"
+      ],
+      "weight": 2.283246
+    },
+    {
+      "edge": [
+        "e3",
+        "c21"
+      ],
+      "weight": 2.35
+    },
+    {
+      "edge": [
+        "e4",
+        "c31"
+      ],
+      "weight": 2.35
+    },
+    {
+      "edge": [
+        "sE1",
+        "c15"
+      ],
+      "weight": 1.961
+    },
+    {
+      "edge": [
+        "sE",
+        "c32"
+      ],
+      "weight": 1.961
+    },
+    {
+      "edge": [
+        "c1",
+        "c2"
+      ],
+      "weight": 1.85031
+    },
+    {
+      "edge": [
+        "c2",
+        "c3"
+      ],
+      "weight": 2.553428
+    },
+    {
+      "edge": [
+        "c2",
+        "sA"
+      ],
+      "weight": 2.553428
+    },
+    {
+      "edge": [
+        "c3",
+        "c4"
+      ],
+      "weight": 5.637141
+    },
+    {
+      "edge": [
+        "c4",
+        "c5"
+      ],
+      "weight": 3.962792
+    },
+    {
+      "edge": [
+        "c5",
+        "c6"
+      ],
+      "weight": 4.319444
+    },
+    {
+      "edge": [
+        "c6",
+        "c7"
+      ],
+      "weight": 7.473597
+    },
+    {
+      "edge": [
+        "c1",
+        "c8"
+      ],
+      "weight": 1.85031
+    },
+    {
+      "edge": [
+        "c8",
+        "c9"
+      ],
+      "weight": 2.92349
+    },
+    {
+      "edge": [
+        "c9",
+        "c10"
+      ],
+      "weight": 1.073305
+    },
+    {
+      "edge": [
+        "c10",
+        "c11"
+      ],
+      "weight": 1.607919
+    },
+    {
+      "edge": [
+        "c11",
+        "c12"
+      ],
+      "weight": 1.012989
+    },
+    {
+      "edge": [
+        "c12",
+        "c13"
+      ],
+      "weight": 0.4963647
+    },
+    {
+      "edge": [
+        "c13",
+        "c14"
+      ],
+      "weight": 3.485771
+    },
+    {
+      "edge": [
+        "c14",
+        "c15"
+      ],
+      "weight": 2.6
+    },
+    {
+      "edge": [
+        "c15",
+        "c16"
+      ],
+      "weight": 4.24
+    },
+    {
+      "edge": [
+        "c16",
+        "c17"
+      ],
+      "weight": 10.96
+    },
+    {
+      "edge": [
+        "c17",
+        "c18"
+      ],
+      "weight": 4
+    },
+    {
+      "edge": [
+        "c18",
+        "c19"
+      ],
+      "weight": 2.8
+    },
+    {
+      "edge": [
+        "c18",
+        "c21"
+      ],
+      "weight": 2.7
+    },
+    {
+      "edge": [
+        "c19",
+        "c20"
+      ],
+      "weight": 3.16
+    },
+    {
+      "edge": [
+        "c21",
+        "c22"
+      ],
+      "weight": 3.9
+    },
+    {
+      "edge": [
+        "c22",
+        "c23"
+      ],
+      "weight": 3.58
+    },
+    {
+      "edge": [
+        "c23",
+        "c24"
+      ],
+      "weight": 0.42
+    },
+    {
+      "edge": [
+        "c24",
+        "c25"
+      ],
+      "weight": 2.2
+    },
+    {
+      "edge": [
+        "c25",
+        "c26"
+      ],
+      "weight": 0.35
+    },
+    {
+      "edge": [
+        "c26",
+        "c27"
+      ],
+      "weight": 2.65
+    },
+    {
+      "edge": [
+        "c27",
+        "c28"
+      ],
+      "weight": 0.4
+    },
+    {
+      "edge": [
+        "c28",
+        "c29"
+      ],
+      "weight": 3.2
+    },
+    {
+      "edge": [
+        "c29",
+        "c30"
+      ],
+      "weight": 1.5
+    },
+    {
+      "edge": [
+        "c30",
+        "c31"
+      ],
+      "weight": 3.999
+    },
+    {
+      "edge": [
+        "c31",
+        "c32"
+      ],
+      "weight": 0.4
+    }
+  ]
+}
