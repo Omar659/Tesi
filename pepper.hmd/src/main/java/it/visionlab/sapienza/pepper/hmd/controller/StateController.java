@@ -3,9 +3,13 @@ package it.visionlab.sapienza.pepper.hmd.controller;
 
 import it.visionlab.sapienza.pepper.hmd.model.State;
 import it.visionlab.sapienza.pepper.hmd.model.User;
+import it.visionlab.sapienza.pepper.hmd.model.types.Graph;
+import it.visionlab.sapienza.pepper.hmd.model.types.PathWithWeight;
 import it.visionlab.sapienza.pepper.hmd.service.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/state")
@@ -36,6 +40,18 @@ public class StateController {
     @GetMapping("/getPepperAction")
     public Boolean getPepperAction() {
         return stateService.getPepperAction();
+    }
+
+    // Handles HTTP GET requests to "/state/getGraph". Get the graph of the map.
+    @GetMapping("/getGraph")
+    public Graph getGraph() {
+        return stateService.getGraph();
+    }
+
+    // Handles HTTP GET requests to "/state/getGraphBestPath". Get the best path from point to point in the graph of the map.
+    @GetMapping("/getGraphBestPath")
+    public List<PathWithWeight> getGraphBestPath(@RequestParam(required = true) String start, @RequestParam(required = true) String end) {
+        return stateService.getGraphBestPath(start, end);
     }
 
     // Handles HTTP POST requests to "/state/setState". Accepts a State object in the request body and set the state.

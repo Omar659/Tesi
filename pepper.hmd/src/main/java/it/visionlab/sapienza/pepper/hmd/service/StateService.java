@@ -2,9 +2,13 @@ package it.visionlab.sapienza.pepper.hmd.service;
 
 import it.visionlab.sapienza.pepper.hmd.model.State;
 import it.visionlab.sapienza.pepper.hmd.model.User;
+import it.visionlab.sapienza.pepper.hmd.model.types.Graph;
+import it.visionlab.sapienza.pepper.hmd.model.types.PathWithWeight;
 import it.visionlab.sapienza.pepper.hmd.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StateService {
@@ -31,6 +35,11 @@ public class StateService {
     // Retrieves the 'pepperAction' flag value from the repository.
     public Boolean getPepperAction() {
         return stateRepository.getPepperAction();
+    }
+
+    // Get the graph of the map.
+    public Graph getGraph() {
+        return stateRepository.getGraph();
     }
 
     // Saves or updates the provided State object in the repository.
@@ -66,5 +75,9 @@ public class StateService {
     // Switch the value of the 'pepperAction' flag.
     public void switchFlagPepperAction(boolean pepperAction) {
         stateRepository.switchFlagPepperAction(pepperAction);
+    }
+
+    public List<PathWithWeight> getGraphBestPath(String start, String end) {
+        return stateRepository.getGraphBestPath(start, end);
     }
 }

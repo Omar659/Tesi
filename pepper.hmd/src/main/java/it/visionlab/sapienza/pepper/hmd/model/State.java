@@ -1,6 +1,7 @@
 package it.visionlab.sapienza.pepper.hmd.model;
 
 
+import it.visionlab.sapienza.pepper.hmd.model.types.Graph;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -38,8 +39,13 @@ public class State {
     // Flag indicating whether pepper is able to do an action (used for coordinate pepper and hmd).
     private Boolean pepperAction;
 
+    // Graph representing the building
+    private Graph graph;
+
     // Constructor to initialize a State object with all fields.
-    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction) {
+    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction
+            , Graph graph
+    ) {
         this.stateId = stateId;
         this.flagPepper = flagPepper;
         this.flagHMD = flagHMD;
@@ -48,5 +54,6 @@ public class State {
         this.currentUser = currentUser;
         this.hmdOpen = hmdOpen;
         this.pepperAction = pepperAction;
+        this.graph = graph;
     }
 }

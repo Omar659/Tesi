@@ -2,6 +2,8 @@ package it.visionlab.sapienza.pepper.hmd.repository;
 
 import it.visionlab.sapienza.pepper.hmd.model.State;
 import it.visionlab.sapienza.pepper.hmd.model.User;
+import it.visionlab.sapienza.pepper.hmd.model.types.Graph;
+import it.visionlab.sapienza.pepper.hmd.model.types.PathWithWeight;
 import lombok.extern.java.Log;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -9,6 +11,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Objects;
 
 import static it.visionlab.sapienza.pepper.hmd.constants.Constants.*;
@@ -52,6 +55,11 @@ public class StateRepository {
         if (state != null) {
             mongoTemplate.save(state);
         }
+    }
+
+    // Get the graph of the map.
+    public Graph getGraph() {
+        return mapGraph;
     }
 
     // Activates a feature (Pepper or HMD) based on the 'who' parameter.
@@ -117,5 +125,9 @@ public class StateRepository {
         assert state != null; // Ensures that the state object is not null.
         Update update = new Update().set("pepperAction", pepperAction);
         mongoTemplate.updateFirst(query, update, State.class);
+    }
+
+    public List<PathWithWeight> getGraphBestPath(String start, String end) {
+        return mapGraph.findAllPaths(start, end);
     }
 }
