@@ -193,7 +193,14 @@
 #     "Perfect! I'm going to show you the map."
 # ]
 
-
+# # List of phrases tell the user what to do.
+# CHOSE_LOCATION = [
+#     "Choose a location directly from the map or tell me where you want to go or if you are looking for something."
+#     "Pick a location on the map or let me know where you want to go or what you are looking for.",
+#     "Point to a location on the map or tell me what you are looking for or where you want to go."
+#     "Select a location on the map or ask me about what you are looking for or where you want to go."
+#     "You can select a place on the map or tell me what you are looking for or your destination."
+# ]
 
 
 
@@ -394,8 +401,34 @@ TUTORIAL_YOUR_TURN = [
 
 # Elenco di frasi per mostrare la mappa.
 SHOW_MAP = [
-    "Fantastico! Ora ti mostrero la mappa",
-    "Eccellente! Ora diamo un'occhiata alla mappa",
-    "Fantastico! Ora ti mostro la mappa",
-    "Perfetto! Ti mostrero la mappa",
+    "Fantastico! Ora ti mostrero la mappa.",
+    "Eccellente! Ora diamo un'occhiata alla mappa.",
+    "Fantastico! Ora ti mostro la mappa.",
+    "Perfetto! Ti mostrero la mappa."
+]
+
+# Elenco di frasi per mostrare la mappa.
+CHOSE_LOCATION = [
+    "Scegli un luogo direttamente dalla mappa o dimmi dove vuoi andare o se cerchi qualcosa.",
+    "Seleziona un punto sulla mappa o fammi sapere dove vuoi dirigerti o cosa stai cercando.",
+    "Indica un luogo sulla mappa oppure dimmi cosa stai cercando o dove vuoi andare.",
+    "Scegli una posizione sulla mappa o chiedimi informazioni su cosa stai cercando o dove vuoi arrivare.",
+    "Puoi selezionare un posto sulla mappa o dirmi cosa stai cercando o la tua destinazione."
+]
+
+# Elenco di frasi per dire che non si puo localizzare la cosa cercata.
+UNKOWNN_LOCATION = [
+    "Mi spiace, ma non saprei dirti dove si trova cio che cerchi.",
+    "Scusami, ma non ho idea di dove possa essere quello che cerchi.",
+    "Non saprei proprio come aiutarti a trovare quello che cerchi.",
+    "Mi dispiace, ma non ho informazioni su dove si trovi.",
+    "Purtroppo non ho idea di dove si trovi cio che cerchi.",
+]
+
+# Elenco di frasi per dire che non si puo localizzare la cosa cercata.
+UNKOWNN_REQUEST = [
+    "Mi dispiace, ma questa richiesta esula dal contesto. Proviamo a concentrarci su attivita piu pertinenti.",
+    "Questa domanda sembra fuori tema, ti invito a proporre qualcosa di piu in linea con il compito attuale.",
+    "Non posso fornirti supporto su questo punto, possiamo lavorare su qualcosa di piu in linea con il task?",
+    "Ti consiglio di riformulare la richiesta in modo che sia piu pertinente al nostro compito attuale."
 ]

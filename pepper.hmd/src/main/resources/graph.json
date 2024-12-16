@@ -2,7 +2,7 @@
   "NODES": [
     {
       "tags": [
-        "ROOM"
+        "301"
       ],
       "node_name": "r301",
       "north_node": "",
@@ -12,7 +12,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "302"
       ],
       "node_name": "r302",
       "north_node": "",
@@ -22,7 +22,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "309"
       ],
       "node_name": "r309",
       "north_node": "",
@@ -32,7 +32,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "310"
       ],
       "node_name": "r310",
       "north_node": "",
@@ -42,7 +42,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "311"
       ],
       "node_name": "r311",
       "north_node": "",
@@ -52,7 +52,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "312"
       ],
       "node_name": "r312",
       "north_node": "",
@@ -62,7 +62,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "313"
       ],
       "node_name": "r313",
       "north_node": "",
@@ -72,7 +72,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "314", "314A"
       ],
       "node_name": "r314A",
       "north_node": "",
@@ -82,7 +82,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "314", "314B"
       ],
       "node_name": "r314B",
       "north_node": "",
@@ -92,7 +92,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "314", "314C"
       ],
       "node_name": "r314C",
       "north_node": "c7",
@@ -102,7 +102,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "316"
       ],
       "node_name": "r316",
       "north_node": "c8",
@@ -112,7 +112,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "317"
       ],
       "node_name": "r317",
       "north_node": "c9",
@@ -122,7 +122,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "318"
       ],
       "node_name": "r318",
       "north_node": "c12",
@@ -132,7 +132,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "319"
       ],
       "node_name": "r319",
       "north_node": "",
@@ -142,7 +142,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "322"
       ],
       "node_name": "r322",
       "north_node": "c20",
@@ -152,7 +152,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "329"
       ],
       "node_name": "r329",
       "north_node": "c19",
@@ -162,7 +162,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "333"
       ],
       "node_name": "r333",
       "north_node": "c24",
@@ -172,7 +172,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "334"
       ],
       "node_name": "r334",
       "north_node": "c25",
@@ -182,7 +182,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "335"
       ],
       "node_name": "r335",
       "north_node": "c27",
@@ -192,7 +192,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "336"
       ],
       "node_name": "r336",
       "north_node": "c29",
@@ -202,7 +202,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "337"
       ],
       "node_name": "r337",
       "north_node": "",
@@ -212,7 +212,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "338"
       ],
       "node_name": "r338",
       "north_node": "",
@@ -222,7 +222,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "339"
       ],
       "node_name": "r339",
       "north_node": "",
@@ -232,7 +232,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "340"
       ],
       "node_name": "r340",
       "north_node": "",
@@ -242,7 +242,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "341"
       ],
       "node_name": "r341",
       "north_node": "",
@@ -252,7 +252,7 @@
     },
     {
       "tags": [
-        "ROOM"
+        "CONFERENCE", "CONFERENZE", "CONFERENCE ROOM", "AULA CONFERENZE", "STANZA CONFERENZE"
       ],
       "node_name": "rConf",
       "north_node": "",
@@ -262,7 +262,7 @@
     },
     {
       "tags": [
-        "ELEVATOR"
+        "ELEVATOR", "ELEVATORS", "ASCENSORE", "ASCENSORI"
       ],
       "node_name": "e1",
       "north_node": "",
@@ -272,7 +272,7 @@
     },
     {
       "tags": [
-        "ELEVATOR"
+        "ELEVATOR", "ELEVATORS", "ASCENSORE", "ASCENSORI"
       ],
       "node_name": "e2",
       "north_node": "",
@@ -282,7 +282,7 @@
     },
     {
       "tags": [
-        "ELEVATOR"
+        "ELEVATOR", "ELEVATORS", "ASCENSORE", "ASCENSORI"
       ],
       "node_name": "e3",
       "north_node": "c21",
@@ -292,7 +292,7 @@
     },
     {
       "tags": [
-        "ELEVATOR"
+        "ELEVATOR", "ELEVATORS", "ASCENSORE", "ASCENSORI"
       ],
       "node_name": "e4",
       "north_node": "c31",
@@ -302,7 +302,7 @@
     },
     {
       "tags": [
-        "STAIRS"
+        "STAIRS", "STAIR", "SCALA", "SCALE"
       ],
       "node_name": "sA",
       "north_node": "c2",
@@ -312,7 +312,7 @@
     },
     {
       "tags": [
-        "STAIRS"
+        "STAIRS", "STAIR", "SCALA", "SCALE"
       ],
       "node_name": "sE",
       "north_node": "",
@@ -322,7 +322,7 @@
     },
     {
       "tags": [
-        "STAIRS"
+        "STAIRS", "STAIR", "SCALA", "SCALE"
       ],
       "node_name": "sE1",
       "north_node": "",
@@ -332,7 +332,7 @@
     },
     {
       "tags": [
-        "BATHROOM"
+        "BATHROOM", "BATHROOMS", "BAGNI", "BAGNO"
       ],
       "node_name": "b1",
       "north_node": "",
@@ -342,7 +342,7 @@
     },
     {
       "tags": [
-        "BATHROOM"
+        "BATHROOM", "BATHROOMS", "BAGNI", "BAGNO"
       ],
       "node_name": "b2",
       "north_node": "",

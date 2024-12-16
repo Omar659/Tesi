@@ -15,6 +15,7 @@ GET_TUTORIAL_CLICK_INFOBOT = "get_tutorial_click_infobot"           # Get chatbo
 GET_TUTORIAL_ZOOM_INFOBOT = "get_tutorial_zoom_infobot"             # Get chatbot response about the zoom tutorial
 GET_TUTORIAL_MOVE_INFOBOT = "get_tutorial_move_infobot"             # Get chatbot response about the move tutorial
 GET_TUTORIAL_ROTATION_INFOBOT = "get_tutorial_rotation_infobot"     # Get chatbot response about the rotation tutorial
+GET_IS_ASKED_POSITION = "get_is_asked_position"                     # Get if a position is asked
 
 # STT operation
 GET_LISTEN = "get_listen"  # Start speech-to-text listening

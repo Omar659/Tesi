@@ -42,6 +42,11 @@ public class StateService {
         return stateRepository.getGraph();
     }
 
+    // Get if a location is searchable.
+    public boolean getIsKnownLocation(String location) {
+        return stateRepository.getIsKnownLocation(location);
+    }
+
     // Saves or updates the provided State object in the repository.
     public void setState(State state) {
         stateRepository.setState(state);

@@ -75,7 +75,6 @@ class StateInitializer implements CommandLineRunner {
                     graph.addEdge(node1, node2, weight);
                 }
             }
-
             // Create an initial state object with predefined constants.
 //            State initialState = new State(stateId, flagPepper, flagHMD, stateName, chosenPlace, currentUser, hmdOpen, pepperAction
 //                    , graph
@@ -91,6 +90,7 @@ class StateInitializer implements CommandLineRunner {
             for (PathWithWeight path : paths) {
                 System.out.println(path);
             }
+            System.out.println(graph.getAllTags());
         } catch (IOException e) {
             e.printStackTrace();
         }

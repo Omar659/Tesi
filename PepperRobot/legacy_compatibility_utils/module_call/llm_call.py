@@ -29,7 +29,7 @@ class LlmCaller:
         )
         return client
     
-    def get_answer(self, system_prompt, user_prompt, model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", max_tokens=512):
+    def get_answer(self, system_prompt, user_prompt, model="meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo", max_tokens=512):
         """
         Generates a response from the language model based on the provided prompts.
 

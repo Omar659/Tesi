@@ -67,4 +67,22 @@ public class Graph {
         visited.remove(current.getNodeName());
         currentPath.remove(currentPath.size() - 1);
     }
+
+    // Restituisce l'insieme di tutti i tag presenti nei nodi del grafo
+    public Set<String> getAllTags() {
+        Set<String> allTags = new HashSet<>();
+        for (Node node : nodes.values()) {
+            if (node.getTags() != null) {
+                allTags.addAll(node.getTags());
+            }
+        }
+        return allTags;
+    }
+
+    // Controlla se un tag specifico è presente nell'insieme di tutti i tag
+    public boolean containsTag(String tag) {
+        Set<String> allTags = getAllTags();               // Ottieni l'insieme di tutti i tag
+        return allTags.contains(tag.toUpperCase());       // Verifica se il tag è presente
+    }
+
 }

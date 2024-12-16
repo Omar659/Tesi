@@ -62,6 +62,12 @@ public class StateRepository {
         return mapGraph;
     }
 
+    public boolean getIsKnownLocation(String location) {
+        System.out.println(location);
+        System.out.println(mapGraph.containsTag(location));
+        return mapGraph.containsTag(location);
+    }
+
     // Activates a feature (Pepper or HMD) based on the 'who' parameter.
     public void activate(String who) {
         Query query = new Query(Criteria.where("stateId").is(stateId));

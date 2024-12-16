@@ -54,6 +54,12 @@ public class StateController {
         return stateService.getGraphBestPath(start, end);
     }
 
+    // Handles HTTP GET requests to "/state/getIsKnownLocation". Get if a location is searchable.
+    @GetMapping("/getIsKnownLocation")
+    public boolean getIsKnownLocation(@RequestParam(required = true) String location) {
+        return stateService.getIsKnownLocation(location);
+    }
+
     // Handles HTTP POST requests to "/state/setState". Accepts a State object in the request body and set the state.
     @PostMapping("/setState")
     public void setState(@RequestBody State state) {

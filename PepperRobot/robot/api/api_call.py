@@ -36,6 +36,12 @@ def get_hmd_open():
     response = API_manager_istance.call('get', GET_HMD_OPEN, 25)
     return response
 
+# Api to check if the location is searchable
+def get_is_known_location(location):
+    API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
+    response = API_manager_istance.call('get', GET_IS_KNOWN_LOCATION, 25, params=[["location", location]])
+    return response
+
 # Api to deactivate a pepper or HMD based on the "who" parameter.
 def put_deactivate(who):
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
@@ -87,7 +93,7 @@ def get_user_exist(name):
     API_manager_istance = API_manager(BASE_URL_HMD, USER_ENDPOINT)
     response = API_manager_istance.call('get', GET_USER_EXIST, 25, params=[["name", name]])
     return response
-
+    
 # Api to update the last seen date for a user.
 def put_update_last_seen(name):
     API_manager_istance = API_manager(BASE_URL_HMD, USER_ENDPOINT)
@@ -174,6 +180,12 @@ def get_answer_tutorial_move_assistant(human_answer):
 def get_answer_tutorial_rotation_assistant(human_answer):
     API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
     response = API_manager_istance.call('get', "", 50, params=[["req", GET_TUTORIAL_ROTATION_INFOBOT], ["human_answer", human_answer]])
+    return response
+
+# Api to understand if a position is asked.
+def get_is_asked_position(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_IS_ASKED_POSITION], ["human_answer", human_answer]])
     return response
 
 ####################################

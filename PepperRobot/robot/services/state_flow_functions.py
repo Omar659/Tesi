@@ -73,8 +73,8 @@ def handle_hello_state(robot=None):
         say_thread = threading.Thread(target=robot.speech_module.say, args=(response_answer["answer"], ))
         say_thread.start()
         
-        response_summary = get_summary_chat_bot(human_answer, summary, response_answer["answer"])
-        summary = response_summary["summary"]
+        # response_summary = get_summary_chat_bot(human_answer, summary, response_answer["answer"])
+        # summary = response_summary["summary"]
         print("Summary:" + str(summary) + "\n")
         
         if say_thread.is_alive():
@@ -207,7 +207,16 @@ def handle_show_map_state(robot, current_user):
     time.sleep(4)
     put_activate(HMD_FLAG)
     put_switch_pepper_action(False)
-
-    #TODO
-
-    put_deactivate(HMD_FLAG)
+    
+def handle_chose_location_state(robot, current_user, state):
+    robot.speech_module.say(random.choice(CHOSE_LOCATION))
+    while True and state.chosen_place is None:
+        human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=3)
+        position_asked_response = get_is_asked_position(human_answer)
+        if position_asked_response["pertinent"]:
+            if get_is_known_location(position_asked_response["location"]):
+                print("setuppo la location cosi che da visore faccio una ricerca per tag")
+            else:
+                robot.speech_module.say(random.choice(UNKOWNN_LOCATION))
+        else:
+            robot.speech_module.say(random.choice(UNKOWNN_REQUEST))

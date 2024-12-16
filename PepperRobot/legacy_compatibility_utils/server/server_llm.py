@@ -182,6 +182,20 @@ class Server_LLM(Resource):
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
             return {"answer": answer, "error": False}
+        
+        elif self.req == GET_IS_ASKED_POSITION:
+            system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the incoming response is intended to ask for directions to where someone or something is located or to a specific room within the building; 
+            it need not be a question formally with a question mark, it can also be interpreted as such as long as it is intended as a request to look for something or someone specifically. 
+            Keep in mind that one could also ask where people named by their last name are located, which then needs to be interpreted, e.g., "where is cinque located", here "cinque" is the last name.
+            On the next input, respond only with no if you do not detect such requests, otherwise extrapolate from the request, the place or thing being searched (just the word without article or anything else) always in the singular, in case of place plus place name wins (e.g. "the room 309" returns "309")\n'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            print(answer)
+            if answer.upper() == "NO":           
+                return {"pertinent": False, "location": "", "error": False}
+            else:
+                return {"pertinent": True, "location": answer.upper(), "error": False}
+            
 
         return {"message": "GET request failed", "error": True}
 
