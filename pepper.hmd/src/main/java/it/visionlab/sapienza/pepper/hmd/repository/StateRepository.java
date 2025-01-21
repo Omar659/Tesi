@@ -62,10 +62,14 @@ public class StateRepository {
         return mapGraph;
     }
 
+    // Get if a location tag is contained in the graph
     public boolean getIsKnownLocation(String location) {
-        System.out.println(location);
-        System.out.println(mapGraph.containsTag(location));
         return mapGraph.containsTag(location);
+    }
+
+    // Get the best path in the graph
+    public List<PathWithWeight> getGraphBestPath(String start, String end) {
+        return mapGraph.findAllPaths(start, end);
     }
 
     // Activates a feature (Pepper or HMD) based on the 'who' parameter.
@@ -133,7 +137,11 @@ public class StateRepository {
         mongoTemplate.updateFirst(query, update, State.class);
     }
 
-    public List<PathWithWeight> getGraphBestPath(String start, String end) {
-        return mapGraph.findAllPaths(start, end);
+    public void setLocationTAG(String location) {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        State state = mongoTemplate.findOne(query, State.class);
+        assert state != null; // Ensures that the state object is not null.
+        Update update = new Update().set("location", location);
+        mongoTemplate.updateFirst(query, update, State.class);
     }
 }

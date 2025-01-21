@@ -2,7 +2,12 @@
   "NODES": [
     {
       "tags": [
-        "301"
+        "301",
+        "TECHNICIAN", "TECHNICIAN ROOM", "TECNICI", "TECNICO", "TECHNICIANS", "STANZA TECNICI",
+        "FEDERICO", "CAPOTONDI", "FEDERICO CAPOTONDI",
+        "LUCA", "CARROZZI", "LUCA CARROZZI",
+        "PAOLO", "FONTANA", "PAOLO FONTANA",
+        "PIERGIORGIO", "MORETTI", "PIERGIORGIO MORETTI"
       ],
       "node_name": "r301",
       "north_node": "",
@@ -12,7 +17,8 @@
     },
     {
       "tags": [
-        "302"
+        "302",
+        "EMANUELE", "RODOLA", "EMANUELE RODOLA", "RODOL", "EMANUELE RODOL"
       ],
       "node_name": "r302",
       "north_node": "",
@@ -22,7 +28,14 @@
     },
     {
       "tags": [
-        "309"
+        "309",
+        "VISIONLAB",
+        "ANXHELO", "DIKO", "ANXHELO DIKO", "ANGELO", "DICO", "ANGELO DICO", "ANXHELO DICO", "ANGELO DIKO", "ANXELO", "ANXELO DIKO", "ANXELO DICO",
+        "FEDERICO", "FONTANA", "FEDERICO FONTANA",
+        "ROMEO", "LANZINO", "ROMEO LANZINO",
+        "MARCO", "RAOUL", "MARINI", "RAUL", "MARCO RAUL", "MARCO RAOUL", "MARCO MARINI", "RAOUL MARINI", "RAUL MARINI", "MARCO RAOUL MARINI", "MARCO RAUL MARINI",
+        "ALESSIO", "MECCA", "ALESSIO MECCA",
+        "LUIGI", "CINQUE", "LUIGI CINQUE"
       ],
       "node_name": "r309",
       "north_node": "",
@@ -32,7 +45,9 @@
     },
     {
       "tags": [
-        "310"
+        "310",
+        "PIETRO", "CENCIARELLI", "PIETRO CENCIARELLI",
+        "TONI", "MANCINI", "TONI MANCINI", "TONY", "TONY MANCINI"
       ],
       "node_name": "r310",
       "north_node": "",
@@ -42,7 +57,9 @@
     },
     {
       "tags": [
-        "311"
+        "311",
+        "SERGIO", "DE AGOSTINO", "AGOSTINO", "SERGIO DE AGOSTINO",
+        "PAOLO", "ZULLANI", "PAOLO ZULLANI"
       ],
       "node_name": "r311",
       "north_node": "",
@@ -52,7 +69,11 @@
     },
     {
       "tags": [
-        "312"
+        "312",
+        "BENIGNO", "ANSANELLI", "BENIGNO ANSANELLI",
+        "RICCARDO", "CURCIO", "RICCARDO CURCIO",
+        "MARCO", "ESPOSITO", "MARCO ESPOSITO",
+        "LEONARDO", "PICCHIAMI", "LEONARDO PICCHIAMI"
       ],
       "node_name": "r312",
       "north_node": "",
@@ -62,7 +83,8 @@
     },
     {
       "tags": [
-        "313"
+        "313",
+        "MARIA", "DE MARSICO", "MARSICO", "MARIA DE MARSICO"
       ],
       "node_name": "r313",
       "north_node": "",
@@ -72,7 +94,8 @@
     },
     {
       "tags": [
-        "314", "314A"
+        "314", "314A",
+        "PAOLA", "VELARDI", "PAOLA VELARDI"
       ],
       "node_name": "r314A",
       "north_node": "",
@@ -82,7 +105,8 @@
     },
     {
       "tags": [
-        "314", "314B"
+        "314", "314B",
+        "DIRETTORE", "ENRICO", "TRONCI", "ENRICO TRONCI"
       ],
       "node_name": "r314B",
       "north_node": "",
@@ -92,7 +116,8 @@
     },
     {
       "tags": [
-        "314", "314C"
+        "314", "314C",
+        "LUIGI", "CINQUE", "LUIGI CINQUE"
       ],
       "node_name": "r314C",
       "north_node": "c7",
@@ -102,7 +127,10 @@
     },
     {
       "tags": [
-        "316"
+        "316",
+        "LEONARDO", "BERTI", "LEONARDO BERTI",
+        "LUCA", "PODO", "LUCA PODO",
+        "BARDH", "PRENKAJ", "BARDH PRENKAJ", "BARD"
       ],
       "node_name": "r316",
       "north_node": "c8",
@@ -112,7 +140,14 @@
     },
     {
       "tags": [
-        "317"
+        "317",
+        "VISIONLAB",
+        "IRENE", "CANNISTRACCI", "IRENE CANNISTRACCI",
+        "ANGELO", "MAMBRO", "DI MAMBRO", "ANGELO DI MAMBRO",
+        "EMAD", "EMAM", "EMAD EMAM",
+        "ANDREA", "PRINCIC", "ANDREA PRINCIC",
+        "VALERIO", "VENANZI", "VALERIO VENANZI",
+        "LUIGI", "CINQUE", "LUIGI CINQUE"
       ],
       "node_name": "r317",
       "north_node": "c9",
@@ -132,7 +167,11 @@
     },
     {
       "tags": [
-        "319"
+        "319",
+        "DONKEY", "KONG", "DONKEY KONG",
+        "DIDDY", "DIDDY KONG",
+        "DANILO", "AVOLA", "DANILO AVOLA",
+        "DANIELE", "PANNONE", "DANIELE PANNONE"
       ],
       "node_name": "r319",
       "north_node": "",
@@ -142,7 +181,15 @@
     },
     {
       "tags": [
-        "322"
+        "322",
+        "ANTONIO", "RICCIARDI", "ANTONIO RICCIARDI",
+        "ANTONIO", "NORELLI", "ANTONIO NORELLI",
+        "FILIPPO", "MAGGIOLI", "FILIPPO MAGGIOLI",
+        "LUCA", "MOSCHELLA", "LUCA MOSCHELLA",
+        "VALENTINO", "MAIORCA", "VALENTINO MAIORCA",
+        "IRENE", "CANNISTRACI", "IRENE CANNISTRACI",
+        "MARCO", "PEGORARO", "MARCO PEGORARO",
+        "DONATO", "CRISOSTOMI", "DONATO CRISOSTOMI"
       ],
       "node_name": "r322",
       "north_node": "c20",
@@ -152,7 +199,15 @@
     },
     {
       "tags": [
-        "329"
+        "329",
+        "ANDREA", "SANTILLI", "ANDREA SANTILLI",
+        "MICHELE", "MANCUSI", "MICHELE MANCUSI",
+        "GIORGIO", "MARIANI", "GIORGIO MARIANI",
+        "SILVIO", "SEVERINO", "SILVIO SEVERINO",
+        "DANIELE", "BAIERI", "DANIELE BAIERI",
+        "MARCO", "FUMERO", "MARCO FUMERO",
+        "EMILIAN", "POSTOLACHE", "EMILIAN POSTOLACHE",
+        "IRENE", "TALLINI", "IRENE TALLINI"
       ],
       "node_name": "r329",
       "north_node": "c19",
@@ -172,7 +227,10 @@
     },
     {
       "tags": [
-        "334"
+        "334",
+        "GIOVANNA", "LEONE", "GIOVANNA LEONE",
+        "BRUNO", "MAZZARA", "BRUNO MAZZARA",
+        "MAURO", "SARRICA", "MAURO SARRICA"
       ],
       "node_name": "r334",
       "north_node": "c25",
@@ -182,7 +240,10 @@
     },
     {
       "tags": [
-        "335"
+        "335",
+        "LUCA", "ALTERI", "LUCA ALTERI",
+        "ERICA", "ANTONINI", "ERICA ANTONINI",
+        "SERGIO", "MAUCERI", "SERGIO MAUCERI"
       ],
       "node_name": "r335",
       "north_node": "c27",
@@ -202,7 +263,8 @@
     },
     {
       "tags": [
-        "337"
+        "337",
+        "BARBARA", "MAZZA", "BARBARA MAZZA"
       ],
       "node_name": "r337",
       "north_node": "",
@@ -212,7 +274,8 @@
     },
     {
       "tags": [
-        "338"
+        "338",
+        "CHRISTIAN", "CRISTIAN", "RUGGIERO", "RUGGERO", "CHRISTIAN RUGGIERO", "CHRISTIAN RUGGERO", "CRISTIAN RUGGIERO", "CRISTIAN RUGGERO"
       ],
       "node_name": "r338",
       "north_node": "",
@@ -222,7 +285,8 @@
     },
     {
       "tags": [
-        "339"
+        "339",
+        "CARMELO", "LOMBARDO", "CARMELO LOMBARDO"
       ],
       "node_name": "r339",
       "north_node": "",
@@ -232,7 +296,8 @@
     },
     {
       "tags": [
-        "340"
+        "340",
+        "ANTONIO", "FASANELLA", "ANTONIO FASANELLA"
       ],
       "node_name": "r340",
       "north_node": "",
@@ -242,7 +307,8 @@
     },
     {
       "tags": [
-        "341"
+        "341",
+        "LUCA", "DEZI", "LUCA DEZI"
       ],
       "node_name": "r341",
       "north_node": "",

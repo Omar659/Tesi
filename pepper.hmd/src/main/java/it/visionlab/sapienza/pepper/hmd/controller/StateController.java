@@ -102,4 +102,10 @@ public class StateController {
         stateService.switchFlagPepperAction(pepperAction);
     }
 
+    // Handles HTTP PUT requests to "/state/setLocationTAG". Set the location TAG in the state
+    @PutMapping("/setLocationTAG")
+    public void setLocationTAG(@RequestParam(required = true) String location) {
+        stateService.setLocationTAG(location);
+    }
+
 }

@@ -34,12 +34,16 @@ def print_end(state_name):
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.1.4", port=9503)
+robot = Pepper(ip="192.168.1.6", port=9503)
 robot.execute()
+
+
 
 state = get_state()
 if state is None or state.state_name != STATE_START:
     post_set_state(INITIAL_STATE)
+    put_next_state(STATE_CHOSE_LOCATION)
+exit()
 
 # import threading
 # threading.Thread(target=robot.motion_module.click_tutorial).start()
@@ -82,10 +86,9 @@ if state is None or state.state_name != STATE_START:
 #     robot.motion_module.move_joints(joint_names, joint_values, times)
 
 # robot.motion_module.rotate_tutorial()
-# robot.motion_module.move_to_zero()
-put_next_state(STATE_SHOW_MAP)
-current_user = get_user("omar")
-put_next_state(STATE_SHOW_MAP)
+robot.motion_module.move_to_zero()
+# current_user = get_user("omar")
+# put_next_state(STATE_SHOW_MAP)
 
 time.sleep(2)
 s = 10
@@ -152,38 +155,38 @@ while True:
             print_end(STATE_TUTORIAL3)
         
         if state.state_name == STATE_TUTORIAL4:
-            print_start(STATE_TUTORIAL4)
+            print_start(STATE_SHOW_MAP)
             
-            handle_rotate_tutorial_state(robot, current_user)
-            time.sleep(s)
+            handle_show_map_state(robot, current_user)
+            time.sleep(s*3)
             put_next_state(STATE_SHOW_MAP)
             
-            print_end(STATE_TUTORIAL4)
+            print_end(STATE_SHOW_MAP)
         
         if state.state_name == STATE_SHOW_MAP:
             print_start(STATE_SHOW_MAP)
             
-            # handle_show_map_state(robot, current_user)
+            handle_show_map_state(robot)
             # time.sleep(s*3)
             put_next_state(STATE_CHOSE_LOCATION)
             
-            print_end(STATE_SHOW_MAP)
+            print_end(STATEX)
             
         if state.state_name == STATE_CHOSE_LOCATION:
             print_start(STATE_CHOSE_LOCATION)
             
             handle_chose_location_state(robot, current_user, state)
-            put_next_state(STATEX)
+            put_next_state(STATE_VR_EXPERIENCE)
             
             print_end(STATE_CHOSE_LOCATION)
         
-        if state.state_name == STATEX:
-            # robot.motion_module.show_map_end()
+        elif state.state_name == STATEX:
+            robot.motion_module.show_map_end()
             break
 
 
 # robot.vision_module.save_image()
-# robot.stop()
+robot.stop()
 
 # try:
 #     text = recognizer.recognize_google(audio, language='en-EN')

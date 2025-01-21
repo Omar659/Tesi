@@ -42,10 +42,10 @@ public class State {
     // Graph representing the building
     private Graph graph;
 
+    private Boolean vr;
+
     // Constructor to initialize a State object with all fields.
-    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction
-            , Graph graph
-    ) {
+    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction, Graph graph, Boolean vr) {
         this.stateId = stateId;
         this.flagPepper = flagPepper;
         this.flagHMD = flagHMD;
@@ -55,5 +55,6 @@ public class State {
         this.hmdOpen = hmdOpen;
         this.pepperAction = pepperAction;
         this.graph = graph;
+        this.vr = vr;
     }
 }

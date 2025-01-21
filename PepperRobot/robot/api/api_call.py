@@ -27,7 +27,8 @@ def get_state():
         response["chosenPlace"], 
         response["currentUser"], 
         response["hmdOpen"], 
-        response["pepperAction"]
+        response["pepperAction"], 
+        response["vr"]
     )
 
 # Api to get if the HMD is open with a boolean flag.
@@ -70,6 +71,11 @@ def put_set_current_user(current_user):
 def put_switch_pepper_action(pepper_action):
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
     response = API_manager_istance.call('put', PUT_SWITCH_PEPPER_ACTION, 25, params=[['pepperAction', str(pepper_action).lower()]])
+    return response
+
+def put_set_location_tag(location_tag):
+    API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
+    response = API_manager_istance.call('put', PUT_SET_LOCATION_TAG, 25, params=[['location', str(location_tag).lower()]])
     return response
 
 # Api to post the current state in the database using a State object.

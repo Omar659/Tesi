@@ -85,12 +85,12 @@ class StateInitializer implements CommandLineRunner {
             mapGraph = graph;
 
             // Esegui una ricerca (ad esempio, trova tutti i percorsi da r301 a r302)
-            List<PathWithWeight> paths = graph.findAllPaths("r301", "rConf");
+            List<PathWithWeight> paths = graph.findAllPaths("r309", "cinque");
             System.out.println("Tutti i percorsi da r301 a rConf:");
             for (PathWithWeight path : paths) {
                 System.out.println(path);
             }
-            System.out.println(graph.getAllTags());
+//            System.out.println(graph.getAllTags());
         } catch (IOException e) {
             e.printStackTrace();
         }

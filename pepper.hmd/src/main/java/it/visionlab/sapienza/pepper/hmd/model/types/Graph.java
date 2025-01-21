@@ -33,20 +33,20 @@ public class Graph {
     }
 
     // Restituisce tutti i percorsi da startNode a endNode con il loro peso
-    public List<PathWithWeight> findAllPaths(String startNode, String endNode) {
+    public List<PathWithWeight> findAllPaths(String startNode, String targetTag) {
         setStartNode(startNode);
         List<PathWithWeight> allPaths = new ArrayList<>();
         List<String> currentPath = new ArrayList<>();
         Set<String> visited = new HashSet<>();
         float currentWeight = 0;
 
-        dfs(nodes.get(startNode), endNode, visited, currentPath, allPaths, currentWeight);
+        dfs(nodes.get(startNode), targetTag, visited, currentPath, allPaths, currentWeight);
 
         return allPaths;
     }
 
     // DFS per trovare tutti i percorsi pesati
-    private void dfs(Node current, String endNode, Set<String> visited, List<String> currentPath, List<PathWithWeight> allPaths, float currentWeight) {
+    private void dfs(Node current, String targetTag, Set<String> visited, List<String> currentPath, List<PathWithWeight> allPaths, float currentWeight) {
         if (current == null || visited.contains(current.getNodeName())) {
             return;
         }
@@ -54,13 +54,15 @@ public class Graph {
         visited.add(current.getNodeName());
         currentPath.add(current.getNodeName());
 
-        if (current.getNodeName().equals(endNode)) {
-            // Se siamo arrivati al nodo finale, aggiungi il percorso e il peso alla lista dei risultati
+        // Controlla se il nodo corrente contiene il tag richiesto
+        if (current.getTags() != null && current.getTags().stream().anyMatch(tag -> tag.equalsIgnoreCase(targetTag))) {
+            // Se il nodo corrente contiene il tag richiesto, aggiungi il percorso e il peso alla lista dei risultati
             allPaths.add(new PathWithWeight(new ArrayList<>(currentPath), currentWeight));
-        } else {
-            for (Edge edge : current.getEdges()) {
-                dfs(edge.getTarget(), endNode, visited, currentPath, allPaths, currentWeight + edge.getWeight());
-            }
+        }
+
+        // Continua la ricerca nei nodi adiacenti
+        for (Edge edge : current.getEdges()) {
+            dfs(edge.getTarget(), targetTag, visited, currentPath, allPaths, currentWeight + edge.getWeight());
         }
 
         // Backtracking

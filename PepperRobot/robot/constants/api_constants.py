@@ -18,6 +18,7 @@ PUT_ACTIVATE = "activate"                           # Activate HMD or Pepper
 PUT_NEXT_STATE = "nextState"                        # Move to the next state
 PUT_SET_CURRENT_USER = "setCurrentUser"             # Set current user
 PUT_SWITCH_PEPPER_ACTION = "switchFlagPepperAction" # Toggle Pepper's action flag
+PUT_SET_LOCATION_TAG = "setLocationTAG"             # Set the location tag in the state
 POST_SET_STATE = "setState"                         # Set or update state
 
 # User operations.

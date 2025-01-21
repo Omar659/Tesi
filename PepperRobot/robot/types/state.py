@@ -1,5 +1,5 @@
 class State():
-    def __init__(self, state_id, flag_pepper, flag_HMD, state_name, chosen_place, currentUser, hmdOpen, pepperAction):        
+    def __init__(self, state_id, flag_pepper, flag_HMD, state_name, chosen_place, currentUser, hmdOpen, pepperAction, vr):        
         """
         Initializes a new State instance.
 
@@ -21,6 +21,7 @@ class State():
         self.currentUser = currentUser
         self.hmdOpen = hmdOpen
         self.pepperAction = pepperAction
+        self.vr = vr
         
     def to_dict(self):
         """
@@ -37,7 +38,8 @@ class State():
             "chosenPlace": self.chosen_place,
             "currentUser": self.currentUser,
             "hmdOpen": self.hmdOpen,
-            "pepperAction": self.pepperAction
+            "pepperAction": self.pepperAction,
+            "vr": self.vr
         }
 
     def __str__(self):
@@ -55,7 +57,8 @@ class State():
                 Chosen Place: {}
                 Current User: {}
                 HMD Open: {}
-                Pepper Action: {}'''.format(
+                Pepper Action: {}
+                VR: {}'''.format(
                     str(self.state_id), 
                     str(self.flag_pepper), 
                     str(self.flag_HMD), 
@@ -63,7 +66,8 @@ class State():
                     str(self.chosen_place),
                     str(self.currentUser),
                     str(self.hmdOpen),
-                    str(self.pepperAction)
+                    str(self.pepperAction),
+                    str(self.vr)
                     )
 
     def __repr__(self):
@@ -81,7 +85,8 @@ class State():
                 Chosen Place: {}
                 Current User: {}
                 HMD open: {}
-                Pepper Action: {}'''.format(
+                Pepper Action: {}
+                VR: {}'''.format(
                     repr(self.state_id), 
                     repr(self.flag_pepper), 
                     repr(self.flag_HMD), 
@@ -89,5 +94,6 @@ class State():
                     repr(self.chosen_place),
                     repr(self.currentUser),
                     repr(self.hmdOpen),
-                    repr(self.pepperAction)
+                    repr(self.pepperAction),
+                    str(self.vr)
                     )

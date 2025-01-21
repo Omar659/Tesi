@@ -202,7 +202,15 @@
 #     "You can select a place on the map or tell me what you are looking for or your destination."
 # ]
 
-
+# # List of phrases to indicate possible tasks.
+# TASK_EXPLAINATION = [
+#     "The paths to the selected destination are visible on the map, now you can ask me or indicate if you would like to go elsewhere, let me know if you would like to explore firsthand in the virtual world or if you would prefer to end the experience here.",
+#     "The routes to the requested place are plotted on the map, now you can ask me or indicate if you wish to go elsewhere, let me know if you want an immersive experience in the virtual world or if you want to end your journey here.",
+#     "On the map you can see the paths to the desired destination, now you can ask or tell me if you want to go somewhere else, tell me if you want a first-person experience in the virtual world or if you prefer to end the experience.",
+#     "The routes to the chosen place are shown on the map, now you can ask or indicate if you want to go somewhere else, ask me if you want to have an immersive experience in the virtual world or if you want to end the experience here.",
+#     "Routes to your destination are marked on the map, now you can ask me or indicate if you want to go somewhere else, tell me if you prefer a first-person experience in the virtual world or if you want to end the experience here.",
+#     "Routes to your requested location are marked on the map, now you can ask me or indicate if you want to head elsewhere, tell me if you want an immersive experience in the virtual world or if you prefer to end the experience."
+# ]
 
 
 
@@ -431,4 +439,14 @@ UNKOWNN_REQUEST = [
     "Questa domanda sembra fuori tema, ti invito a proporre qualcosa di piu in linea con il compito attuale.",
     "Non posso fornirti supporto su questo punto, possiamo lavorare su qualcosa di piu in linea con il task?",
     "Ti consiglio di riformulare la richiesta in modo che sia piu pertinente al nostro compito attuale."
+]
+
+# Elenco di frasi per indicare i task possibili.
+TASK_EXPLAINATION = [
+    "Sulla mappa sono visibili i percorsi verso la destinazione selezionata, ora puoi chiedermi o indicarmi se desideri raggiungere un altro posto, farmi sapere se vuoi esplorare in prima persona nel mondo virtuale o se preferisci concludere l'esperienza qui.",
+    "I percorsi verso il luogo richiesto sono tracciati sulla mappa, ora puoi chiedermi o indicarmi se desideri andare altrove, comunicarmi se vuoi un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui il tuo viaggio.",
+    "Sulla mappa puoi vedere i percorsi verso la destinazione desiderata, ora puoi chiedermi o dirmi se vuoi andare in un altro posto, se desideri un'esperienza in prima persona nel mondo virtuale o se preferisci terminare l'esperienza.",
+    "I percorsi verso il luogo scelto sono mostrati sulla mappa, ora puoi chiedermi o indicarmi se vuoi andare da un'altra parte, chiedermi se desideri vivere un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui.",
+    "Sulla mappa sono segnati i percorsi per raggiungere la tua destinazione, ora puoi chiedermi o indicarmi se vuoi andare in un altro posto, dirmi se preferisci un'esperienza in prima persona nel mondo virtuale o se desideri terminare qui.",
+    "Sulla mappa sono evidenziati i percorsi verso il luogo richiesto, ora puoi chiedermi o indicarmi se vuoi dirigerti altrove, se desideri un'esperienza immersiva nel mondo virtuale oppure se preferisci concludere l'esperienza."
 ]

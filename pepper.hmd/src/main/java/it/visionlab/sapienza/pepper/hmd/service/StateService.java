@@ -47,6 +47,11 @@ public class StateService {
         return stateRepository.getIsKnownLocation(location);
     }
 
+    // Get the best path in the graph
+    public List<PathWithWeight> getGraphBestPath(String start, String end) {
+        return stateRepository.getGraphBestPath(start, end);
+    }
+
     // Saves or updates the provided State object in the repository.
     public void setState(State state) {
         stateRepository.setState(state);
@@ -82,7 +87,8 @@ public class StateService {
         stateRepository.switchFlagPepperAction(pepperAction);
     }
 
-    public List<PathWithWeight> getGraphBestPath(String start, String end) {
-        return stateRepository.getGraphBestPath(start, end);
+    // Set the location target in the state
+    public void setLocationTAG(String location) {
+        stateRepository.setLocationTAG(location);
     }
 }
