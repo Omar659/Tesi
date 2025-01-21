@@ -31,7 +31,7 @@ class Server_STT(Resource):
             timeout = self.timeout
             if self.timeout is not None:
                 timeout = int(self.timeout)
-            listen_status = self.recognizer.listen(device_index=1, timeout=timeout) # device_index: 1 pc lab; 2 my pc
+            listen_status = self.recognizer.listen(device_index=0, timeout=timeout) # device_index: 1 pc lab; 2 my pc
             
             # Check the status returned by the 'listen' method to determine the next step.
             if listen_status == OK:
