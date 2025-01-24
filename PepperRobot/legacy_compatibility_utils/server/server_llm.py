@@ -182,18 +182,57 @@ class Server_LLM(Resource):
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
             return {"answer": answer, "error": False}
-        
 
         elif self.req == GET_IS_ASKED_POSITION:
             system_prompt = f'''Your task is to determine whether the incoming response is a request for directions to the location of a person, or a specific room within a building. The request does not need to be explicitly phrased as a question with a question mark; it can be interpreted as such if it is intended to ask for the location of something or someone. Additionally, a person may inquire about a location using a last name, first name, or full name, including names composed of more than two words (e.g., 'Where is Maria Rosa Cinque located?' where 'Maria Rosa Cinque' refers to the full name).
             For the next input: respond only with 'no' if you do not detect such a request. Otherwise, extrapolate from the request the specific place, or person being searched for, providing only the singular noun (e.g., 'bathrooms' should return 'bathroom'). If a room is mentioned along with its name, the name should take priority in the response.\n'''
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
-            print(answer)
             if answer.upper() == "NO":           
                 return {"pertinent": False, "location": "", "error": False}
             else:
                 return {"pertinent": True, "location": answer.upper(), "error": False}
+
+        elif self.req == GET_TASK_TYPE:
+            system_prompt = f'''Your task is to categorize the user's intent into one of four options:  
+                1. "1" if they want to reach another place (e.g., "Where is Room 5B?", "Take me to Dr. Smith," or indirect requests like "Find a lecture hall").  
+                2. "2" if they wish to explore the virtual world firsthand (e.g., "Let me walk around," "I want to navigate myself," or autonomy hints).  
+                3. "3" if they prefer to end the experience (e.g., "Exit now," "I'm done," or closing remarks).  
+                4. "4" if the input is unrelated, ambiguous, or does not match options 1-3 (e.g., "What's the weather?", "Tell a joke," or irrelevant statements).  
+
+            Respond **strictly** with "1," "2," "3," or "4" based on the **most logical intent**, even if phrased indirectly. Prioritize inference over literal wording. Never add explanations.'''  
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            if answer == "1":
+                return {"task": "research", "error": False}
+            elif answer == "2":
+                return {"task": "vr", "error": False}
+            elif answer == "3":
+                return {"task": "end", "error": False}
+            else:
+                return {"task": "no_task", "error": False}
+
+        elif self.req == GET_EXIT_VR:
+            system_prompt = '''You are a text-processing engine whose sole task is to determine whether the incoming text contains a direct or indirect request to exit/end/leave the current virtual reality (VR) experience.
+            Given the next input, answer **strictly** with "yes" if you detect:
+                - Explicit commands: "exit VR", "stop this experience", "end the simulation" 
+                - Direct requests: "I want to leave", "Take me out of here"
+                - Indirect expressions: "I'm done here", "Let's go back to reality", "This isn't working"
+                - Frustration cues: "I'm fed up", "I'm tired of this", "I've had enough" (in context)
+                - Non-literal fatigue: "Enough for today", "No more of this"
+
+            Respond with "no" for:
+                - Ambiguous complaints: "This is boring", "It's too complicated"
+                - Feature requests: "Can we try something else?"
+                - Technical issues: "My head hurts", "The screen is blurry"
+
+            Never add explanations. Judge strictly based on exit intent.'''
+            user_prompt = f"{self.human_answer}"
+            answer = cleanup_string(self.llm.get_answer(system_prompt, user_prompt).strip())
+            if answer.lower() == "yes":
+                return {"exit": True, "error": False}
+            else:
+                return {"exit": False, "error": False}
 
         return {"message": "GET request failed", "error": True}
 

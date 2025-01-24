@@ -16,6 +16,8 @@ GET_TUTORIAL_ZOOM_INFOBOT = "get_tutorial_zoom_infobot"             # Get chatbo
 GET_TUTORIAL_MOVE_INFOBOT = "get_tutorial_move_infobot"             # Get chatbot response about the move tutorial
 GET_TUTORIAL_ROTATION_INFOBOT = "get_tutorial_rotation_infobot"     # Get chatbot response about the rotation tutorial
 GET_IS_ASKED_POSITION = "get_is_asked_position"                     # Get if a position is asked
+GET_TASK_TYPE = "get_task_type"                                     # Get which kind of task is asked
+GET_EXIT_VR = "get_exit_vr"                                         # Get the user want exit from vr session
 
 # STT operation
 GET_LISTEN = "get_listen"  # Start speech-to-text listening
