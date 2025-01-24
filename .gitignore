@@ -5,3 +5,4 @@ __pycache__/
 Florence-2-base/
 whisper-large-v3/
 *.Identifier
+servers/
