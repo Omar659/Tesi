@@ -91,4 +91,9 @@ public class StateService {
     public void setLocationTAG(String location) {
         stateRepository.setLocationTAG(location);
     }
+
+    // Set the VR flag in the state
+    public void setVr(boolean vrFlag) {
+        stateRepository.setVr(vrFlag);
+    }
 }

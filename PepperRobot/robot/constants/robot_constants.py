@@ -212,6 +212,22 @@
 #     "Routes to your requested location are marked on the map, now you can ask me or indicate if you want to head elsewhere, tell me if you want an immersive experience in the virtual world or if you prefer to end the experience."
 # ]
 
+# # List of phrases to guide the user in first-person navigation via virtual reality.
+# VR_EXPLAINATION = [
+#     "Now I'll take you inside the building in first-person view. To move, close your hand and point with your index finger.",
+#     "Ready to explore the building in VR? Close your hand and point where you want to go.",
+#     "We'll enter the building in first-person mode. Move by making a fist and directing your index finger.",
+# ]
+
+# EXIT = [
+#     "I am exiting the virtual world. You will return to the previous mode.",
+#     "I am now taking you out of the virtual environment."
+#     "We are ending the experience in the virtual world here."
+#     "We will now exit virtual reality and return to the previous mode."
+#     "I am ending the immersive navigation. You will return to the previous mode shortly."
+#     "I am disabling the virtual reality view."
+# ]
+
 
 
 
@@ -449,4 +465,21 @@ TASK_EXPLAINATION = [
     "I percorsi verso il luogo scelto sono mostrati sulla mappa, ora puoi chiedermi o indicarmi se vuoi andare da un'altra parte, chiedermi se desideri vivere un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui.",
     "Sulla mappa sono segnati i percorsi per raggiungere la tua destinazione, ora puoi chiedermi o indicarmi se vuoi andare in un altro posto, dirmi se preferisci un'esperienza in prima persona nel mondo virtuale o se desideri terminare qui.",
     "Sulla mappa sono evidenziati i percorsi verso il luogo richiesto, ora puoi chiedermi o indicarmi se vuoi dirigerti altrove, se desideri un'esperienza immersiva nel mondo virtuale oppure se preferisci concludere l'esperienza."
+]
+
+# Lista di frasi per guidare l'utente nella navigazione in prima persona tramite realta virtuale.
+VR_EXPLAINATION = [
+    "Ora ti trasportero nell'edificio in prima persona per esplorarlo. Per muoverti, chiudi la mano e punta con l'indice la direzione desiderata.",
+    "Pronto a visitare l'edificio in VR? Chiudi la mano e indica col dito dove vuoi andare per iniziare a muoverti.",
+    "Entreremo nell'edificio in modalita prima persona. Per spostarti, chiudi il pugno e direziona il tuo indice verso il punto d'interesse.",
+    "Ti porto nell'edificio con una visuale immersiva. Muoviti chiudendo la mano e puntando l'indice dove desideri camminare."
+]
+
+EXIT = [
+    "Sto uscendo dal mondo virtuale. Tornerai alla modalita precedente.",
+    "Ora ti sto portando fuori dall'ambiente virtuale.",
+    "Concludiamo qui l'esperienza nel mondo virtuale.",
+    "Usciremo ora dalla realta virtuale per tornare all'modalita precedente.",
+    "Termino la navigazione immersiva. A breve ritornerai alla modalita precedente.",
+    "Sto disattivando la visualizzazione in realta virtuale."
 ]

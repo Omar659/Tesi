@@ -137,11 +137,21 @@ public class StateRepository {
         mongoTemplate.updateFirst(query, update, State.class);
     }
 
+    // Set the location target in the state
     public void setLocationTAG(String location) {
         Query query = new Query(Criteria.where("stateId").is(stateId));
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null; // Ensures that the state object is not null.
         Update update = new Update().set("location", location);
+        mongoTemplate.updateFirst(query, update, State.class);
+    }
+
+    // Set the VR flag in the state
+    public void setVr(boolean vrFlag) {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        State state = mongoTemplate.findOne(query, State.class);
+        assert state != null;
+        Update update = new Update().set("vr", vrFlag);
         mongoTemplate.updateFirst(query, update, State.class);
     }
 }

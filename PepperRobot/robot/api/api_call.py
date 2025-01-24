@@ -73,9 +73,16 @@ def put_switch_pepper_action(pepper_action):
     response = API_manager_istance.call('put', PUT_SWITCH_PEPPER_ACTION, 25, params=[['pepperAction', str(pepper_action).lower()]])
     return response
 
+# Api to update the location tag in the state with the specified location.
 def put_set_location_tag(location_tag):
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
     response = API_manager_istance.call('put', PUT_SET_LOCATION_TAG, 25, params=[['location', str(location_tag).lower()]])
+    return response
+
+# Api to set the virtual reality (VR) flag status in the system state.
+def put_set_vr(vrFlag):
+    API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
+    response = API_manager_istance.call('put', PUT_SET_VR, 25, params=[['vrFlag', str(vrFlag).lower()]])
     return response
 
 # Api to post the current state in the database using a State object.
@@ -192,6 +199,18 @@ def get_answer_tutorial_rotation_assistant(human_answer):
 def get_is_asked_position(human_answer):
     API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
     response = API_manager_istance.call('get', "", 50, params=[["req", GET_IS_ASKED_POSITION], ["human_answer", human_answer]])
+    return response
+
+# Api to understand the type of task requested by user.
+def get_task_from_sentence(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_TASK_TYPE], ["human_answer", human_answer]])
+    return response
+
+
+def get_exit_from_vr(human_answer):
+    API_manager_istance = API_manager(BASE_URL_LCU, LLM_ENDPOINT)
+    response = API_manager_istance.call('get', "", 50, params=[["req", GET_EXIT_VR], ["human_answer", human_answer]])
     return response
 
 ####################################

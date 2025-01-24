@@ -207,7 +207,7 @@ def handle_show_map_state(robot):
     put_switch_pepper_action(False)
     
 def handle_chose_location_state(robot, current_user, state):
-    # robot.speech_module.say(random.choice(CHOSE_LOCATION))
+    robot.speech_module.say(random.choice(CHOSE_LOCATION))
     explaination = True
     while True:
         if state.chosen_place is None:
@@ -217,33 +217,33 @@ def handle_chose_location_state(robot, current_user, state):
                 if get_is_known_location(position_asked_response["location"]):
                     put_set_location_tag(position_asked_response["location"])
                     continue
-                # else:
-                    # robot.speech_module.say(random.choice(UNKOWNN_LOCATION))
-            # else:
-                # robot.speech_module.say(random.choice(UNKOWNN_REQUEST))
+                else:
+                    robot.speech_module.say(random.choice(UNKOWNN_LOCATION))
+            else:
+                robot.speech_module.say(random.choice(UNKOWNN_REQUEST))
         else:
             if explaination:
                 explaination = False
-                # robot.speech_module.say(random.choice(TASK_EXPLAINATION))
+                robot.speech_module.say(random.choice(TASK_EXPLAINATION))
             human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=10)
-            # task_response = get_task_from_sentence(human_answer)
-            if task_response["task"] == "ricerca":
+            task_response = get_task_from_sentence(human_answer)
+            if task_response["task"] == "research":
                 position_asked_response = get_is_asked_position(human_answer)
                 if get_is_known_location(position_asked_response["location"]):
                     put_set_location_tag(position_asked_response["location"])
                     continue
-                # else:
-                    # robot.speech_module.say(random.choice(UNKOWNN_LOCATION))
-            elif task_response["task"] == "fine":
+                else:
+                    robot.speech_module.say(random.choice(UNKOWNN_LOCATION))
+            elif task_response["task"] == "end":
                 break
             elif task_response["task"] == "vr":
-                # put_set_vr(True)
-                # robot.speech_module.say(random.choice(TODO))
+                put_set_vr(True)
+                robot.speech_module.say(random.choice(VR_EXPLAINATION))
                 while state.vr:
                     human_answer = robot.speech_module.listen(name=current_user.name, continuous_listening=True, timeout=10)
-                    # exit_response = get_exit_from_vr(human_answer)
+                    exit_response = get_exit_from_vr(human_answer)
                     if exit_response["exit"]:
-                        # robot.speech_module.say(random.choice(TODO))
+                        robot.speech_module.say(random.choice(EXIT))
                         break
-            # else:
-                # robot.speech_module.say(random.choice(UNKOWNN_REQUEST))
+            else:
+                robot.speech_module.say(random.choice(UNKOWNN_REQUEST))

@@ -108,4 +108,10 @@ public class StateController {
         stateService.setLocationTAG(location);
     }
 
+    // Handles HTTP PUT requests to "/state/setVr". Set the VR flag in the state
+    @PutMapping("/setVr")
+    public void setVr(@RequestParam(required = true) boolean vrFlag) {
+        stateService.setVr(vrFlag);
+    }
+
 }

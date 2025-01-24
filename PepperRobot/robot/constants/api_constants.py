@@ -19,6 +19,7 @@ PUT_NEXT_STATE = "nextState"                        # Move to the next state
 PUT_SET_CURRENT_USER = "setCurrentUser"             # Set current user
 PUT_SWITCH_PEPPER_ACTION = "switchFlagPepperAction" # Toggle Pepper's action flag
 PUT_SET_LOCATION_TAG = "setLocationTAG"             # Set the location tag in the state
+PUT_SET_VR = "setVr"                                # Set the VR flag to true or false
 POST_SET_STATE = "setState"                         # Set or update state
 
 # User operations.
@@ -41,6 +42,8 @@ GET_TUTORIAL_ZOOM_INFOBOT = "get_tutorial_zoom_infobot"             # Get chatbo
 GET_TUTORIAL_MOVE_INFOBOT = "get_tutorial_move_infobot"             # Get chatbot response about the move tutorial
 GET_TUTORIAL_ROTATION_INFOBOT = "get_tutorial_rotation_infobot"     # Get chatbot response about the rotation tutorial
 GET_IS_ASKED_POSITION = "get_is_asked_position"                     # Get if a position is asked
+GET_TASK_TYPE = "get_task_type"                                     # Get which kind of task is asked
+GET_EXIT_VR = "get_exit_vr"                                         # Get the user want exit from vr session
 
 # STT operation
 GET_LISTEN = "get_listen"  # Start speech-to-text listening
