@@ -71,11 +71,11 @@
 
 # # List of phrases to ask the user to put the visor and start the application.
 # PUT_VISOR = [
-#     "Begin by putting on your visor and starting the application named TODO.",
-#     "First, start the application named TODO after putting on your visor.",
-#     "Put on your visor first, then start the application named TODO.",
-#     "Start the application named TODO once you have put on your visor.",
-#     "First, put on your visor; then, start the application named TODO."
+#     "Begin by putting on your visor and starting the application named My project 2.",
+#     "First, start the application named My project 2 after putting on your visor.",
+#     "Put on your visor first, then start the application named My project 2.",
+#     "Start the application named My project 2 once you have put on your visor.",
+#     "First, put on your visor; then, start the application named My project 2."
 # ]
 
 # # List of phrases to ask the user if he/she want to rewatch tutorial.
@@ -202,6 +202,16 @@
 #     "You can select a place on the map or tell me what you are looking for or your destination."
 # ]
 
+# UPDATE_LOCATION = [
+#     "I have updated the routes on the map. Tell me if you want to see it firsthand, if you are looking for more, or if you want to end the experience here"
+# ]
+
+# # Elenco di frasi per dire che non si puo localizzare la cosa cercata.
+# UNKOWNN_REQUEST = [
+#     "I'm sorry, ask me something relevant.",
+#     "This question seems off topic, ask me something relevant."
+# ]
+
 # # List of phrases to indicate possible tasks.
 # TASK_EXPLAINATION = [
 #     "The paths to the selected destination are visible on the map, now you can ask me or indicate if you would like to go elsewhere, let me know if you would like to explore firsthand in the virtual world or if you would prefer to end the experience here.",
@@ -214,20 +224,32 @@
 
 # # List of phrases to guide the user in first-person navigation via virtual reality.
 # VR_EXPLAINATION = [
-#     "Now I'll take you inside the building in first-person view. To move, close your hand and point with your index finger.",
-#     "Ready to explore the building in VR? Close your hand and point where you want to go.",
-#     "We'll enter the building in first-person mode. Move by making a fist and directing your index finger.",
+#     "Now I'll take you inside the building in first-person view. To move, close your hand and point with your index finger. Tell me when you want to go out!",
+#     "Ready to explore the building in VR? Close your hand and point where you want to go. Tell me when you want to go out!",
+#     "We'll enter the building in first-person mode. Move by making a fist and directing your index finger. Tell me when you want to go out!",
 # ]
 
 # EXIT = [
-#     "I am exiting the virtual world. You will return to the previous mode.",
-#     "I am now taking you out of the virtual environment."
-#     "We are ending the experience in the virtual world here."
-#     "We will now exit virtual reality and return to the previous mode."
-#     "I am ending the immersive navigation. You will return to the previous mode shortly."
-#     "I am disabling the virtual reality view."
+#     "I am exiting the virtual world. You will return to the previous mode. Tell me if you want to review it yourself, if you are looking for more, or if you want to end the experience here",
+#     "I am now taking you out of the virtual environment. Tell me if you want to review it yourself, if you are looking for more, or if you want to end the experience here"
+#     "We are ending the experience in the virtual world here. Tell me if you want to review it yourself, if you are looking for more, or if you want to end the experience here"
+#     "We will now exit virtual reality and return to the previous mode. Tell me if you want to review it yourself, if you are looking for more, or if you want to end the experience here"
+#     "I am ending the immersive navigation. You will return to the previous mode shortly. Tell me if you want to review it yourself, if you are looking for more, or if you want to end the experience here"
+#     "I am disabling the virtual reality view. Tell me if you want to review it yourself, if you are looking for more, or if you want to end the experience here"
 # ]
 
+# END_EXPERIENCE = [
+#     "The experience is over. Have a great day, <user>!"
+#     "Let's end our session here. Enjoy your day, <user>!"
+#     "We have reached the end of the experience. I salute you and have a good day, <user>!"
+#     "The experience ends here. Have a wonderful day, <user>!"
+#     "We end here. and it was a pleasure to assist you, have a great day <user>!"
+#     "We have concluded the experience. I wish you a great continuation, <user>!"
+#     "And that's all for today, <user>! Have a great day!"
+#     "The experience is concluded. Thank you and happy continuation, <user>!"
+#     "Arrived at the end of the course. Wishing you a pleasant day, <user>!"
+#     "Let's close the experience here. I wish you the best for your day, <user>!"
+# ]
 
 
 
@@ -310,11 +332,11 @@ ONE_OF_MY_ABILITIES = [
 
 # Lista di frasi per chiedere all'utente di indossare il visore e avviare l'applicazione.
 PUT_VISOR = [
-    "Inizia indossando il visore e avviando l'applicazione chiamata TODO.",
-    "Prima avvia l'applicazione chiamata TODO dopo aver indossato il visore.",
-    "Metti prima il visore, poi avvia l'applicazione chiamata TODO.",
-    "Avvia l'applicazione chiamata TODO una volta che hai indossato il visore.",
-    "Prima, metti il visore; poi, avvia l'applicazione chiamata TODO."
+    "Inizia indossando il visore e avviando l'applicazione chiamata My project 2.",
+    "Prima avvia l'applicazione chiamata My project 2 dopo aver indossato il visore.",
+    "Metti prima il visore, poi avvia l'applicazione chiamata My project 2.",
+    "Avvia l'applicazione chiamata My project 2 una volta che hai indossato il visore.",
+    "Prima, metti il visore; poi, avvia l'applicazione chiamata My project 2."
 ]
 
 # Lista di frasi per chiedere all'utente se vuole rivedere il tutorial.
@@ -449,12 +471,14 @@ UNKOWNN_LOCATION = [
     "Purtroppo non ho idea di dove si trovi cio che cerchi.",
 ]
 
+UPDATE_LOCATION = [
+    "Ho aggiornato i percorsi sulla mappa. Dimmi se vuoi vederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui",
+]
+
 # Elenco di frasi per dire che non si puo localizzare la cosa cercata.
 UNKOWNN_REQUEST = [
-    "Mi dispiace, ma questa richiesta esula dal contesto. Proviamo a concentrarci su attivita piu pertinenti.",
-    "Questa domanda sembra fuori tema, ti invito a proporre qualcosa di piu in linea con il compito attuale.",
-    "Non posso fornirti supporto su questo punto, possiamo lavorare su qualcosa di piu in linea con il task?",
-    "Ti consiglio di riformulare la richiesta in modo che sia piu pertinente al nostro compito attuale."
+    "Mi dispiace, chiedimi qualcosa di pertinente.",
+    "Questa domanda sembra fuori tema, chiedimi qualcosa di pertinente."
 ]
 
 # Elenco di frasi per indicare i task possibili.
@@ -469,17 +493,30 @@ TASK_EXPLAINATION = [
 
 # Lista di frasi per guidare l'utente nella navigazione in prima persona tramite realta virtuale.
 VR_EXPLAINATION = [
-    "Ora ti trasportero nell'edificio in prima persona per esplorarlo. Per muoverti, chiudi la mano e punta con l'indice la direzione desiderata.",
-    "Pronto a visitare l'edificio in VR? Chiudi la mano e indica col dito dove vuoi andare per iniziare a muoverti.",
-    "Entreremo nell'edificio in modalita prima persona. Per spostarti, chiudi il pugno e direziona il tuo indice verso il punto d'interesse.",
-    "Ti porto nell'edificio con una visuale immersiva. Muoviti chiudendo la mano e puntando l'indice dove desideri camminare."
+    "Ora ti trasportero nell'edificio in prima persona per esplorarlo. Per muoverti, chiudi la mano e punta con l'indice la direzione desiderata. Dimmi quando vuoi uscire!",
+    "Pronto a visitare l'edificio in VR? Chiudi la mano e indica col dito dove vuoi andare per iniziare a muoverti. Dimmi quando vuoi uscire!",
+    "Entreremo nell'edificio in modalita prima persona. Per spostarti, chiudi il pugno e direziona il tuo indice verso il punto d'interesse. Dimmi quando vuoi uscire!",
+    "Ti porto nell'edificio con una visuale immersiva. Muoviti chiudendo la mano e puntando l'indice dove desideri camminare. Dimmi quando vuoi uscire!"
 ]
 
 EXIT = [
-    "Sto uscendo dal mondo virtuale. Tornerai alla modalita precedente.",
-    "Ora ti sto portando fuori dall'ambiente virtuale.",
-    "Concludiamo qui l'esperienza nel mondo virtuale.",
-    "Usciremo ora dalla realta virtuale per tornare all'modalita precedente.",
-    "Termino la navigazione immersiva. A breve ritornerai alla modalita precedente.",
-    "Sto disattivando la visualizzazione in realta virtuale."
+    "Sto uscendo dal mondo virtuale. Tornerai alla modalita precedente. Dimmi se vuoi rivederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui",
+    "Ora ti sto portando fuori dall'ambiente virtuale. Dimmi se vuoi rivederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui",
+    "Concludiamo qui l'esperienza nel mondo virtuale. Dimmi se vuoi rivederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui",
+    "Usciremo ora dalla realta virtuale per tornare all'modalita precedente. Dimmi se vuoi rivederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui",
+    "Termino la navigazione immersiva. A breve ritornerai alla modalita precedente. Dimmi se vuoi rivederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui",
+    "Sto disattivando la visualizzazione in realta virtuale. Dimmi se vuoi rivederlo in prima persona, se cerchi altro o se vuoi terminare l'esperienza qui"
+]
+
+END_EXPERIENCE = [
+    "L'esperienza e terminata. Ti auguro una buona giornata, <user>!",
+    "Concludiamo qui la nostra sessione. Buon proseguimento, <user>!",
+    "Siamo arrivati alla fine dell'esperienza. Ti saluto e buona giornata, <user>!",
+    "L'esperienza si conclude qui. Ti auguro una splendida giornata, <user>!",
+    "Terminiamo qui. e stato un piacere assisterti, buona giornata <user>!",
+    "Abbiamo concluso l'esperienza. Ti auguro un ottimo proseguimento, <user>!",
+    "E tutto per oggi, <user>! Ti auguro una giornata fantastica!",
+    "L'esperienza e conclusa. Grazie e buon proseguimento, <user>!",
+    "Arrivati alla fine del percorso. Ti auguro una piacevole giornata, <user>!",
+    "Chiudiamo qui l'esperienza. Ti auguro il meglio per la tua giornata, <user>!"
 ]

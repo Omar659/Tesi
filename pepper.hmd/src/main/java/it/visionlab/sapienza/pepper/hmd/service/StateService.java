@@ -7,6 +7,8 @@ import it.visionlab.sapienza.pepper.hmd.model.types.PathWithWeight;
 import it.visionlab.sapienza.pepper.hmd.repository.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -95,5 +97,10 @@ public class StateService {
     // Set the VR flag in the state
     public void setVr(boolean vrFlag) {
         stateRepository.setVr(vrFlag);
+    }
+
+    // Set the canTalk flag to true if the user can talk, false otherwise
+    public void setCanTalk(Boolean canTalk) {
+        stateRepository.setCanTalk(canTalk);
     }
 }

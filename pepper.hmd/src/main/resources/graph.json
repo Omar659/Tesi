@@ -34,8 +34,7 @@
         "FEDERICO", "FONTANA", "FEDERICO FONTANA",
         "ROMEO", "LANZINO", "ROMEO LANZINO",
         "MARCO", "RAOUL", "MARINI", "RAUL", "MARCO RAUL", "MARCO RAOUL", "MARCO MARINI", "RAOUL MARINI", "RAUL MARINI", "MARCO RAOUL MARINI", "MARCO RAUL MARINI",
-        "ALESSIO", "MECCA", "ALESSIO MECCA",
-        "LUIGI", "CINQUE", "LUIGI CINQUE"
+        "ALESSIO", "MECCA", "ALESSIO MECCA"
       ],
       "node_name": "r309",
       "north_node": "",
@@ -146,8 +145,7 @@
         "ANGELO", "MAMBRO", "DI MAMBRO", "ANGELO DI MAMBRO",
         "EMAD", "EMAM", "EMAD EMAM",
         "ANDREA", "PRINCIC", "ANDREA PRINCIC",
-        "VALERIO", "VENANZI", "VALERIO VENANZI",
-        "LUIGI", "CINQUE", "LUIGI CINQUE"
+        "VALERIO", "VENANZI", "VALERIO VENANZI"
       ],
       "node_name": "r317",
       "north_node": "c9",

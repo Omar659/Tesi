@@ -1,5 +1,5 @@
 class State():
-    def __init__(self, state_id, flag_pepper, flag_HMD, state_name, chosen_place, currentUser, hmdOpen, pepperAction, vr):        
+    def __init__(self, state_id, flag_pepper, flag_HMD, state_name, chosen_place, currentUser, hmdOpen, pepperAction, vr, can_talk):        
         """
         Initializes a new State instance.
 
@@ -22,6 +22,7 @@ class State():
         self.hmdOpen = hmdOpen
         self.pepperAction = pepperAction
         self.vr = vr
+        self.can_talk = can_talk
         
     def to_dict(self):
         """
@@ -31,15 +32,16 @@ class State():
         - dict: A dictionary representation of the State instance.
         """
         return {
-            "stateId": self.state_id,
-            "flagPepper": self.flag_pepper,
-            "flagHMD": self.flag_HMD,
-            "stateName": self.state_name,
-            "chosenPlace": self.chosen_place,
-            "currentUser": self.currentUser,
-            "hmdOpen": self.hmdOpen,
-            "pepperAction": self.pepperAction,
-            "vr": self.vr
+            "stateId": (self.state_id),
+            "flagPepper": (self.flag_pepper),
+            "flagHMD": (self.flag_HMD),
+            "stateName": (self.state_name),
+            "chosenPlace": (self.chosen_place),
+            "currentUser": (self.currentUser),
+            "hmdOpen": (self.hmdOpen),
+            "pepperAction": (self.pepperAction),
+            "vr": (self.vr),
+            "canTalk": (self.can_talk),
         }
 
     def __str__(self):
@@ -58,7 +60,8 @@ class State():
                 Current User: {}
                 HMD Open: {}
                 Pepper Action: {}
-                VR: {}'''.format(
+                VR: {}
+                Can Talk: {}'''.format(
                     str(self.state_id), 
                     str(self.flag_pepper), 
                     str(self.flag_HMD), 
@@ -67,7 +70,8 @@ class State():
                     str(self.currentUser),
                     str(self.hmdOpen),
                     str(self.pepperAction),
-                    str(self.vr)
+                    str(self.vr),
+                    str(self.can_talk)
                     )
 
     def __repr__(self):
@@ -86,7 +90,8 @@ class State():
                 Current User: {}
                 HMD open: {}
                 Pepper Action: {}
-                VR: {}'''.format(
+                VR: {}
+                Can Talk: {}'''.format(
                     repr(self.state_id), 
                     repr(self.flag_pepper), 
                     repr(self.flag_HMD), 
@@ -95,5 +100,6 @@ class State():
                     repr(self.currentUser),
                     repr(self.hmdOpen),
                     repr(self.pepperAction),
-                    str(self.vr)
+                    repr(self.vr),
+                    repr(self.can_talk)
                     )

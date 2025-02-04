@@ -52,7 +52,7 @@ public class UserRepository {
     // Updates the 'tutorialSeen' field of the User document to true, indicating that the tutorial has been seen.
     public void updateUserTutorialSeen(String name) {
         Query query = new Query(Criteria.where("name").is(name));
-        Update update = new Update().set("lastSeen", true);
+        Update update = new Update().set("tutorialSeen", true);
         mongoTemplate.updateFirst(query, update, User.class);
     }
 }

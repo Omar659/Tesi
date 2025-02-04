@@ -20,12 +20,14 @@ PUT_SET_CURRENT_USER = "setCurrentUser"             # Set current user
 PUT_SWITCH_PEPPER_ACTION = "switchFlagPepperAction" # Toggle Pepper's action flag
 PUT_SET_LOCATION_TAG = "setLocationTAG"             # Set the location tag in the state
 PUT_SET_VR = "setVr"                                # Set the VR flag to true or false
+PUT_SET_CAN_TALK = "setCanTalk"                     # Set the Can Talk flag to true or false
 POST_SET_STATE = "setState"                         # Set or update state
 
 # User operations.
 GET_USER = "getUser"                # Retrieve user details
 GET_USER_EXIST = "getUserExist"     # Check if user exists
 PUT_LAST_SEEN = "putLastSeen"       # Update user's last seen time
+PUT_TUTORIAL_SEEN = "putTutorialSeen"   # Update user's tutorial seen
 POST_CREATE_USER = "postCreateUser" # Create a new user
 
 # LLM operations.

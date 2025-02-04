@@ -10,7 +10,7 @@ from gesture import Gesture
 import time
 import threading
 import random
-
+from api_call import *
 
 import numpy as np
 
@@ -36,7 +36,8 @@ class Pepper:
         print("Pepper started!!")
         
     def stop(self):
-        self.reset_eye_color()
+        self.stop_eye_color()
+        self.motion_module.stop()
         self.vision_module.stop()
         self.app.stop()
         print("Pepper stopped")
@@ -47,14 +48,20 @@ class Pepper:
         self.start()
         
     def set_eye_color(self, r, g, b, duration, sleep_time):
+        listen_path = "\\\\wsl.localhost\Ubuntu\home\omars\\repos\Tesi\PepperRobot\model_inputs\listen.txt"
         self.monitoring = True
-        time.sleep(sleep_time)
-        color = int(r) << 16 | int(g) << 8 | int(b)
         while self.monitoring:
+            with open(listen_path, "r") as fp:
+                color_flag = fp.read()
+            if color_flag == "1":
+                put_set_can_talk(True)
+                color = int(r) << 16 | int(g) << 8 | int(b)
+            else:
+                put_set_can_talk(False)
+                color = int(255) << 16 | int(255) << 8 | int(255)
             self.leds.fadeRGB("FaceLeds", color, duration)
             time.sleep(duration)
-        color = int(255) << 16 | int(255) << 8 | int(255)
-        self.leds.fadeRGB("FaceLeds", color, duration)
+        return 
         
-    def reset_eye_color(self):
+    def stop_eye_color(self):
         self.monitoring = False

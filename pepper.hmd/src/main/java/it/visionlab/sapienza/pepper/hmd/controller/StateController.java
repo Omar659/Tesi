@@ -114,4 +114,9 @@ public class StateController {
         stateService.setVr(vrFlag);
     }
 
+    // Handles HTTP PUT requests to "/state/setCanTalk". Set the canTalk flag to true if the user can talk, false otherwise
+    @PutMapping("/setCanTalk")
+    public void setCanTalk(@RequestParam(required = true) Boolean canTalk) {
+        stateService.setCanTalk(canTalk);
+    }
 }

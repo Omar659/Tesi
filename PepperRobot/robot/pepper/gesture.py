@@ -34,6 +34,9 @@ class Gesture:
 
     def start(self):
         self.motion.wakeUp()
+        
+    def stop(self):
+        self.show_map_end()
     
     def move_joints(self, joint_names, joint_values_grads, times, isAbsolute = True):
         self.motion.angleInterpolation(joint_names, [math.radians(joint_values_grad) for joint_values_grad in joint_values_grads], times, isAbsolute)

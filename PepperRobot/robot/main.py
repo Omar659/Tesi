@@ -9,10 +9,9 @@ sys.path.append('./pepper')
 from state_flow_functions import *
 from constants import *
 
-
-# import qi
 import math
 import motion
+import threading
 
 from robot import Pepper
 import time
@@ -34,64 +33,19 @@ def print_end(state_name):
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.1.6", port=9503)
+robot = Pepper(ip="192.168.102.108", port=9503)
 robot.execute()
 
-
+set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.1, 0))
+set_eye_color_thread.start()
 
 state = get_state()
 if state is None or state.state_name != STATE_START:
     post_set_state(INITIAL_STATE)
-    put_next_state(STATE_CHOSE_LOCATION)
-exit()
 
-# import threading
-# threading.Thread(target=robot.motion_module.click_tutorial).start()
-
-# transform = robot.motion_module.get_robot_position_orientation()
-# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
-
-# robot.motion_module.rotate(0)
-
-# transform = robot.motion_module.get_robot_position_orientation()
-# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
-
-# robot.motion_module.rotate(90)
-
-# transform = robot.motion_module.get_robot_position_orientation()
-# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
-
-# robot.motion_module.rotate(-90)
-
-# transform = robot.motion_module.get_robot_position_orientation()
-# print("Angolo di rotazione della base: {} ".format(transform["theta"]))
-
-
-# def move1():
-#     joint_values = [-50]
-#     joint_names = ["RShoulderPitch"]
-#     times = [3]
-#     robot.motion_module.move_joints(joint_names, joint_values, times)
-    
-# def move2():
-#     joint_values = [-70]
-#     joint_names = ["RWristYaw"]
-#     times = [3]
-#     robot.motion_module.move_joints(joint_names, joint_values, times)
-    
-# def move3():
-#     joint_values = [200]
-#     joint_names = ["RHand"]
-#     times = [3]
-#     robot.motion_module.move_joints(joint_names, joint_values, times)
-
-# robot.motion_module.rotate_tutorial()
 robot.motion_module.move_to_zero()
-# current_user = get_user("omar")
-# put_next_state(STATE_SHOW_MAP)
-
-time.sleep(2)
-s = 10
+# current_user = get_user("omar") # DA TOGLIERE
+# put_next_state(STATE_SHOW_MAP) # DA TOGLIERE
 
 while True:
     time.sleep(TIME_SLEEP_REQUEST)    
@@ -121,7 +75,7 @@ while True:
             
             see_tutorial = handle_ask_tutorial_state(robot, current_user)
             if see_tutorial:
-                put_next_state(STATE_TUTORIAL1)
+                put_next_state(STATE_TUTORIAL2)
             else:
                 put_next_state(STATE_SHOW_MAP)
             
@@ -131,7 +85,6 @@ while True:
             print_start(STATE_TUTORIAL1)
             
             handle_click_tutorial_state(robot, current_user)
-            time.sleep(s)
             put_next_state(STATE_TUTORIAL2)
             
             print_end(STATE_TUTORIAL1)
@@ -140,7 +93,6 @@ while True:
             print_start(STATE_TUTORIAL2)
             
             handle_zoom_tutorial_state(robot, current_user)
-            time.sleep(s)
             put_next_state(STATE_TUTORIAL3)
             
             print_end(STATE_TUTORIAL2)
@@ -149,127 +101,40 @@ while True:
             print_start(STATE_TUTORIAL3)
             
             handle_move_tutorial_state(robot, current_user)
-            time.sleep(s)
             put_next_state(STATE_TUTORIAL4)
             
             print_end(STATE_TUTORIAL3)
         
         if state.state_name == STATE_TUTORIAL4:
-            print_start(STATE_SHOW_MAP)
+            print_start(STATE_TUTORIAL4)
             
-            handle_show_map_state(robot, current_user)
-            time.sleep(s*3)
+            handle_rotate_tutorial_state(robot, current_user)
             put_next_state(STATE_SHOW_MAP)
             
-            print_end(STATE_SHOW_MAP)
+            print_end(STATE_TUTORIAL4)
         
         if state.state_name == STATE_SHOW_MAP:
             print_start(STATE_SHOW_MAP)
             
-            handle_show_map_state(robot)
-            # time.sleep(s*3)
+            handle_show_map_state(robot, current_user)
             put_next_state(STATE_CHOSE_LOCATION)
             
-            print_end(STATEX)
+            print_end(STATE_SHOW_MAP)
             
         if state.state_name == STATE_CHOSE_LOCATION:
             print_start(STATE_CHOSE_LOCATION)
             
-            handle_chose_location_state(robot, current_user, state)
-            put_next_state(STATE_VR_EXPERIENCE)
+            handle_chose_location_state(robot, current_user)
+            put_next_state(STATE_EXIT)
             
             print_end(STATE_CHOSE_LOCATION)
         
-        elif state.state_name == STATEX:
-            robot.motion_module.show_map_end()
+        elif state.state_name == STATE_EXIT:
+            print_start(STATE_EXIT)
+            
+            handle_exit_state(robot, current_user)
+            
+            print_start(STATE_EXIT)
             break
-
-
-# robot.vision_module.save_image()
-robot.stop()
-
-# try:
-#     text = recognizer.recognize_google(audio, language='en-EN')
-#     print("Hai detto: " + text)
-# except sr.UnknownValueError:
-#     print("Google Web Speech API non ha capito l'audio")
-# except sr.RequestError as e:
-#     print("Impossibile richiedere i risultati da Google Web Speech API; {0}".format(e))
-
-# try:
-#     while True:
-#         robot.speech_module.listen()
-# except KeyboardInterrupt:
-#     robot.stop()
-
-
-# import qi
-# from _qi import ApplicationSession
-# import time
-# from autentication_pepper import AuthenticatorFactory
-
-# IP = "192.168.179.108:9503"
-# PORT = 9503
-
-# app = qi.Application(sys.argv, url="tcps://192.168.179.108:9503")
-# logins = ("nao", "vision@2024")
-# factory = AuthenticatorFactory(*logins)
-# app.session.setClientAuthenticatorFactory(factory)
-# # app.start()
-
-# import inspect
-# src = inspect.getsource(ApplicationSession)
-# print(src)
-# asr_service = app.session.service("ALSpeechRecognition")
-# asr_service.pause(True)
-# asr_service.setLanguage("English")
-
-# # Example: Adds "yes", "no" and "please" to the vocabulary (without wordspotting)
-# vocabulary = ["yes", "no", "please"]
-# asr_service.setVocabulary(vocabulary, False)
-
-# # Start the speech recognition engine with user Test_ASR
-# asr_service.subscribe("Test_ASR")
-# print('Speech recognition engine started')
-# # time.sleep(20)
-# asr_service.unsubscribe("Test_ASR")
-
-# app.stop()
-# exit(0)
-
-# tts = robot.app.session.service("ALTextToSpeech")
-
-# import qi
-# from autentication_pepper import AuthenticatorFactory
-# # Connect to the robot fails at app.start() => RuntimeError: disconnected
-# app = qi.Application(sys.argv, url="tcps://192.168.179.108:9503")
-# logins = ("nao", "vision@2024")
-# factory = AuthenticatorFactory(*logins)
-# app.session.setClientAuthenticatorFactory(factory)
-# app.start()
-# print("started")
-
-# tts = app.session.service("ALTextToSpeech")
-# tts.say('''BOOOOH''')
-# app.stop()
-# sys.exit(0)
-
-# motion_service = app.session.service("ALMotion")
-# motion_service.wakeUp()
-# # effector   = "RShoulderPitch"
-# # frame      = motion.FRAME_TORSO
-# # useSensorValues = False
-# # currentTf = motion_service.getTransform(effector, frame, useSensorValues)
-# # print(currentTf)
-
-# isAbsolute = True
         
-# # First motion
-# jointNames = ["RShoulderPitch", "RWristYaw", "RHand"]
-# jointValues = [math.radians(-160), math.radians(-70), math.radians(200)]
-# times = [1, 1, 1]
-
-
-
-# motion_service.angleInterpolation(jointNames, jointValues, times, isAbsolute)
-# time.sleep(2)
+robot.stop()

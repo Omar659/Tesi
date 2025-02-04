@@ -142,7 +142,7 @@ public class StateRepository {
         Query query = new Query(Criteria.where("stateId").is(stateId));
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null; // Ensures that the state object is not null.
-        Update update = new Update().set("location", location);
+        Update update = new Update().set("chosenPlace", location);
         mongoTemplate.updateFirst(query, update, State.class);
     }
 
@@ -152,6 +152,15 @@ public class StateRepository {
         State state = mongoTemplate.findOne(query, State.class);
         assert state != null;
         Update update = new Update().set("vr", vrFlag);
+        mongoTemplate.updateFirst(query, update, State.class);
+    }
+
+    // Set the canTalk flag to true if the user can talk, false otherwise
+    public void setCanTalk(Boolean canTalk) {
+        Query query = new Query(Criteria.where("stateId").is(stateId));
+        State state = mongoTemplate.findOne(query, State.class);
+        assert state != null;
+        Update update = new Update().set("canTalk", canTalk);
         mongoTemplate.updateFirst(query, update, State.class);
     }
 }

@@ -28,7 +28,8 @@ def get_state():
         response["currentUser"], 
         response["hmdOpen"], 
         response["pepperAction"], 
-        response["vr"]
+        response["vr"], 
+        response["canTalk"]
     )
 
 # Api to get if the HMD is open with a boolean flag.
@@ -85,6 +86,12 @@ def put_set_vr(vrFlag):
     response = API_manager_istance.call('put', PUT_SET_VR, 25, params=[['vrFlag', str(vrFlag).lower()]])
     return response
 
+# Api to set the task for switchin from VR to MR and vice versa.
+def put_set_can_talk(canTalk):
+    API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
+    response = API_manager_istance.call('put', PUT_SET_CAN_TALK, 25, params=[['canTalk', str(canTalk).lower()]])
+    return response
+
 # Api to post the current state in the database using a State object.
 def post_set_state(state):
     API_manager_istance = API_manager(BASE_URL_HMD, STATE_ENDPOINT)
@@ -111,6 +118,12 @@ def get_user_exist(name):
 def put_update_last_seen(name):
     API_manager_istance = API_manager(BASE_URL_HMD, USER_ENDPOINT)
     response = API_manager_istance.call('put', PUT_LAST_SEEN, 25, params=[["name", name]])
+    return response
+    
+# Api to update the tutorial seen flag for a user to true.
+def put_tutorial_seen(name):
+    API_manager_istance = API_manager(BASE_URL_HMD, USER_ENDPOINT)
+    response = API_manager_istance.call('put', PUT_TUTORIAL_SEEN, 25, params=[["name", name]])
     return response
 
 # Api to create a new user in the database by sending a User object.

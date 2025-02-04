@@ -16,7 +16,7 @@ STATE_TUTORIAL3 = "user_move_tutorial"
 STATE_TUTORIAL4 = "user_rotation_tutorial"
 STATE_SHOW_MAP = "show_map"
 STATE_CHOSE_LOCATION = "chose_location"
-STATEX = "x"  # This could represent exit state.
+STATE_EXIT = "exit"
 
 # Define flags for different components of the system, such as HMD (Head-Mounted Display) and Pepper robot.
 HMD_FLAG = "HMD"
@@ -32,6 +32,7 @@ START_CURRENT_USER = None        # No current user is set in the start state.
 START_HMD_OPEN = False           # Boolean flag indicating whether the HMD is open in the start state.
 START_PEPPER_ACTION = False      # Boolean flag indicating whether Pepper is able to do an action (used to cooperate with HMD).
 VR = False                       # Boolean flag indicating whether VR experience is ongoing.
+CAN_TALK = False                 # Boolean flag indicating whether the user can talk in a VR experience
 
 # Create an initial 'State' object representing the start state of the system.
 INITIAL_STATE = State(
@@ -42,8 +43,9 @@ INITIAL_STATE = State(
     START_CHOSEN_PLACE,          # Set the chosen place.
     START_CURRENT_USER,          # Set the current user.
     START_HMD_OPEN,              # Set the HMD open flag.
-    START_PEPPER_ACTION,         # Set the pepper action flag..
-    VR                           # Set the pepper action flag.
+    START_PEPPER_ACTION,         # Set the pepper action flag.
+    VR,                          # Set the VR flag.
+    CAN_TALK                     # Set the canTalk flag.
 )
 
 # Time to wait before loop request to the back-end

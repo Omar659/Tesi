@@ -42,10 +42,14 @@ public class State {
     // Graph representing the building
     private Graph graph;
 
+    // Flag to know if the user is in VR or MR mode
     private Boolean vr;
 
+    // Used for inform user if he can talk in VR environment
+    private Boolean canTalk;
+
     // Constructor to initialize a State object with all fields.
-    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction, Graph graph, Boolean vr) {
+    public State(String stateId, Boolean flagPepper, Boolean flagHMD, String stateName, String chosenPlace, User currentUser, Boolean hmdOpen, Boolean pepperAction, Graph graph, Boolean vr, Boolean canTalk) {
         this.stateId = stateId;
         this.flagPepper = flagPepper;
         this.flagHMD = flagHMD;
@@ -56,5 +60,6 @@ public class State {
         this.pepperAction = pepperAction;
         this.graph = graph;
         this.vr = vr;
+        this.canTalk = canTalk;
     }
 }
