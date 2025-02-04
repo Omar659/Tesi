@@ -39,11 +39,16 @@ class STTRecognizer:
             with sr.Microphone(device_index=device_index) as source:
                 print("Adjusting for ambient noise, please wait...")
                 # Adjust the recognizer sensitivity to ambient noise.
-                self.recognizer.adjust_for_ambient_noise(source, duration=1)
+                self.recognizer.adjust_for_ambient_noise(source, duration=1.5)
                 
                 print("Listening, you may speak now...")
                 # Listen to audio from the microphone.
-                audio = self.recognizer.listen(source, timeout=timeout, phrase_time_limit=phrase_time_limit)
+                
+                with open("./../model_inputs/listen.txt", "w") as fp:
+                    fp.write("1")                
+                audio = self.recognizer.listen(source, timeout=timeout, phrase_time_limit=phrase_time_limit)                
+                with open("./../model_inputs/listen.txt", "w") as fp:
+                    fp.write("0")
                 
                 # Save the recorded audio to a file.
                 self.save(audio, path, filename)

@@ -28,8 +28,9 @@ class LlmCaller:
             base_url=data["base_url"],  # Base URL for the OpenAI API.
         )
         return client
-    
-    def get_answer(self, system_prompt, user_prompt, model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", max_tokens=512):
+    # def get_answer(self, system_prompt, user_prompt, model="meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", max_tokens=512):
+    # def get_answer(self, system_prompt, user_prompt, model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-128K", max_tokens=512):
+    def get_answer(self, system_prompt, user_prompt, model="meta-llama/Llama-3.3-70B-Instruct-Turbo", max_tokens=512):
         """
         Generates a response from the language model based on the provided prompts.
 

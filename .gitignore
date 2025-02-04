@@ -4,5 +4,7 @@ __pycache__/
 .conda
 Florence-2-base/
 whisper-large-v3/
+whisper-large-v3-turbo/
+whisper-tiny/
 *.Identifier
 servers/

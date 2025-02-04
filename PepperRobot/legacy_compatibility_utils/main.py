@@ -5,9 +5,6 @@ import os
 from server.server_llm import Server_LLM
 from server.server_stt import Server_STT
 from constants import *
-from module_call.stt_recognition import STTRecognizer
-from module_call.llm_call import LlmCaller
-from models.vision_description import Florence2Call
 
 # Remove log print
 import logging
@@ -19,12 +16,22 @@ app = Flask(__name__)
 CORS(app)
 
 # Different type of servers
+import time
 api = Api(app)
-api.add_resource(Server_LLM, "/" + LLM_ENDPOINT, resource_class_args=(LlmCaller(), Florence2Call()))
-api.add_resource(Server_STT, "/" + STT_ENDPOINT, resource_class_args=(STTRecognizer(), ))
+
+# inizio = time.time()
+
+
+# fine = time.time()
+# print(fine-inizio)
+with open("./../model_inputs/listen.txt", "w") as fp:
+    fp.write("0")
+
+api.add_resource(Server_LLM, "/" + LLM_ENDPOINT)
+api.add_resource(Server_STT, "/" + STT_ENDPOINT)
 
 if __name__ == '__main__':
     # os.system('cls')
-    os.system('clear')
+    # os.system('clear')
     print("Starting api...")
     app.run(host="0.0.0.0", port="8080")

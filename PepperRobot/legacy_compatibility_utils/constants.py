@@ -28,3 +28,15 @@ WAIT_TIMEOUT_ERROR = 1  # Error when the system times out while waiting for spee
 UNKNOWN_VALUE_ERROR = 2 # Error when the system fails to understand or recognize the speech input.
 REQUEST_ERROR = 3       # Error when there is an issue with the request to the speech recognition service.
 GENERIC_ERROR = 42      # A general error code for cases that don't fall into the specific categories above.
+
+from module_call.stt_recognition import STTRecognizer
+from module_call.llm_call import LlmCaller
+from models.vision_description import Florence2Call
+
+global whisper 
+global florence
+global llama
+
+whisper = STTRecognizer()
+llama = LlmCaller()
+florence = Florence2Call()

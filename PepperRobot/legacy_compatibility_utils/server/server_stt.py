@@ -3,14 +3,14 @@ from flask_restful import Resource
 from constants import *
 
 class Server_STT(Resource):
-    def __init__(self, recognizer):
+    def __init__(self):#, recognizer):
         """
         Initializes the Server_STT class by setting up the STT recognizer.
 
         Parameters:
         - 'recognizer': An instance of the STTRecognizer class used for speech-to-text operations.
         """
-        self.recognizer = recognizer
+        # self.recognizer = recognizer
         
         # Retrieve the 'req' parameter from the request URL.
         self.req = request.args.get("req")
@@ -31,12 +31,12 @@ class Server_STT(Resource):
             timeout = self.timeout
             if self.timeout is not None:
                 timeout = int(self.timeout)
-            listen_status = self.recognizer.listen(device_index=0, timeout=timeout) # device_index: 1 pc lab; 2 my pc
+            listen_status = whisper.listen(device_index=0, timeout=timeout) # device_index: 1 pc lab; 2 my pc
             
             # Check the status returned by the 'listen' method to determine the next step.
             if listen_status == OK:
                 # If listening is successful (status is OK), convert the recorded audio to text.
-                listened_message = self.recognizer.stt()
+                listened_message = whisper.stt()
                 # Return the transcribed text along with an error OK.
                 return {"listened_message": listened_message, "error": OK}
             elif listen_status == WAIT_TIMEOUT_ERROR:
