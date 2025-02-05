@@ -16,7 +16,7 @@ class Vision:
         self.video_client = self.vision.subscribeCamera("vision", 0, resolution, color_space, fps)
         
     def save_image(self, path="\\\\wsl.localhost\Ubuntu\home\omir97\\repos\Tesi\PepperRobot\model_inputs\\", save_name = "pepper_view.png"):
-        return
+        # return
         frame = None
         
         while frame is None:

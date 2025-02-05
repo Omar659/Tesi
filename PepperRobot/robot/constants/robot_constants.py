@@ -195,11 +195,11 @@
 
 # # List of phrases tell the user what to do.
 # CHOSE_LOCATION = [
-#     "Choose a location directly from the map or tell me where you want to go or if you are looking for something."
-#     "Pick a location on the map or let me know where you want to go or what you are looking for.",
-#     "Point to a location on the map or tell me what you are looking for or where you want to go."
-#     "Select a location on the map or ask me about what you are looking for or where you want to go."
-#     "You can select a place on the map or tell me what you are looking for or your destination."
+    # "Tell me where you want to go or if you are looking for something."
+    # "Let me know where you want to go or what you are looking for."
+    # "Tell me what you are looking for or where you want to go."
+    # "Ask me what you are looking for or where you want to go."
+    # "Tell me what you are looking for or your destination."
 # ]
 
 # UPDATE_LOCATION = [
@@ -214,12 +214,12 @@
 
 # # List of phrases to indicate possible tasks.
 # TASK_EXPLAINATION = [
-#     "The paths to the selected destination are visible on the map, now you can ask me or indicate if you would like to go elsewhere, let me know if you would like to explore firsthand in the virtual world or if you would prefer to end the experience here.",
-#     "The routes to the requested place are plotted on the map, now you can ask me or indicate if you wish to go elsewhere, let me know if you want an immersive experience in the virtual world or if you want to end your journey here.",
-#     "On the map you can see the paths to the desired destination, now you can ask or tell me if you want to go somewhere else, tell me if you want a first-person experience in the virtual world or if you prefer to end the experience.",
-#     "The routes to the chosen place are shown on the map, now you can ask or indicate if you want to go somewhere else, ask me if you want to have an immersive experience in the virtual world or if you want to end the experience here.",
-#     "Routes to your destination are marked on the map, now you can ask me or indicate if you want to go somewhere else, tell me if you prefer a first-person experience in the virtual world or if you want to end the experience here.",
-#     "Routes to your requested location are marked on the map, now you can ask me or indicate if you want to head elsewhere, tell me if you want an immersive experience in the virtual world or if you prefer to end the experience."
+#     "The paths to the selected destination are visible on the map, now you can ask me if you would like to go elsewhere, let me know if you would like to explore firsthand in the virtual world or if you would prefer to end the experience here.",
+#     "The routes to the requested place are plotted on the map, now you can ask me if you wish to go elsewhere, let me know if you want an immersive experience in the virtual world or if you want to end your journey here.",
+#     "On the map you can see the paths to the desired destination, now you can ask if you want to go somewhere else, tell me if you want a first-person experience in the virtual world or if you prefer to end the experience.",
+#     "The routes to the chosen place are shown on the map, now you can ask if you want to go somewhere else, ask me if you want to have an immersive experience in the virtual world or if you want to end the experience here.",
+#     "Routes to your destination are marked on the map, now you can ask me if you want to go somewhere else, tell me if you prefer a first-person experience in the virtual world or if you want to end the experience here.",
+#     "Routes to your requested location are marked on the map, now you can ask me if you want to head elsewhere, tell me if you want an immersive experience in the virtual world or if you prefer to end the experience."
 # ]
 
 # # List of phrases to guide the user in first-person navigation via virtual reality.
@@ -455,11 +455,11 @@ SHOW_MAP = [
 
 # Elenco di frasi per mostrare la mappa.
 CHOSE_LOCATION = [
-    "Scegli un luogo direttamente dalla mappa o dimmi dove vuoi andare o se cerchi qualcosa.",
-    "Seleziona un punto sulla mappa o fammi sapere dove vuoi dirigerti o cosa stai cercando.",
-    "Indica un luogo sulla mappa oppure dimmi cosa stai cercando o dove vuoi andare.",
-    "Scegli una posizione sulla mappa o chiedimi informazioni su cosa stai cercando o dove vuoi arrivare.",
-    "Puoi selezionare un posto sulla mappa o dirmi cosa stai cercando o la tua destinazione."
+    "Dimmi dove vuoi andare o se cerchi qualcosa.",
+    "Fammi sapere dove vuoi dirigerti o cosa stai cercando.",
+    "Dimmi cosa stai cercando o dove vuoi andare.",
+    "Chiedimi cosa stai cercando o dove vuoi arrivare.",
+    "Dimmi cosa stai cercando o la tua destinazione."
 ]
 
 # Elenco di frasi per dire che non si puo localizzare la cosa cercata.
@@ -483,12 +483,12 @@ UNKOWNN_REQUEST = [
 
 # Elenco di frasi per indicare i task possibili.
 TASK_EXPLAINATION = [
-    "Sulla mappa sono visibili i percorsi verso la destinazione selezionata, ora puoi chiedermi o indicarmi se desideri raggiungere un altro posto, farmi sapere se vuoi esplorare in prima persona nel mondo virtuale o se preferisci concludere l'esperienza qui.",
-    "I percorsi verso il luogo richiesto sono tracciati sulla mappa, ora puoi chiedermi o indicarmi se desideri andare altrove, comunicarmi se vuoi un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui il tuo viaggio.",
-    "Sulla mappa puoi vedere i percorsi verso la destinazione desiderata, ora puoi chiedermi o dirmi se vuoi andare in un altro posto, se desideri un'esperienza in prima persona nel mondo virtuale o se preferisci terminare l'esperienza.",
-    "I percorsi verso il luogo scelto sono mostrati sulla mappa, ora puoi chiedermi o indicarmi se vuoi andare da un'altra parte, chiedermi se desideri vivere un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui.",
-    "Sulla mappa sono segnati i percorsi per raggiungere la tua destinazione, ora puoi chiedermi o indicarmi se vuoi andare in un altro posto, dirmi se preferisci un'esperienza in prima persona nel mondo virtuale o se desideri terminare qui.",
-    "Sulla mappa sono evidenziati i percorsi verso il luogo richiesto, ora puoi chiedermi o indicarmi se vuoi dirigerti altrove, se desideri un'esperienza immersiva nel mondo virtuale oppure se preferisci concludere l'esperienza."
+    "Sulla mappa sono visibili i percorsi verso la destinazione selezionata, ora puoi chiedermi se desideri raggiungere un altro posto, farmi sapere se vuoi esplorare in prima persona nel mondo virtuale o se preferisci concludere l'esperienza qui.",
+    "I percorsi verso il luogo richiesto sono tracciati sulla mappa, ora puoi chiedermi se desideri andare altrove, comunicarmi se vuoi un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui il tuo viaggio.",
+    "Sulla mappa puoi vedere i percorsi verso la destinazione desiderata, ora puoi chiedermi se vuoi andare in un altro posto, se desideri un'esperienza in prima persona nel mondo virtuale o se preferisci terminare l'esperienza.",
+    "I percorsi verso il luogo scelto sono mostrati sulla mappa, ora puoi chiedermi se vuoi andare da un'altra parte, chiedermi se desideri vivere un'esperienza immersiva nel mondo virtuale oppure se vuoi concludere qui.",
+    "Sulla mappa sono segnati i percorsi per raggiungere la tua destinazione, ora puoi chiedermi se vuoi andare in un altro posto, dirmi se preferisci un'esperienza in prima persona nel mondo virtuale o se desideri terminare qui.",
+    "Sulla mappa sono evidenziati i percorsi verso il luogo richiesto, ora puoi chiedermi se vuoi dirigerti altrove, se desideri un'esperienza immersiva nel mondo virtuale oppure se preferisci concludere l'esperienza."
 ]
 
 # Lista di frasi per guidare l'utente nella navigazione in prima persona tramite realta virtuale.
