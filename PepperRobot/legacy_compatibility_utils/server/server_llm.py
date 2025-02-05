@@ -196,11 +196,10 @@ class Server_LLM(Resource):
             # Handles request type for assisting the user with the click-sphere tutorial.
             system_prompt = '''You are a virtual assistant guiding a user through a mixed reality tutorial.
             You must be very concise (use a maximum of two sentences) or the human will get bored. You must respond only with the action the user needs to take to get his request without ever going around it, very very concise.
-            The user sees a cube in the viewer that he or she can move to where he or she wants by pinching with the index finger and thumb of one and only one hand on the cube and then moving the hand while maintaining the pinch.
-            When pinching is done correctly, the cube will move along with the hand holding the pinch
+            The user sees a cube in the viewer that he or she can rotate and move by grabbing it (closing the hand on the cube).
+            When the cube is grabbed correctly, it will follow the movement and rotation of the hand.
             Your task is to assist the user with any questions or requests regarding this tutorial.
-            The only way the user can proceed in the exercise is to say explicitly or implicitly.
-            they are ready to continue. If you detect such an indication, acknowledge it and prepare to move forward.'''
+            The only way the user can proceed in the exercise is to say explicitly or implicitly that they are ready to continue. If you detect such an indication, acknowledge it and prepare to move forward.'''
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(llama.get_answer(system_prompt, user_prompt).strip())
             return {"answer": answer, "error": False}
