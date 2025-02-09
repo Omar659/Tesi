@@ -217,6 +217,7 @@ def handle_chose_location_state(robot, current_user):
     put_activate(HMD_FLAG)
     robot.speech_module.say(random.choice(CHOSE_LOCATION))
     one_time = True
+    task_4_time = []
     while True:
         time.sleep(TIME_SLEEP_REQUEST) 
         state = get_state()
@@ -247,6 +248,7 @@ def handle_chose_location_state(robot, current_user):
             elif task_response["task"] == "end":
                 break
             elif task_response["task"] == "vr":
+                start = time.time()
                 put_set_vr(True)
                 robot.speech_module.say(random.choice(VR_EXPLAINATION))
                 state = get_state()
@@ -260,9 +262,14 @@ def handle_chose_location_state(robot, current_user):
                         break
                     time.sleep(TIME_SLEEP_REQUEST) 
                     state = get_state()
+                end = time.time()
+                elapse_time = end - start
+                task_4_time.append(elapse_time)
             else:
                 robot.speech_module.say(random.choice(UNKOWNN_REQUEST))
-                
+        num_time = len(task_4_time)
+        task_4_time = -1 if task_4_time == [] else sum(task_4_time) / float(len(task_4_time))
+        return task_4_time, num_time
     
 def handle_exit_state(robot, current_user):
     robot.speech_module.say(random.choice(END_EXPERIENCE).replace("<user>", current_user.name), thread=False)

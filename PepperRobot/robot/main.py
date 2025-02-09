@@ -12,7 +12,7 @@ from constants import *
 import math
 import motion
 import threading
-
+import json
 from robot import Pepper
 import time
 from api_call import *
@@ -29,7 +29,35 @@ def print_end(state_name):
     len_s = len(s)
     s = "\n" + "#"*len_s + "\n" + s + "\n" + "#"*len_s + "\n"
     print(s)
+    
+def collect_data(user_name, task1_time, task2_time, task3_time, task4_time, task_4_num_time, filename):
+    # Se il file esiste, carica il contenuto, altrimenti crea un dizionario vuoto
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            data = json.load(f)
+    else:
+        data = {}
+        
+    # Se la chiave non esiste, la aggiungo come dizionario vuoto
+    if user_name not in data:
+        data[user_name] = {
+            "task1_time": task1_time,
+            "task2_time": task2_time,
+            "task3_time": task3_time,
+            "task4_time": task4_time,
+            "task_4_num_time": task_4_num_time
+        }
+        
+    # Salvo il file aggiornato
+    with open(filename, "w") as f:
+        json.dump(data, f, indent=4)
 
+    # Print task time
+    print("USER " + user_name + " times:")
+    print("\tTask 1: " + str(task1_time))
+    print("\tTask 2: " + str(task2_time))
+    print("\tTask 3: " + str(task3_time))
+    print("\tTask 4: " + str(task4_time) + " per " + str(task_4_num_time) + " times")
 
 os.system('cls')
 
@@ -54,7 +82,7 @@ while True:
     if state is not None and state.flag_pepper:
         if state.state_name == STATE_START:
             print_start(STATE_START)
-            
+            start_time = time.time()
             put_next_state(STATE_HELLO)
             put_activate(PEPPER_FLAG)
             put_deactivate(HMD_FLAG)
@@ -67,6 +95,8 @@ while True:
             current_user = handle_hello_state(robot)
             put_set_current_user(current_user)
             put_next_state(STATE_TUTORIAL0)
+            task1_end_time = time.time()
+            task1_time = task1_end_time - start_time
             
             print_end(STATE_HELLO)
         
@@ -109,7 +139,9 @@ while True:
             print_start(STATE_TUTORIAL4)
             
             handle_rotate_tutorial_state(robot, current_user)
-            put_next_state(STATE_SHOW_MAP)
+            put_next_state(STATE_SHOW_MAP)            
+            task2_end_time = time.time()
+            task2_time = task2_end_time - task1_end_time
             
             print_end(STATE_TUTORIAL4)
         
@@ -124,8 +156,10 @@ while True:
         if state.state_name == STATE_CHOSE_LOCATION:
             print_start(STATE_CHOSE_LOCATION)
             
-            handle_chose_location_state(robot, current_user)
+            task4_time, num_time = handle_chose_location_state(robot, current_user)
             put_next_state(STATE_EXIT)
+            task3_end_time = time.time()
+            task3_time = task3_end_time - task2_end_time
             
             print_end(STATE_CHOSE_LOCATION)
         
@@ -136,5 +170,6 @@ while True:
             
             print_start(STATE_EXIT)
             break
-        
+    
+collect_data(current_user.name, task1_time, task2_time, task3_time, task4_time, num_time, "./data.json")
 robot.stop()
