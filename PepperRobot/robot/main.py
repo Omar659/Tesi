@@ -29,6 +29,7 @@ def print_end(state_name):
     len_s = len(s)
     s = "\n" + "#"*len_s + "\n" + s + "\n" + "#"*len_s + "\n"
     print(s)
+
     
 def collect_data(user_name, task1_time, task2_time, task3_time, task4_time, task_4_num_time, filename):
     # Se il file esiste, carica il contenuto, altrimenti crea un dizionario vuoto
@@ -61,7 +62,7 @@ def collect_data(user_name, task1_time, task2_time, task3_time, task4_time, task
 
 os.system('cls')
 
-robot = Pepper(ip="192.168.102.108", port=9503)
+robot = Pepper(ip="192.168.252.108", port=9503)
 robot.execute()
 
 set_eye_color_thread = threading.Thread(target=robot.set_eye_color, args=(0, 255, 0, 0.1, 0))
@@ -74,6 +75,15 @@ if state is None or state.state_name != STATE_START:
 robot.motion_module.move_to_zero()
 # current_user = get_user("omar") # DA TOGLIERE
 # put_next_state(STATE_SHOW_MAP) # DA TOGLIERE
+
+task1_time = 0.0
+task2_time = 0.0
+task3_time = 0.0
+task4_time = 0.0
+task1_end_time = time.time()
+task2_end_time = time.time()
+task3_end_time = time.time()
+task4_end_time = time.time()
 
 while True:
     time.sleep(TIME_SLEEP_REQUEST)    
@@ -107,6 +117,8 @@ while True:
             if see_tutorial:
                 put_next_state(STATE_TUTORIAL2)
             else:
+                task2_end_time = time.time()
+                task2_time = task2_end_time - task1_end_time
                 put_next_state(STATE_SHOW_MAP)
             
             print_end(STATE_TUTORIAL0)
@@ -139,8 +151,8 @@ while True:
             print_start(STATE_TUTORIAL4)
             
             handle_rotate_tutorial_state(robot, current_user)
-            put_next_state(STATE_SHOW_MAP)            
-            task2_end_time = time.time()
+            put_next_state(STATE_SHOW_MAP)   
+            task2_end_time = time.time()         
             task2_time = task2_end_time - task1_end_time
             
             print_end(STATE_TUTORIAL4)
@@ -171,5 +183,5 @@ while True:
             print_start(STATE_EXIT)
             break
     
-collect_data(current_user.name, task1_time, task2_time, task3_time, task4_time, num_time, "./data.json")
+collect_data(current_user.name.lower(), task1_time, task2_time, task3_time, task4_time, num_time, "./data.json")
 robot.stop()

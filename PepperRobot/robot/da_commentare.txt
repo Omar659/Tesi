@@ -1,5 +1,0 @@
-robot
-speech
-vision
-state_flow_functions
-main

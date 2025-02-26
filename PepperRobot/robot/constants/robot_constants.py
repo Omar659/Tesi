@@ -71,11 +71,11 @@
 
 # # List of phrases to ask the user to put the visor and start the application.
 # PUT_VISOR = [
-#     "Begin by putting on your visor and starting the application named My project 2.",
-#     "First, start the application named My project 2 after putting on your visor.",
-#     "Put on your visor first, then start the application named My project 2.",
-#     "Start the application named My project 2 once you have put on your visor.",
-#     "First, put on your visor; then, start the application named My project 2."
+#     "Begin by putting on your visor and starting the application named XR Wayfinder.",
+#     "First, start the application named XR Wayfinder after putting on your visor.",
+#     "Put on your visor first, then start the application named XR Wayfinder.",
+#     "Start the application named XR Wayfinder once you have put on your visor.",
+#     "First, put on your visor; then, start the application named XR Wayfinder."
 # ]
 
 # # List of phrases to ask the user if he/she want to rewatch tutorial.
@@ -332,11 +332,11 @@ ONE_OF_MY_ABILITIES = [
 
 # Lista di frasi per chiedere all'utente di indossare il visore e avviare l'applicazione.
 PUT_VISOR = [
-    "Inizia indossando il visore e avviando l'applicazione chiamata My project 2.",
-    "Prima avvia l'applicazione chiamata My project 2 dopo aver indossato il visore.",
-    "Metti prima il visore, poi avvia l'applicazione chiamata My project 2.",
-    "Avvia l'applicazione chiamata My project 2 una volta che hai indossato il visore.",
-    "Prima, metti il visore; poi, avvia l'applicazione chiamata My project 2."
+    "Inizia indossando il visore e avviando l'applicazione chiamata XR Wayfinder.",
+    "Prima avvia l'applicazione chiamata XR Wayfinder dopo aver indossato il visore.",
+    "Metti prima il visore, poi avvia l'applicazione chiamata XR Wayfinder.",
+    "Avvia l'applicazione chiamata XR Wayfinder una volta che hai indossato il visore.",
+    "Prima, metti il visore; poi, avvia l'applicazione chiamata XR Wayfinder."
 ]
 
 # Lista di frasi per chiedere all'utente se vuole rivedere il tutorial.

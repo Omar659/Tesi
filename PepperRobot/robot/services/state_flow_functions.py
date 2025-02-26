@@ -267,9 +267,9 @@ def handle_chose_location_state(robot, current_user):
                 task_4_time.append(elapse_time)
             else:
                 robot.speech_module.say(random.choice(UNKOWNN_REQUEST))
-        num_time = len(task_4_time)
-        task_4_time = -1 if task_4_time == [] else sum(task_4_time) / float(len(task_4_time))
-        return task_4_time, num_time
+    num_time = len(task_4_time)
+    task_4_time = -1 if task_4_time == [] else sum(task_4_time) / float(len(task_4_time))
+    return task_4_time, num_time
     
 def handle_exit_state(robot, current_user):
     robot.speech_module.say(random.choice(END_EXPERIENCE).replace("<user>", current_user.name), thread=False)
