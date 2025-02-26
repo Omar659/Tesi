@@ -34,15 +34,15 @@ class Server_LLM(Resource):
         if self.req == GET_HELLO_NAME:
             # Handles request type for generating a greeting message.
             user_prompt = f"{self.human_answer}"
-            system_prompt = '''You are a very happy humanoid robot called Ciro, who is greeting a human in a University building. You will NEVER answer with "Nice to meet you".\n'''
-            system_prompt += '''Given the next input from a human, answer with a welcome message\n'''
+            system_prompt = '''You are a very happy humanoid robot called Ciro, who is greeting a human in a University building. In your response you NEVER respond with "Nice to meet you".\n'''
+            system_prompt += '''Given the next input, given by the human, answer with a welcome message\n'''
             system_prompt += "This is the conversation history so far:\n"
             system_prompt += f"- You: {self.pepper_question}\n"
             if self.with_image=="True":
                 system_prompt += f'''\nThis is what you see:\n\t{florence.run()}.\n'''
-                system_prompt += '''Based on what you see, try to add a comment if it is coherent so that it is a concluding sentence that does not expect a question.\n'''
+                system_prompt += '''Based on what you see try to add a comment if is it coerent so that it is a concluding sentence that does not expect a question.\n'''
             else:
-                system_prompt += '''Based on these information, answer with a concluding sentence that does not expect a question.\n'''
+                system_prompt += '''Based on this informations answer with a concluding sentence that does not expect a question.\n'''
             system_prompt += "You have to be very very concise (use a maximum of two sentences), or the human will get bored.\n"
             answer = cleanup_string(llama.get_answer(system_prompt, user_prompt).strip())              
             return {"answer": answer, "error": False}
@@ -83,8 +83,9 @@ class Server_LLM(Resource):
         
         elif self.req == GET_CHAT_BOT_FUNCTIONALITY:
             # Handles request type for determining if a request is related to the robot's functionality.
-            system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the input text contains any kind of request about your functions and/or what you are able to do.
-            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
+            system_prompt = f'''You are a text-processing engine whose sole purpose is to determine if the input text contains any inquiry or request regarding your functions or capabilities—whether expressed directly or indirectly. 
+            Given the next input, answer only with "yes" if such a request is detected, or "no" otherwise.'''
+
             user_prompt = f"{self.human_answer}"
             asked = cleanup_string(llama.get_answer(system_prompt, user_prompt).strip())            
             if asked.lower() == "yes":           
@@ -94,8 +95,10 @@ class Server_LLM(Resource):
         
         elif self.req == GET_CHAT_BOT_END:
             # Handles request type for determining if the input text indicates a request to end the chat asking about the map functions.
-            system_prompt = f'''You are a text-processing engine whose sole task is to determine whether the incoming text contains a request to display, navigate, or otherwise interact with a map-related feature of yours.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ne whose sole task is to determine whether the incoming text contains a request to display, navigate, or otherwise interact with a map-related feature of yours.
-            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
+            system_prompt = f'''You are a text-processing engine whose sole task is to determine whether the incoming text contains a request related to map functionality. 
+            This includes any query or command asking for information about the location of someone or a room, or requesting actions to display, navigate, or otherwise interact with a map. 
+            Detect such requests even if they are expressed indirectly. Given the next input, answer only with "yes" if such a request is detected, or "no" if not.'''
+
             user_prompt = f"{self.human_answer}"
             exit_ = cleanup_string(llama.get_answer(system_prompt, user_prompt).strip())            
             if exit_.lower() == "yes":           
@@ -104,9 +107,10 @@ class Server_LLM(Resource):
                 return {"exit": False, "error": False}
         
         elif self.req == GET_YES_NO:
-            # Handles request type for determining if the input answer expresses interest in a proposed activity.
-            system_prompt = f'''You are a text-processing engine whose only job is to figure out whether the input answer responds with interest mainly in the activity proposed in this question: "{self.pepper_question}".
-            Given the next input, answer only with yes if you deteect such requests, or no if something else is requested.\n'''
+            # Handles request type for determining if the input answer expresses interest in a proposed activity.            
+            system_prompt = f'''You are a text-processing engine whose only job is to determine whether the input response expresses interest primarily in the activity proposed in this question: "{self.pepper_question}".  
+            Given the next input, answer only with "yes" if the response shows interest, whether directly (e.g., "yes", "sure", etc.) or indirectly. Answer only with "no" if the response indicates a lack of interest or requests something else.\n'''
+
             user_prompt = f"{self.affermative_negative_answer}"
             affermative = cleanup_string(llama.get_answer(system_prompt, user_prompt).strip())            
             if affermative.lower() == "yes":           
@@ -214,12 +218,7 @@ class Server_LLM(Resource):
             For the next input, check the list of places in the next line: answer with "no" if nothing matches in this list, else answer with only the matched string in the list.
             The list of places is the following:
                 [ANDREA, DANIELE, ANTONIO RICCIARDI, PAOLO, PIETRO, DE MARSICO, EMANUELE, CRISTIAN RUGGIERO, RICCIARDI, AVOLA, VELARDI, MANCUSI, ALESSIO, CHRISTIAN, MAUCERI, ANXHELO DICO, SANTILLI, POSTOLACHE, TECHNICIAN ROOM, STAIRS, ANGELO DICO, MARCO MARINI, ANDREA SANTILLI, RAOUL, ANTONINI, RICCARDO, LUCA CARROZZI, SERGIO DE AGOSTINO, KONG, PAOLO ZULLANI, CRISTIAN, EMILIAN POSTOLACHE, DIDDY KONG, SILVIO, ELEVATOR, MANCINI, MOSCHELLA, ALTERI, ANTONIO FASANELLA, IRENE CANNISTRACI, LEONE, MAIORCA, BAGNI, IRENE TALLINI, CORRIDOR, BENIGNO ANSANELLI, CARMELO LOMBARDO, BAGNO, DIRETTORE, MARCO, RAOUL MARINI, BARDH, PANNONE, PRENKAJ, MICHELE, CARROZZI, PAOLO FONTANA, PIETRO CENCIARELLI, AULA CONFERENZE, CINQUE, EMAD EMAM, DIKO, LUCA PODO, MARIA, DONKEY KONG, PAOLA VELARDI, LUIGI, MAZZARA, ANTONIO NORELLI, ASCENSORE, RODOLA, SERGIO MAUCERI, ASCENSORI, PRINCIC, ANSANELLI, MARCO FUMERO, SARRICA, ESPOSITO, DANILO AVOLA, GIOVANNA, BARD, MARCO RAOUL MARINI, MARCO RAOUL, STANZA CONFERENZE, MAZZA, ANXELO DIKO, DONKEY, VALERIO VENANZI, ANGELO DIKO, CRISOSTOMI, VALENTINO, DIDDY, EMANUELE RODOLA, IRENE, MARINI, BERTI, MORETTI, EMAD, PODO, ELEVATORS, ROMEO, EMAM, PAOLA, MAGGIOLI, RUGGIERO, SERGIO, SEVERINO, DONATO, LUCA MOSCHELLA, ANXHELO, LUIGI CINQUE, NORELLI, AGOSTINO, STANZA TECNICI, EMILIAN, MECCA, FILIPPO, DANIELE PANNONE, ANXHELO DIKO, CARMELO, TECHNICIAN, VALENTINO MAIORCA, RAUL, CONFERENCE ROOM, MICHELE MANCUSI, ENRICO, BATHROOMS, RUGGERO, IRENE CANNISTRACCI, FONTANA, MAMBRO, TALLINI, ROMEO LANZINO, CHRISTIAN RUGGERO, RAUL MARINI, BAIERI, ENRICO TRONCI, TECNICO, PIERGIORGIO MORETTI, TONI MANCINI, TECNICI, BRUNO, CANNISTRACCI, TONI, MARCO RAUL MARINI, CONFERENCE, MARSICO, FEDERICO FONTANA, DONATO CRISOSTOMI, FUMERO, VISIONLAB, MAURO, DI MAMBRO, ERICA, RODOL, LUCA DEZI, DEZI, FEDERICO CAPOTONDI, ANGELO DI MAMBRO, 301, 302, ERICA ANTONINI, MARCO ESPOSITO, 314C, 314B, EMANUELE RODOL, 314A, 309, LEONARDO PICCHIAMI, TONY MANCINI, ANXELO, CENCIARELLI, LUCA, VALERIO, LANZINO, STAIR, DICO, 310, 311, 312, 313, 314, SCALA, 316, DE AGOSTINO, 317, 318, SCALE, BARDH PRENKAJ, VENANZI, 319, DANIELE BAIERI, CAPOTONDI, ANXELO DICO, TONY, CURCIO, GIORGIO, CONFERENZE, MARCO RAUL, ZULLANI, CHRISTIAN RUGGIERO, CRISTIAN RUGGERO, 322, SILVIO SEVERINO, LEONARDO, GIOVANNA LEONE, BATHROOM, DANILO, 329, MAURO SARRICA, MARIANI, PICCHIAMI, PIERGIORGIO, BARBARA, BRUNO MAZZARA, LUCA ALTERI, ALESSIO MECCA, ANDREA PRINCIC, BENIGNO, BARBARA MAZZA, 333, 334, 335, 336, 337, 338, 339, ANGELO, PEGORARO, GIORGIO MARIANI, ANTONIO, FASANELLA, LOMBARDO, CANNISTRACI, LEONARDO BERTI, 340, 341, TECHNICIANS, FILIPPO MAGGIOLI, MARIA DE MARSICO, RICCARDO CURCIO, MARCO PEGORARO, TRONCI, FEDERICO]
-            If a room is mentioned along with its name, the name should take priority in the response.\n'''
-            
-            
-            # For the next input: answer with 'no' only if you do not detect such a request. 
-            # Otherwise, extrapolate from the request the specific place, or person being searched for, providing only the singular noun (e.g., 'bathrooms' should return 'bathroom').
-            
+            If a room is mentioned along with its name, the name should take priority in the response.\n'''            
             
             user_prompt = f"{self.human_answer}"
             answer = cleanup_string(llama.get_answer(system_prompt, user_prompt).strip())
