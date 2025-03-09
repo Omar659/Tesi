@@ -8,3 +8,4 @@ whisper-large-v3-turbo/
 whisper-tiny/
 *.Identifier
 servers/
+PepperRobot/robot/data.json
