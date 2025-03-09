@@ -2,6 +2,15 @@ import pandas as pd
 import json
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import plotly.express as px 
+import numpy as np
+from scipy.stats import norm
+import plotly.io as pio
+
+pio.kaleido.scope.default_format = "pdf"
+pio.kaleido.scope.default_width = 1200
+pio.kaleido.scope.default_height = 800
+pio.kaleido.scope.default_scale = 1.5  # Aumenta la risoluzione
 
 def build_comparison_wins(prefix, row):
     """
@@ -38,73 +47,270 @@ def build_comparison_wins(prefix, row):
                 wins[key] += 1
     return wins
 
-def plot_nasa_tlx_spider(dimension_scores_mean_task):
+def plot_statistics(users):
     """
-    Crea uno spider chart (radar chart) per ciascun task.
-    - Le dimensioni (assi) sono le chiavi del dizionario: mental_demand, physical_demand, ecc.
-    - Per ogni task (indice nelle liste) viene creato un grafico a radar.
-    """    
-    key_mapping = {
-        "mental_demand": "Mental Demand",
-        "physical_demand": "Physical Demand",
-        "temporal_demand": "Temporal Demand",
-        "performance": "Performance",
-        "effort": "Effort",
-        "frustration": "Frustration",
+    Creates statistical plots:
+    - A pie chart for the distribution of users by gender.
+    - A pie chart for the distribution of users by qualification/profession.
+    - A bar chart for the VR Experience level, with custom colors:
+      Levels 1-2 as "Inexperienced", 3-4 as "Average", and 5-6 as "Experienced".
+      Each bar shows the VR Experience level, user category, Number of Users, and percentage.
+    """
+    # Build a DataFrame with the relevant information
+    data = {
+        'gender': [user.gender for user in users],
+        'qualification': [user.qualification for user in users],
+        'vr_experience': [user.vr_experience for user in users]
     }
+    df = pd.DataFrame(data)
     
-    task_names = [
-        "Task 1: Introduction and Initial Interaction", 
-        "Task 2: VR/MR Tutorial", 
-        "Task 3: Map Interaction For Information Retrieval", 
-        "Task 4: VR Navigation"]
+    # Pie chart for gender distribution
+    fig_gender = px.pie(df, names='gender', title='Distribution of Users by Gender')
+    fig_gender.update_traces(textinfo='label+value+percent')
+    fig_gender.update_layout(
+        title_font=dict(size=45), 
+        legend=dict(
+            font=dict(size=28),  
+            title_font=dict(size=30)  
+        )
+    )
+    fig_gender.show()
     
-    dimensions = ['mental_demand', 'physical_demand', 'temporal_demand', 'performance', 'effort', 'frustration']
-    dimensions_label = [key_mapping[dimension] for dimension in dimensions]
-    num_tasks = len(dimension_scores_mean_task[dimensions[0]])
+    # Pie chart for qualification/profession distribution
+    fig_qual = px.pie(df, names='qualification', title='Distribution of Users by Qualification/Profession')
+    fig_qual.update_traces(textinfo='label+value+percent')
+    fig_qual.update_layout(
+        title_font=dict(size=45),
+        legend=dict(
+            font=dict(size=28),
+            title_font=dict(size=30) 
+        )
+    )
+    fig_qual.show()
     
-    # Calcolo del range massimo per l'asse radiale
-    max_val = max(max(dimension_scores_mean_task[dim]) for dim in dimensions)
-    max_range = max_val * 1.1
+    # Bar chart for VR Experience level
+    # Count users per VR level
+    vr_counts = df['vr_experience'].value_counts().reset_index()
+    vr_counts.columns = ['vr_experience', 'count']
     
-    # Creazione della figura con subplots (layout 2x2)
-    fig = make_subplots(
-        rows=2, cols=2,
-        specs=[[{'type': 'polar'}, {'type': 'polar'}],
-               [{'type': 'polar'}, {'type': 'polar'}]],
-        subplot_titles=task_names
+    # Convert vr_experience to numeric and sort in ascending order
+    vr_counts['vr_experience'] = pd.to_numeric(vr_counts['vr_experience'], errors='coerce')
+    vr_counts = vr_counts.sort_values('vr_experience')
+    
+    # Define groups based on VR levels with new labels
+    def get_group(x):
+        if x in [1, 2]:
+            return 'Inexperienced'
+        elif x in [3, 4]:
+            return 'Average'
+        elif x in [5, 6]:
+            return 'Experienced'
+        else:
+            return 'Other'
+    
+    vr_counts['group'] = vr_counts['vr_experience'].apply(get_group)
+    
+    # Calculate percentage for each VR level
+    total_users = df.shape[0]
+    vr_counts['percentage'] = (vr_counts['count'] / total_users * 100).round(2)
+    
+    # Create a text column with more explicit labels
+    vr_counts['text'] = (
+        "XR Experience: " + vr_counts['vr_experience'].astype(str) + "<br>" +
+        "User Category: " + vr_counts['group'] + "<br>" +
+        "Number of Users: " + vr_counts['count'].astype(str) + "<br>" +
+        "Percentage: " + vr_counts['percentage'].astype(str) + "%"
     )
     
+    # Define a custom color mapping using softer colors (from the Plotly default palette)
+    color_map = {
+        'Inexperienced': '#1f77b4',
+        'Average': '#ff7f0e',
+        'Experienced': '#2ca02c',
+        'Other': '#7f7f7f'
+    }
     
-    row_col = [(1, 1), (1, 2), (2, 1), (2, 2)]
+    fig_vr = px.bar(
+        vr_counts,
+        x='vr_experience',
+        y='count',
+        color='group',
+        color_discrete_map=color_map,
+        labels={'vr_experience': 'XR Experience', 'count': 'Number of Users', 'group': 'User Category'},
+        title='XR Experience Level',
+        text=vr_counts['text']
+    )
+    fig_vr.update_traces(textposition='inside')
+    fig_vr.update_layout(
+        title_font=dict(size=45),
+        legend=dict(
+            font=dict(size=28),
+            title_font=dict(size=30)
+        ),
+        # Eventuale aggiunta per ingrandire le etichette degli assi
+        xaxis=dict(title_font=dict(size=16), tickfont=dict(size=14)),
+        yaxis=dict(title_font=dict(size=16), tickfont=dict(size=14))
+    )
+    fig_vr.show()
+
+
+def plot_nasa_tlx_spider(dimension_scores_mean_task, user_name):
+    """
+    Crea un radar chart avanzato con:
+    - Scala logaritmica personalizzata (range 4-100)
+    - 10 cerchi concentrici con etichette significative
+    - Legenda orizzontale sopra il grafico
+    - Marker grandi con bordi contrastanti
+    - Colori ad alto contrasto
+    - Anti-overlap per valori identici
+    """
     
-    for i in range(num_tasks):
-        # Estrae i valori per ciascuna dimensione per il task i-esimo
-        values = [dimension_scores_mean_task[dim][i] for dim in dimensions]
-        # Aggiunge il primo valore alla fine per chiudere il poligono
-        values.append(values[0])
-        # Crea una lista di etichette per gli assi (aggiungendo la prima in coda)
-        labels = dimensions_label + [dimensions_label[0]]
+    import math
+    import plotly.graph_objects as go
+    
+    # =========================================================================
+    # 1. CONFIGURAZIONE INIZIALE E MAPPATURA DATI
+    # =========================================================================
+    
+    # Mappatura delle dimensioni per le etichette
+    KEY_MAPPING = {
+        "mental_demand": "MD",
+        "physical_demand": "PD",
+        "temporal_demand": "TD",
+        "performance": "P",
+        "effort": "E",
+        "frustration": "F",
+    }
+    
+    # Nomi dei task con formattazione HTML per ritorni a capo
+    TASK_NAMES = [
+        "Task 1",
+        "Task 2",
+        "Task 3",
+        "Task 4"
+    ]
+    
+    # Configurazione colori e marker
+    COLORS = [
+        'rgba(0, 92, 230, 0.9)',    # Blu elettrico
+        'rgba(255, 0, 0, 0.9)',      # Rosso acceso
+        'rgba(0, 163, 0, 0.9)',      # Verde neon
+        'rgba(163, 0, 163, 0.9)'     # Viola intenso
+    ]
+    MARKERS = ['circle', 'square', 'diamond', 'x']
+    
+    # =========================================================================
+    # 2. FUNZIONI DI SUPPORTO
+    # =========================================================================
         
-        r, c = row_col[i]
+    def adjust_overlaps(values):
+        """
+        Aggiunge piccoli offset ai valori identici per prevenire sovrapposizioni
+        """
+        seen = {}
+        adjusted = []
+        for idx, val in enumerate(values):
+            if val in seen:
+                # Calcola offset progressivo basato sulla posizione
+                delta = 0.5 * (idx - seen[val])
+                adjusted_val = val + delta
+                adjusted.append(min(adjusted_val, 100))  # Limite superiore
+            else:
+                adjusted.append(val)
+                seen[val] = idx
+        return adjusted
+    
+    # =========================================================================
+    # 3. PREPARAZIONE DATI
+    # =========================================================================
+    
+    # Lista delle dimensioni da visualizzare
+    dimensions = list(KEY_MAPPING.keys())
+    
+    # Applica la trasformazione logaritmica a tutti i valori
+    log_normalized = {
+        dim: [x for x in dimension_scores_mean_task[dim]] 
+        for dim in dimensions
+    }
+    
+    # Applica correzione anti-overlap
+    adjusted_values = {dim: adjust_overlaps(log_normalized[dim]) for dim in dimensions}
+    
+    
+    # =========================================================================
+    # 4. COSTRUZIONE GRAFICO
+    # =========================================================================
+    
+    fig = go.Figure()
+    
+    # Aggiungi ogni task come traccia separata
+    for i in range(4):
+        # Estrai e formatta i valori
+        values = [adjusted_values[dim][i] for dim in dimensions]
+        values += [values[0]]  # Chiudi il poligono
+        
+        # Crea la traccia
         fig.add_trace(go.Scatterpolar(
             r=values,
-            theta=labels,
+            theta=[KEY_MAPPING[dim] for dim in dimensions] + [KEY_MAPPING[dimensions[0]]],
+            line=dict(color=COLORS[i], width=3.5),
+            marker=dict(
+                symbol=MARKERS[i],
+                size=16,
+                color=COLORS[i],
+                line=dict(width=2, color='black')
+            ),
+            name=TASK_NAMES[i],
             fill='toself',
-            name=task_names[i]
-        ), row=r, col=c)
+            fillcolor=COLORS[i].replace('0.9)', '0.2)'),  # Riempimento trasparente
+            mode='lines+markers'
+        ))
+    
+    # =========================================================================
+    # 5. FORMATTAZIONE FINALE
+    # =========================================================================
     
     fig.update_layout(
-        title="Nasa TLX results",
-        showlegend=False,
         polar=dict(
             radialaxis=dict(
                 visible=True,
-                range=[0, max_range]
-            )
-        )
-    )    
-    fig.show()
+                range=[0, 60],
+                # tickvals=tick_positions,
+                # ticktext=[f"{x}" for x in LOG_TICKS],
+                tickfont=dict(size=25, color='#333333'),
+                gridcolor='rgba(100, 100, 100, 0.2)',
+                linecolor='gray',
+                linewidth=2,
+                nticks=0  # Disabilita ticks automatici
+            ),
+            angularaxis=dict(
+                tickfont=dict(size=35, color='#333333'),
+                linecolor='gray',
+                gridcolor='rgba(100, 100, 100, 0.1)',
+                rotation=90  # Orientamento etichette
+            ),
+            bgcolor='white'  # Sfondo trasparente
+        ),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.15,  # Posizione sopra il grafico
+            xanchor="center",
+            x=0.5,
+            font=dict(size=30, color='#333333'),
+            itemwidth=40,
+            itemsizing='constant',
+            bordercolor='gray',
+            borderwidth=1
+        ),
+        margin=dict(t=150, b=80),  # Spazio per legenda
+        width=1000,
+        height=700,
+        paper_bgcolor='white'
+    )
+    
+    fig.write_image(f"./nasa_tlx_{user_name}.svg")
+    # fig.show()
     
 def leggi_dati_excel(file_path):
     df = pd.read_excel(file_path)
@@ -328,21 +534,287 @@ def calculate_nasa_tlx(users, num_task=4):
     r_score = [round(r_score_i/r_score_counter_i, 2) for r_score_i, r_score_counter_i in zip(r_score, r_score_counter)]
     return dimension_scores_mean_task, r_score, w_score
 
-def sum(users):
-    pass
+def calculate_sum_score_complation(users):
+    complation_raw = {
+        "task1" : 0,
+        "task2" : 0,
+        "task3" : 0,
+        "task4" : 0,
+    }
+    for user in users:
+        complation_raw["task1"] += 1
+        complation_raw["task2"] += 1
+        complation_raw["task3"] += 1
+        if user.sum["first_person_experience"] == "Yes":
+            complation_raw["task4"] += 1
+        
+    complation_std = {
+        "task1" : round(100*complation_raw["task1"]/len(users), 2),
+        "task2" : round(100*complation_raw["task2"]/len(users), 2),
+        "task3" : round(100*complation_raw["task3"]/len(users), 2),
+        "task4" : round(100*complation_raw["task4"]/len(users), 2),
+    }
+    return complation_raw, complation_std
+
+def calculate_sum_score_time_on_task(users):
+    spec_satisfaction = 4
+    spec_time = [0, 0, 0, 0]
+    spec_time_percentage = 95
+    
+    time_on_task_list = {
+        "task1" : [],
+        "task2" : [],
+        "task3" : [],
+        "task4" : [],
+        "task1_spec" : [],
+        "task2_spec" : [],
+        "task3_spec" : [],
+        "task4_spec" : [],
+    }
+    for user in users:
+        satisfaction_score_task1 = (float(user.sum["task1"]["difficulty"]) + float(user.sum["task1"]["satisfaction"]) + float(user.sum["task1"]["time_rating"]))/3
+        satisfaction_score_task2 = (float(user.sum["task2"]["difficulty"]) + float(user.sum["task2"]["satisfaction"]) + float(user.sum["task2"]["time_rating"]))/3
+        satisfaction_score_task3 = (float(user.sum["task3"]["difficulty"]) + float(user.sum["task3"]["satisfaction"]) + float(user.sum["task3"]["time_rating"]))/3
+        if satisfaction_score_task1 >= spec_satisfaction:
+            time_on_task_list["task1_spec"].append(float(user.sum["task1"]["time"]))
+        if satisfaction_score_task2 >= spec_satisfaction:
+            time_on_task_list["task2_spec"].append(float(user.sum["task2"]["time"]))
+        if satisfaction_score_task3 >= spec_satisfaction:
+            time_on_task_list["task3_spec"].append(float(user.sum["task3"]["time"]))
+        time_on_task_list["task1"].append(float(user.sum["task1"]["time"]))
+        time_on_task_list["task2"].append(float(user.sum["task2"]["time"]))
+        time_on_task_list["task3"].append(float(user.sum["task3"]["time"]))
+        if user.sum["first_person_experience"] == "Yes":
+            time_on_task_list["task4"].append(float(user.sum["task4"]["time"]))
+            satisfaction_score_task4 = (float(user.sum["task4"]["difficulty"]) + float(user.sum["task4"]["satisfaction"]) + float(user.sum["task4"]["time_rating"]))/3
+            if satisfaction_score_task4 >= spec_satisfaction:
+                time_on_task_list["task4_spec"].append(float(user.sum["task4"]["time"]))
+
+    spec_time[0] = np.percentile(time_on_task_list["task1_spec"], spec_time_percentage)   
+    spec_time[1] = np.percentile(time_on_task_list["task2_spec"], spec_time_percentage)   
+    spec_time[2] = np.percentile(time_on_task_list["task3_spec"], spec_time_percentage)   
+    spec_time[3] = np.percentile(time_on_task_list["task4_spec"], spec_time_percentage)   
+    
+    time_on_task_raw = {
+        "task1" : [np.mean(time_on_task_list["task1"]), np.std(time_on_task_list["task1"]), spec_time[0]],
+        "task2" : [np.mean(time_on_task_list["task2"]), np.std(time_on_task_list["task2"]), spec_time[1]],
+        "task3" : [np.mean(time_on_task_list["task3"]), np.std(time_on_task_list["task3"]), spec_time[2]],
+        "task4" : [np.mean(time_on_task_list["task4"]), np.std(time_on_task_list["task4"]), spec_time[3]],
+    }
+    
+    z_scores_time = {
+        "task1" : -(time_on_task_raw["task1"][0] - time_on_task_raw["task1"][2]) / time_on_task_raw["task1"][1],
+        "task2" : -(time_on_task_raw["task2"][0] - time_on_task_raw["task2"][2]) / time_on_task_raw["task2"][1],
+        "task3" : -(time_on_task_raw["task3"][0] - time_on_task_raw["task3"][2]) / time_on_task_raw["task3"][1],
+        "task4" : -(time_on_task_raw["task4"][0] - time_on_task_raw["task4"][2]) / time_on_task_raw["task4"][1],
+    }
+    
+    time_on_task_std = {
+        "task1": round(100*norm.cdf(z_scores_time["task1"]), 2),
+        "task2": round(100*norm.cdf(z_scores_time["task2"]), 2),
+        "task3": round(100*norm.cdf(z_scores_time["task3"]), 2),
+        "task4": round(100*norm.cdf(z_scores_time["task4"]), 2),
+    }
+    return time_on_task_raw, time_on_task_std
+
+def calculate_sum_score_satisfaction(users):    
+    spec_satisfaction = 4
+    
+    satisfaction_list = {
+        "task1" : [],
+        "task2" : [],
+        "task3" : [],
+        "task4" : [],
+    }
+    for user in users:
+        satisfaction_score_task1 = (float(user.sum["task1"]["difficulty"]) + float(user.sum["task1"]["satisfaction"]) + float(user.sum["task1"]["time_rating"]))/3
+        satisfaction_score_task2 = (float(user.sum["task2"]["difficulty"]) + float(user.sum["task2"]["satisfaction"]) + float(user.sum["task2"]["time_rating"]))/3
+        satisfaction_score_task3 = (float(user.sum["task3"]["difficulty"]) + float(user.sum["task3"]["satisfaction"]) + float(user.sum["task3"]["time_rating"]))/3
+        satisfaction_list["task1"].append(satisfaction_score_task1)
+        satisfaction_list["task2"].append(satisfaction_score_task2)
+        satisfaction_list["task3"].append(satisfaction_score_task3)
+        if user.sum["first_person_experience"] == "Yes":
+            satisfaction_score_task4 = (float(user.sum["task4"]["difficulty"]) + float(user.sum["task4"]["satisfaction"]) + float(user.sum["task4"]["time_rating"]))/3
+            satisfaction_list["task4"].append(satisfaction_score_task4)
+    
+    satisfaction_raw = {
+        "task1" : [np.mean(satisfaction_list["task1"]), np.std(satisfaction_list["task1"]), spec_satisfaction],
+        "task2" : [np.mean(satisfaction_list["task2"]), np.std(satisfaction_list["task2"]), spec_satisfaction],
+        "task3" : [np.mean(satisfaction_list["task3"]), np.std(satisfaction_list["task3"]), spec_satisfaction],
+        "task4" : [np.mean(satisfaction_list["task4"]), np.std(satisfaction_list["task4"]), spec_satisfaction],
+    }    
+    
+    z_scores_satisfaction = {
+        "task1" : (satisfaction_raw["task1"][0] - satisfaction_raw["task1"][2]) / satisfaction_raw["task1"][1],
+        "task2" : (satisfaction_raw["task2"][0] - satisfaction_raw["task2"][2]) / satisfaction_raw["task2"][1],
+        "task3" : (satisfaction_raw["task3"][0] - satisfaction_raw["task3"][2]) / satisfaction_raw["task3"][1],
+        "task4" : (satisfaction_raw["task4"][0] - satisfaction_raw["task4"][2]) / satisfaction_raw["task4"][1],
+    }
+    
+    satisfaction_std = {
+        "task1": round(100*norm.cdf(z_scores_satisfaction["task1"]), 2),
+        "task2": round(100*norm.cdf(z_scores_satisfaction["task2"]), 2),
+        "task3": round(100*norm.cdf(z_scores_satisfaction["task3"]), 2),
+        "task4": round(100*norm.cdf(z_scores_satisfaction["task4"]), 2),
+    }
+    return satisfaction_raw, satisfaction_std
+
+def calculate_sum_score_error(users):    
+    error_sum_count = {
+        "Missing 2x Pinch Zoom": [0, 0],
+        "Missing Pinch Move": [0, 0],
+        "Missing Rotation": [0, 0],
+        "Missing Ask Map Functionality": [0, 0],
+        "Number of try asking a position": [0, 0],
+        "Number of try to enter VR": [0, 0] 
+    }
+    for user in users:
+        error_sum_count["Missing 2x Pinch Zoom"][0] += float(user.sum["errori"]["Missing 2x Pinch Zoom"])
+        error_sum_count["Missing Pinch Move"][0] += float(user.sum["errori"]["Missing Pinch Move"])
+        error_sum_count["Missing Rotation"][0] += float(user.sum["errori"]["Missing Rotation"])
+        error_sum_count["Missing Ask Map Functionality"][0] += float(user.sum["errori"]["Missing Ask Map Functionality"])
+        error_sum_count["Number of try asking a position"][0] += float(user.sum["errori"]["Number of try asking a position"])
+        if user.sum["first_person_experience"] == "Yes":
+            error_sum_count["Number of try to enter VR"][0] += float(user.sum["errori"]["Number of try to enter VR"])
+            
+        error_sum_count["Missing 2x Pinch Zoom"][1] += 1
+        error_sum_count["Missing Pinch Move"][1] += 1
+        error_sum_count["Missing Rotation"][1] += 1
+        error_sum_count["Missing Ask Map Functionality"][1] += 1
+        error_sum_count["Number of try asking a position"][1] += 1
+        if user.sum["first_person_experience"] == "Yes":
+            error_sum_count["Number of try to enter VR"][1] += 1
+            
+    error_mean = {
+        "Missing 2x Pinch Zoom": error_sum_count["Missing 2x Pinch Zoom"][0]/error_sum_count["Missing 2x Pinch Zoom"][1],
+        "Missing Pinch Move": error_sum_count["Missing Pinch Move"][0]/error_sum_count["Missing Pinch Move"][1],
+        "Missing Rotation": error_sum_count["Missing Rotation"][0]/error_sum_count["Missing Rotation"][1],
+        "Missing Ask Map Functionality": error_sum_count["Missing Ask Map Functionality"][0]/error_sum_count["Missing Ask Map Functionality"][1],
+        "Number of try asking a position": error_sum_count["Number of try asking a position"][0]/error_sum_count["Number of try asking a position"][1],
+        "Number of try to enter VR": error_sum_count["Number of try to enter VR"][0]/error_sum_count["Number of try to enter VR"][1] 
+    }
+    scale_error = {
+        "Missing 2x Pinch Zoom": 1,
+        "Missing Pinch Move": error_mean["Missing 2x Pinch Zoom"]/error_mean["Missing Pinch Move"],
+        "Missing Rotation": error_mean["Missing Pinch Move"]/error_mean["Missing Rotation"],
+        "Missing Ask Map Functionality": 1,
+        "Number of try asking a position": error_mean["Missing Ask Map Functionality"]/error_mean["Number of try asking a position"],
+        "Number of try to enter VR":  error_mean["Number of try asking a position"]/error_mean["Number of try to enter VR"]
+    }
+    
+    def opportunity_mapping(error, scale):
+        value_to_check = error*scale
+        if value_to_check == 0:
+            return 0
+        elif value_to_check <= 3:
+            return 1
+        elif value_to_check <= 6:
+            return 2
+        elif value_to_check <= 9:
+            return 3
+        else:
+            return 4
+        
+    error_raw = {
+        "task1": [0, 4*len(users)],
+        "task2": [0, 12*len(users)],
+        "task3": [0, 4*len(users)],
+        "task4": [0, 4*len(users)],
+    }
+    
+    for user in users:
+        error_raw["task1"][0] += opportunity_mapping(float(user.sum["errori"]["Missing Ask Map Functionality"]), scale_error["Missing Ask Map Functionality"])
+        error_raw["task2"][0] += opportunity_mapping(float(user.sum["errori"]["Missing 2x Pinch Zoom"]), scale_error["Missing 2x Pinch Zoom"])
+        error_raw["task2"][0] += opportunity_mapping(float(user.sum["errori"]["Missing Pinch Move"]), scale_error["Missing Pinch Move"])
+        error_raw["task2"][0] += opportunity_mapping(float(user.sum["errori"]["Missing Rotation"]), scale_error["Missing Rotation"])
+        error_raw["task3"][0] += opportunity_mapping(float(user.sum["errori"]["Number of try asking a position"]), scale_error["Number of try asking a position"])
+        if user.sum["first_person_experience"] == "Yes":
+            error_raw["task4"][0] += opportunity_mapping(float(user.sum["errori"]["Number of try to enter VR"]), scale_error["Number of try to enter VR"])
+    
+    
+    error_std = {
+        "task1": round(100*(error_raw["task1"][1] - error_raw["task1"][0]) / error_raw["task1"][1], 2),
+        "task2": round(100*(error_raw["task2"][1] - error_raw["task2"][0]) / error_raw["task2"][1], 2),
+        "task3": round(100*(error_raw["task3"][1] - error_raw["task3"][0]) / error_raw["task3"][1], 2),
+        "task4": round(100*(error_raw["task4"][1] - error_raw["task4"][0]) / error_raw["task4"][1], 2),
+    }
+    return error_raw, error_std
+
+def calculate_sum_score(users):    
+    complation_raw, complation_std = calculate_sum_score_complation(users)
+    time_on_task_raw, time_on_task_std = calculate_sum_score_time_on_task(users)
+    satisfaction_raw, satisfaction_std = calculate_sum_score_satisfaction(users)
+    error_raw, error_std = calculate_sum_score_error(users)
+    
+    sum_result_task = {
+        "task1": round((complation_std["task1"] + time_on_task_std["task1"] + satisfaction_std["task1"] + error_std["task1"]) / 4, 2),
+        "task2": round((complation_std["task2"] + time_on_task_std["task2"] + satisfaction_std["task2"] + error_std["task2"]) / 4, 2),
+        "task3": round((complation_std["task3"] + time_on_task_std["task3"] + satisfaction_std["task3"] + error_std["task3"]) / 4, 2),
+        "task4": round((complation_std["task4"] + time_on_task_std["task4"] + satisfaction_std["task4"] + error_std["task4"]) / 4, 2),
+    }
+    
+    sum_result = round((sum_result_task["task1"] + sum_result_task["task2"] + sum_result_task["task3"] + sum_result_task["task4"]) / 4, 2)
+    return complation_raw, complation_std, time_on_task_raw, time_on_task_std, satisfaction_raw, satisfaction_std, error_raw, error_std, sum_result_task, sum_result
+
+def print_scores(users, title):
+    _, sus_score = calculate_sus_scores(users)
+    dimension_scores_mean_per_task, r_score, w_score = calculate_nasa_tlx(users)   
+    complation_raw, complation_std, time_on_task_raw, time_on_task_std, satisfaction_raw, satisfaction_std, error_raw, error_std, sum_result_task, sum_result = calculate_sum_score(users)
+    # print(title.upper())
+    # print("SUS SCORE")
+    # print(sus_score)
+    # print()
+    # print()
+    # print("NASA-TLX RESULTS")
+    # print("DIMENSION SCORES MEAN PER TASK")
+    # print(json.dumps(dimension_scores_mean_per_task, indent=4))
+    # print()
+    # print("RAW SCORES PER TASK")
+    # print(r_score)
+    # print()
+    # print("WEIGHTED SCORES PER TASK")
+    # print(w_score)
+    # print()
+    # print()
+    
+    # print("COMPLATION RAW/STD")
+    # print(json.dumps(complation_raw, indent=4))
+    # print(json.dumps(complation_std, indent=4))
+    # print()
+    
+    # print("TIME-ON-TASK RAW/STD")
+    # print(json.dumps(time_on_task_raw, indent=4))
+    # print(json.dumps(time_on_task_std, indent=4))
+    # print()
+    
+    # print("SATISFACTION RAW/STD")
+    # print(json.dumps(satisfaction_raw, indent=4))
+    # print(json.dumps(satisfaction_std, indent=4))
+    # print()
+
+    # print("ERROR RAW/STD")
+    # print(json.dumps(error_raw, indent=4))
+    # print(json.dumps(error_std, indent=4))
+    # print()
+
+    # print("SUM SCORE PER TASK")
+    # print(json.dumps(sum_result_task, indent=4))
+    # print()
+    
+    # print("SUM SCORE")
+    # print(json.dumps(sum_result, indent=4))
+    # print()
+    
+    plot_nasa_tlx_spider(dimension_scores_mean_per_task, title.lower())
 
 if __name__ == "__main__":
-    users = leggi_dati_excel("./risposte.xlsx")
+    users = leggi_dati_excel("./risposte.xlsx")    
+    # plot_statistics(users)
     
-    sus_results, sus_mean = calculate_sus_scores(users)
-    dimension_scores_mean_per_task, r_score, w_score = calculate_nasa_tlx(users)   
-    
-    print("SUS Score:", sus_mean)
-    print()
-    print("Nasa TLX results:")
-    print("Dimension Scores Mean per task: ", json.dumps(dimension_scores_mean_per_task, indent=4))
-    print("Raw Scores per task:", r_score)
-    print("Weighted Scores per task:", w_score)
-    print()
-    
-    plot_nasa_tlx_spider(dimension_scores_mean_per_task)
+    inexperienced_users = [user for user in users if user.vr_experience == "1" or user.vr_experience == "2"]
+    average_users = [user for user in users if user.vr_experience == "3" or user.vr_experience == "4"]
+    experienced_users = [user for user in users if user.vr_experience == "5" or user.vr_experience == "6"]
+    print_scores(users, "All Users")
+    print_scores(inexperienced_users, "Inexperienced Users")
+    print_scores(average_users, "Average Users")
+    print_scores(experienced_users, "Experienced Users")
