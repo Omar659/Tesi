@@ -808,7 +808,7 @@ def print_scores(users, title):
     plot_nasa_tlx_spider(dimension_scores_mean_per_task, title.lower())
 
 if __name__ == "__main__":
-    users = leggi_dati_excel("./risposte.xlsx")    
+    users = leggi_dati_excel("./answer.xlsx")    
     # plot_statistics(users)
     
     inexperienced_users = [user for user in users if user.vr_experience == "1" or user.vr_experience == "2"]
